@@ -1,0 +1,405 @@
+@import url('https://fonts.googleapis.com/css2?family=Akaya+Telivigala&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+
+body {
+    background-color: azure;
+}
+
+.navbar-padding{
+    padding-left: 50px;
+}
+
+.title-font{
+    font-family: 'Akaya Telivigala', cursive;
+}
+
+.title-map-font{
+    font-family: 'MedievalSharp', cursive;
+    margin: 0;
+}
+
+.banner-map{
+    background: url("../img/sprites/battlebacks2/Bridge.png");
+    max-width: 1248px;
+    color: white;
+    text-shadow: 1px 1px 2px black;
+    text-transform: uppercase;
+}
+
+.cases{
+    display: flex;
+    flex-wrap: wrap;
+    width: 1248px;
+    height: 832px;
+    position: relative;
+    z-index: 2;
+}
+
+.case{
+    content: "";
+    width: 52px;
+    height:52px;
+    /*background: rgba(255,255,255,0);*/
+}
+
+.top-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.user-stats-block{
+    background: #212529;
+    border-radius: 10px;
+    color: white;
+    min-width: 350px;
+}
+
+.username-block{
+    background: #212529;
+    border-radius: 10px;
+    color: white;
+    min-width: 350px;
+}
+
+.joueur{
+    background-image: url("../img/character/mage/guerrier.png")!important;
+    background-size: cover;
+    content: "";
+    width: 52px;
+    height: 52px;
+    position: relative;
+}
+
+.joueur-hover{
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    background: aliceblue;
+    min-width: 184px;
+    border: solid black 1px;
+}
+
+.joueur:hover .joueur-hover{
+    display: flex!important;
+    z-index: 2;
+    border-radius: 5px;
+}
+
+.joueur-name{
+    text-align: center;
+    background: #76c893;
+}
+
+.map-container{
+    /*border-image: url("public/img/sprites/titles2/Medieval.png") 30 / 19px round*/;
+    /*border-image: url("public/img/sprites/titles2/Medieval.png") 30 / 19px round*/;
+    width: auto;
+    border: 1px black solid;
+    margin-right: 100px;
+}
+
+
+/************** ATH ****************/
+
+.coin-icon{
+    width: 24px;
+    height: 24px;
+}
+
+.life-icon, .mana-icon{
+    width: 28px;
+    height: 28px;
+    margin-right: 5px;
+}
+
+.progress-bar-stats{
+    width: 100%;
+}
+
+.side-menu{
+    background: #212529;
+    border-radius: 10px;
+    color: white;
+    min-width: 350px;
+}
+
+.side-menu-icon{
+    width: 60px;
+    height: 60px;
+}
+
+.spell-bar{
+    width: 1248px;
+    height: 100px;
+    background: #212529;
+    border-radius: 10px;
+    -webkit-border-image: url(../img/icons/border-spellbar.png);
+    border-image-width: 1248px;
+    border-image-slice: 120;
+    border-image-repeat: unset;
+    border-style: solid;
+}
+
+.spell{
+    min-width: 70px;
+    min-height: 70px;
+    -webkit-border-image: url(../img/icons/border-spell2.png);
+    border-style: solid;
+    border-image-width: 70px;
+    border-image-slice: 120;
+    border-image-repeat: unset;
+    content: "";
+    background-size: cover;
+    margin-right: 5px;
+}
+
+.block-joueur-cible{
+    background: #212529;
+    height: 400px;
+    content: "";
+    border-radius: 10px;
+    -webkit-border-image: url(../img/icons/ciblage-border.png);
+    border-image-width: 50px;
+    border-image-slice: 120;
+    border-image-repeat: unset;
+    border-style: solid;
+}
+
+.joueur-cible-name{
+    color: white;
+    text-align: center;
+}
+
+.block-chat{
+    background: #212529;
+    height: 400px;
+    -webkit-border-image: url(../img/icons/ciblage-border.png);
+    border-image-width: 50px;
+    border-image-slice: 120;
+    border-image-repeat: unset;
+    border-style: solid;
+    position: relative;
+}
+
+.block-chat input{
+    width: 100%;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.bottom{
+    position: absolute;
+    bottom: 10px;
+    width: 80%;
+}
+
+
+/*** PARALLAX ***/
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body{
+    overflow-x: hidden;
+    background: white;
+    min-height: 100vh;
+}
+
+#header{
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10000;
+    background: rgba(0, 0, 0, 0.75);
+}
+
+#header .logo {
+    color: white;
+    text-decoration: none;
+}
+
+#header .img-logo{
+    width: 100px;
+}
+
+#header ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#header ul li{
+    list-style: none;
+    margin-left: 20px;
+
+}
+
+#header ul li a{
+    text-decoration: none;
+    padding: 6px 15px;
+    color: #fff;
+    border-radius: 20px;
+}
+
+#header ul li a:hover, #header ul li a:active{
+    background: #094b65;
+    color: #fff;
+}
+
+section{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section::before{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    /*background: linear-gradient(to top, #34a0a4, transparent);*/
+    z-index: 10;
+}
+
+section img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    object-fit: cover;
+}
+
+section #text{
+    position: absolute;
+    color: #094b65;
+    font-size: 10vw;
+    text-align: center;
+    line-height: 0.2em;
+    transform: translateY(-77%);
+    z-index: 1000;
+    font-family: 'Akaya Telivigala', cursive;
+    text-shadow: #1f69c0 1px 1px;
+}
+
+section #text span{
+    font-size: 0.2em;
+    letter-spacing: 2px;
+    font-weight: 400;
+}
+
+#btn{
+    text-decoration: none;
+    display: inline-block;
+    transform: translateY(100px);
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    text-transform: uppercase;
+    outline: none;
+    overflow: hidden;
+    color: black;
+    font-weight: 700;
+    font-size: 15px;
+    background-color: rgba(184,219,217,1);
+    padding: 17px 60px;
+    margin: 0 auto;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.20);
+    position: relative;
+    /*background-image: url(../../img/spell.png);*/
+    /*background-size: cover;*/
+    /*background-position:  center;*/
+    /*background-position-y: -30px;*/
+    /*transition: ease-in-out 0.1s;*/
+    /*border-radius: 20px*/
+}
+
+#btn span{
+    z-index: 2000;
+    position: relative;
+    color: #094b65;
+}
+
+#btn:hover{
+    background-color: rgba(184,219,217,0.3);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+}
+
+/*#btn:before{*/
+/*    content: "";*/
+/*    position: absolute;*/
+/*    left: 0;*/
+/*    top: 0;*/
+/*    height: 490%;*/
+/*    width: 140%;*/
+/*    background: #78c7d2;*/
+/*    -webkit-transition: all .5s ease-in-out;*/
+/*    transition: all .5s ease-in-out;*/
+/*    -webkit-transform: translateX(-98%) translateY(-25%) rotate(45deg);*/
+/*    transform: translateX(-98%) translateY(-25%) rotate(45deg);*/
+/*    z-index: 1;*/
+/*}*/
+
+/*#btn:hover:before {*/
+/*    -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);*/
+/*    transform: translateX(-9%) translateY(-25%) rotate(45deg);*/
+/*}*/
+
+
+.sec{
+    position: relative;
+    padding: 100px;
+    background: #b8dbd9;
+    opacity: 1;
+    top: -300px
+}
+
+#bird1{
+    z-index: 5000;
+}
+
+#bird2{
+    z-index: 5000;
+}
+
+#war{
+    max-width: 320px;
+    max-height: 516px;
+    top: 375px;
+    /* right: 66px; */
+    left: 80%;
+}
+
+#moon{
+    transform: translateY(20px);
+    width: auto;
+    left: 60px;
+}
+
+
+
+.sec h2{
+    font-size: 3.5em;
+    color: #fff;
+
+}
+
+
+
