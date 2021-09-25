@@ -36,7 +36,8 @@ const LoginPage = ({history }) =>{
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
+            <form className="form-login" onSubmit={handleSubmit}>
+                <h1 style={{color: '#222'}}>Connexion</h1>
                 <div className="form-group">
                     <label htmlFor="username">Adresse email</label>
                     <input type="email" name="username" id="username" className={"form-control" + (error && " is-invalid")} value={credentials.username} onChange={handleChange}/>

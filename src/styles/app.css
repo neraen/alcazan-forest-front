@@ -2,12 +2,73 @@
 @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
 
 body {
-    background-color: azure;
+    background-color: azure!important;
+    background: url(../img/waterfall.png)!important;
+    background-size: cover!important;
+    min-height: 100vh!important;
 }
+
+main{
+    min-height: 90vh!important;
+}
+
+
 
 .navbar-padding{
     padding-left: 50px;
+    background-color: #b8dbd9!important;
+    color: #212529!important;
 }
+
+.navbar-brand{
+    color: #212529!important;
+    text-decoration: none!important;
+}
+
+.navbar-brand img{
+    width: 50px;
+    margin-right: 20px;
+}
+
+.navbar-nav.ml-auto{
+    margin-left: 20px;
+}
+
+.btn-sign{
+    text-decoration: none;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    text-transform: uppercase;
+    outline: none;
+    overflow: hidden;
+    color: black;
+    font-weight: 700;
+    font-size: 14px;
+    background-color: rgba(184,219,217,1);
+    padding: 0px 15px;
+    margin: 0 auto;
+    position: relative;
+    right: 15px;
+}
+
+/** connexion **/
+
+.form-login{
+    position: absolute;
+    /* margin: auto; */
+    top: 33vh;
+    left: 37vw;
+    background: rgba(255,255,255,0.65);
+    padding: 100px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
 
 .title-font{
     font-family: 'Akaya Telivigala', cursive;
@@ -52,6 +113,7 @@ body {
     border-radius: 10px;
     color: white;
     min-width: 350px;
+    max-width: 350px;
 }
 
 .username-block{
@@ -59,6 +121,7 @@ body {
     border-radius: 10px;
     color: white;
     min-width: 350px;
+    max-width: 350px;
 }
 
 .joueur{
@@ -121,6 +184,11 @@ body {
     border-radius: 10px;
     color: white;
     min-width: 350px;
+    max-width: 350px;
+}
+
+.side-menu-link span{
+    color: white;
 }
 
 .side-menu-icon{
@@ -131,6 +199,7 @@ body {
 .spell-bar{
     width: 1248px;
     height: 100px;
+    margin-left: 422px;
     background: #212529;
     border-radius: 10px;
     -webkit-border-image: url(../img/icons/border-spellbar.png);
@@ -155,7 +224,7 @@ body {
 
 .block-joueur-cible{
     background: #212529;
-    height: 400px;
+    height: auto;
     content: "";
     border-radius: 10px;
     -webkit-border-image: url(../img/icons/ciblage-border.png);
@@ -168,6 +237,10 @@ body {
 .joueur-cible-name{
     color: white;
     text-align: center;
+}
+
+.target-avatar{
+    max-width: 80px;
 }
 
 .block-chat{
@@ -401,5 +474,84 @@ section #text span{
 
 }
 
+/** Profil **/
+
+.profil{
+    background: rgba(255,255,255,0.65);
+    padding: 50px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 7px;
+}
+
+.informations{
+    display: flex;
+    flex-direction: column;
+}
+
+.champ-caracteristique{
+    display: flex;
+}
+
+.champ-caracteristique .form-group input{
+    background: #b7e4c7;
+    text-align: center;
+}
+
+.btn-caracteristique{
+    border-radius: 0.25em 0 0 0.25em;
+    width: 38px;
+    height: 38px;
+    position: relative;
+    top: 24px;
+    left: 3px;
+    background: #222;
+    border: none;
+}
+
+.btn-caracteristique:after {
+    content: "";
+    border: 0.35em solid;
+    border-color: transparent transparent transparent #222;
+    position: absolute;
+    top: 0.85em;
+    right: -0.65em;
+}
+
+.btn-caracteristique-reverse:after {
+    content: "";
+    border: 0.35em solid;
+    border-color: transparent transparent transparent #222;
+    position: absolute;
+    top: 0.85em;
+    right: 2.35em;
+    transform: rotateY(180deg);
+}
+
+
+.btn-caracteristique-reverse{
+    border: none;
+    border-radius: 0 0.25em 0.25em 0;
+    width: 38px;
+    height: 38px;
+    position: relative;
+    top: 24px;
+    right: 3px;
+    background: #222;
+}
+
+.btn-caracteristique i, .btn-caracteristique-reverse i{
+    color: aliceblue;
+}
+
+
+.footer{
+    height: 70px;
+    padding-left: 50px;
+    background-color: #b8dbd9!important;
+    color: #212529!important;
+    display: flex;
+    align-items: center;
+}
 
 

@@ -15,29 +15,29 @@ const Navbar = ({history}) => {
 
 
     return(
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark navbar-padding title-font" >
-            <NavLink to="/" className="navbar-brand" href="#">Alcazan Forest</NavLink>
+        <nav className="navbar navbar-expand-lg navbar-padding title-font" >
+            <NavLink to="/" className="navbar-brand" href="#"><img src="../img/A.F.png"/>Alcazan Forest</NavLink>
             <div className="collapse navbar-collapse" id="navbarColor02">
                 <ul className="navbar-nav mr-auto">
                     {isAuthenticated &&
                     <>
                         <li className="nav-item">
-                            <NavLink className="nav-link" to="/carte">Carte</NavLink>
+                            <NavLink className="nav-link link-dark" to="/carte">Carte</NavLink>
                         </li>
                         <li className="nav-item">
-                        <NavLink className="nav-link" to="/profil">Profil</NavLink>
+                        <NavLink className="nav-link link-dark" to="/profil">Profil</NavLink>
                         </li>
                         <li className="nav-item">
-                        <NavLink className="nav-link" to="/inventaire">Inventaire</NavLink>
+                        <NavLink className="nav-link link-dark" to="/inventaire">Inventaire</NavLink>
                         </li>
                     </>
                     ||
                     <>
                         <li className="nav-item">
-                        <NavLink className="nav-link" to="/preview">Apercu</NavLink>
+                        <NavLink className="nav-link link-dark" to="/preview">APERCU</NavLink>
                         </li>
                         <li className="nav-item">
-                        <NavLink className="nav-link" to="/about">A propos</NavLink>
+                        <NavLink className="nav-link link-dark" to="/about">A PROPOS</NavLink>
                         </li>
                     </>
                     }
@@ -45,16 +45,16 @@ const Navbar = ({history}) => {
                 <ul className="navbar-nav ml-auto">
                     {!isAuthenticated &&
                     <>
-                        <li className="nav-item">
-                            <NavLink to="/inscription" className="btn btn-success">Inscription</NavLink>
+                        <li className="nav-item link-dark">
+                            <NavLink to="/inscription" className="btn-sign">Inscription</NavLink>
                         </li>
-                        <li className="nav-item">
-                            <NavLink to="/connexion" className="btn btn-success">connexion</NavLink>
+                        <li className="nav-item link-dark">
+                            <NavLink to="/connexion" className="btn-sign">connexion au jeu</NavLink>
                         </li>
                     </>
                     ||
                     <li className="nav-link ml-auto">
-                        <button onClick={handleLogout} className="btn btn-danger">Deconnexion</button>
+                        <button onClick={handleLogout} className="btn-sign btn-signout">Deconnexion</button>
                     </li>
                     }
                 </ul>

@@ -16,7 +16,7 @@ const Target = (props) => {
             <div className="joueur-cible">
                 <h4 className="joueur-cible-name">{props.player.pseudo} / {props.player.classe.nom} niveau 18</h4>
                 <div className="d-flex align-items-center w100">
-                    <img src="/img/avatar/guerrier.png" alt="avatar"/>
+                    <img src="/img/avatar/guerrier.png" alt="avatar" className="target-avatar"/>
                     <img className="life-icon mr-2" src="/img/icons/pixel-life.png"/>
                     <ProgressBar className="progress-bar-stats" variant="danger" now="44"/>
                 </div>

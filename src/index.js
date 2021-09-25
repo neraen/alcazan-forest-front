@@ -26,7 +26,7 @@ const Index = () => {
 
     const context = {
         isAuthenticated: isAuthenticated,
-        setIsAuthenticated: setIsAuthenticated,
+        setIsAuthenticated: setIsAuthenticated
     }
 
 
@@ -47,7 +47,12 @@ const Index = () => {
                         <PrivateRoute path="/inventory" component={InventoryPage} />
                         <Route path="/" component={HomePage} />
                     </Switch>
+
                 </main>
+                <footer className="footer">
+                    Clement Silvestre - jeu en cours de construction
+                </footer>
+
             </HashRouter>
             </AuthContext.Provider>
         //</Provider>
