@@ -294,7 +294,7 @@ body{
     justify-content: space-between;
     align-items: center;
     z-index: 10000;
-    background: rgba(0, 0, 0, 0.75);
+    background: rgba(0, 0, 0, 0.8);
 }
 
 #header .logo {
@@ -477,7 +477,7 @@ section #text span{
 /** Profil **/
 
 .profil{
-    background: rgba(255,255,255,0.65);
+    background: rgba(255,255,255,0.8);
     padding: 50px;
     display: flex;
     justify-content: space-between;
@@ -485,6 +485,11 @@ section #text span{
 }
 
 .informations{
+    display: flex;
+    flex-direction: column;
+}
+
+.statistiques{
     display: flex;
     flex-direction: column;
 }
@@ -543,6 +548,61 @@ section #text span{
 .btn-caracteristique i, .btn-caracteristique-reverse i{
     color: aliceblue;
 }
+
+.btn-valider-caracs{
+    margin: auto;
+    background: #222;
+    color: white;
+    padding: 7px 15px;
+    border: none;
+    border-radius: 7px;
+    margin-top: 10px;
+}
+
+.equipement{
+    position: relative;
+}
+
+.equipement img{
+    width: 130%!important;
+}
+
+.item-case{
+    content: "";
+    width: 60px;
+    height: 60px;
+    border-rarius: 7px;
+    background: rgba(0,0,0, 0.75);
+    border: solid grey 1px;
+    position: absolute;
+}
+
+.archer.bottes{
+    top: 383px;
+    left: 92px;
+}
+
+.archer.bras{
+    top: 168px;
+    left: 48px;
+}
+
+.archer.arme{
+    top: 171px;
+    left: 261px;
+}
+
+.archer.tete{
+    top: 78px;
+    left: 124px;
+}
+
+.archer.corps{
+    top: 220px;
+    left: 154px;
+}
+
+
 
 
 .footer{

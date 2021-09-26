@@ -19,9 +19,14 @@ function getCaracteristiques(id){
     return axios.get(API_URL + "joueur/caracteristiques").then(response => response.data['hydra:member'])
 }
 
+function updateCaracteristiques(data){
+    return axios.post(API_URL + "joueur/caracteristiques/update", data)
+}
+
 export default {
     register,
     find,
     updatePosition,
-    getCaracteristiques
+    getCaracteristiques,
+    updateCaracteristiques
 }

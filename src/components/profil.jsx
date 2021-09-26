@@ -4,8 +4,6 @@ import UsersApi from "../services/UsersApi";
 
 const Profil = (props) => {
 
-    //const id = this.userInfo()
-
     const [caracteristiques, setCaracteristiques] = useState({
         constitution: 0,
         force: 0,
@@ -15,20 +13,17 @@ const Profil = (props) => {
         chance: 0
     })
 
-    let id = 1
-
-
     useEffect(() => {
         fetchCaracteristiques(props.user.id)
-    }, [id]);
+    }, []);
 
-    const fetchCaracteristiques = (id) => {
-        UsersApi.getCaracteristiques(id).then(caracteristiques => {
-           caracteristiques.map((value) => {
-               console.log(value)
-               setCaracteristiques({...caracteristiques, [value.caracteristique.nom] : value.points})
-           })
+    const fetchCaracteristiques =  async id => {
+        const caracs = await UsersApi.getCaracteristiques(id)
+        let caracsToSet = caracteristiques
+        caracs.map((value) => {
+            caracsToSet = {...caracsToSet, [value.caracteristique.nom] : value.points}
         })
+        setCaracteristiques(caracsToSet);
     }
 
     const handleChange = ({currentTarget}) => {
@@ -51,6 +46,15 @@ const Profil = (props) => {
         console.log("moyenne : " + somme / 1000);
     }
 
+    const handleClick = (name, value) => {
+        setCaracteristiques({...caracteristiques, [name] :  value})
+    }
+
+    const handleSubmit = () => {
+        console.log('ho hoo nique ta mere')
+        UsersApi.updateCaracteristiques(caracteristiques);
+    }
+
 
     return <>
         <div className="profil">
@@ -61,48 +65,86 @@ const Profil = (props) => {
                 <span>guilde : aucune</span>
                 <span>Alignement : aucun</span>
                 <span>karma : malandrin</span>
+
+                <h2 className="mt-5">Bonus équipement</h2>
+
+                <span>constitution : <span className="font-weight-bold"> + 18 </span></span>
+                <span>force : <span className="font-weight-bold"> + 74 </span></span>
+                <span>dexterité : <span className="font-weight-bold"> +118 </span></span>
+                <span>intelligence : <span className="font-weight-bold"> + 2 </span></span>
+                <span>concentration :<span className="font-weight-bold"> + 1 </span></span>
+                <span>chance : <span className="font-weight-bold"> + 12 </span></span>
+             </div>
+             <div className="equipement">
+                 <h2>Equipement</h2>
+                 <img className="mt-3 ml-3" src="../img/sprites/enemies/actor1_5.png"/>
+                 <div className="item-case archer bottes"></div>
+                 <div className="item-case archer bras"></div>
+                 <div className="item-case archer arme"></div>
+                 <div className="item-case archer tete"></div>
+                 <div className="item-case archer corps"></div>
              </div>
             <div className="caracteristiques">
-                <h2>Caracteristique</h2>
+                <h2>Caracteristique (5)</h2>
                 <div className="champ-caracteristique">
-                    <button className="btn-caracteristique" ><i>+</i></button>
+                    <button className="btn-caracteristique" onClick={() => handleClick('constitution', caracteristiques.constitution + 1)} ><i>+</i></button>
                         <Field className="" disabled="disabled" name="constitution" label="Constitution" placeholder="" onChange={handleChange} value={caracteristiques.constitution} />
-                    <button className="btn-caracteristique-reverse"><i>-</i></button>
+                    <button className="btn-caracteristique-reverse" onClick={() => handleClick('constitution', caracteristiques.constitution - 1)}><i>-</i></button>
                 </div>
 
                 <div className="champ-caracteristique">
-                    <button className="btn-caracteristique"><i>+</i></button>
+                    <button className="btn-caracteristique" onClick={() => handleClick('force', caracteristiques.force + 1)}><i>+</i></button>
                         <Field disabled="disabled" name="force" label="Force" placeholder="" onChange={handleChange} value={caracteristiques.force} />
-                    <button className="btn-caracteristique-reverse"><i>-</i></button>
+                    <button className="btn-caracteristique-reverse" onClick={() => handleClick('force', caracteristiques.force - 1)}><i>-</i></button>
                 </div>
 
                 <div className="champ-caracteristique">
-                    <button className="btn-caracteristique"><i>+</i></button>
+                    <button className="btn-caracteristique" onClick={() => handleClick('dexterite', caracteristiques.dexterite + 1)}><i>+</i></button>
                         <Field disabled="disabled" name="dexterite" label="Dextérité" placeholder="" onChange={handleChange} value={caracteristiques.dexterite} />
-                    <button className="btn-caracteristique-reverse"><i>-</i></button>
+                    <button className="btn-caracteristique-reverse" onClick={() => handleClick('dexterite', caracteristiques.dexterite - 1)}><i>-</i></button>
                 </div>
 
                 <div className="champ-caracteristique">
-                    <button className="btn-caracteristique"><i>+</i></button>
+                    <button className="btn-caracteristique" onClick={() => handleClick('intelligence', caracteristiques.intelligence + 1)}><i>+</i></button>
                          <Field disabled="disabled" name="intelligence" label="Intelligence" placeholder="" onChange={handleChange} value={caracteristiques.intelligence} />
-                    <button className="btn-caracteristique-reverse"><i>-</i></button>
+                    <button className="btn-caracteristique-reverse" onClick={() => handleClick('intelligence', caracteristiques.intelligence -1)}><i>-</i></button>
                 </div>
 
                 <div className="champ-caracteristique">
-                    <button className="btn-caracteristique"><i>+</i></button>
+                    <button className="btn-caracteristique" onClick={() => handleClick('concentration', caracteristiques.concentration + 1)}><i>+</i></button>
                         <Field disabled="disabled" name="concentration" label="Concentration" placeholder="" onChange={handleChange} value={caracteristiques.concentration} />
-                    <button className="btn-caracteristique-reverse"><i>-</i></button>
+                    <button className="btn-caracteristique-reverse" onClick={() => handleClick('concentration', caracteristiques.concentration-1)}><i>-</i></button>
                 </div>
 
                 <div className="champ-caracteristique">
-                    <button className="btn-caracteristique"><i>+</i></button>
+                    <button className="btn-caracteristique" onClick={() => handleClick('chance', caracteristiques.chance + 1)}><i>+</i></button>
                         <Field disabled="disabled" name="chance" label="Chance" placeholder="" onChange={handleChange} value={caracteristiques.chance} />
-                    <button className="btn-caracteristique-reverse"><i>-</i></button>
+                    <button className="btn-caracteristique-reverse" onClick={() => handleClick('chance', caracteristiques.chance-1)}><i>-</i></button>
+                </div>
+
+                <div className="champ-caracteristique">
+                    <button className="btn-valider-caracs" onClick={handleSubmit}> Valider </button>
                 </div>
             </div>
         </div>
-        <div className="statistiques">
+        <div className="profil mt-5">
+            <div className="statistiques">
+                <h2>Statistiques générale</h2>
+                <span> Expérience totale : 3 080 690</span>
+                <span> Nombre monstre tués : 5650</span>
+                <span> Richesse max : 1 691 254</span>
+                <span> Morts : 74</span>
+                <span> Argent volé : 11 256</span>
+            </div>
 
+            <div className="statistiques">
+                <h2>Joueur contre joueur</h2>
+                <span> Expérience totale : 3 080 690</span>
+                <span> Nombre monstre tués : 5650</span>
+                <span> Richesse max : 1 691 254</span>
+                <span> Morts : 74</span>
+                <span> Argent volé : 11 256</span>
+            </div>
         </div>
     </>
 }
