@@ -51,13 +51,12 @@ const Profil = (props) => {
     }
 
     const handleSubmit = () => {
-        console.log('ho hoo nique ta mere')
         UsersApi.updateCaracteristiques(caracteristiques);
     }
 
 
     return <>
-        <div className="profil">
+        <div className="profil profil-main">
             <div className="informations">
                 <h2>Informations</h2>
                 <span>Classe : Archer</span>
@@ -66,7 +65,7 @@ const Profil = (props) => {
                 <span>Alignement : aucun</span>
                 <span>karma : malandrin</span>
 
-                <h2 className="mt-5">Bonus équipement</h2>
+                <h2 className="mt-5">Equipement</h2>
 
                 <span>constitution : <span className="font-weight-bold"> + 18 </span></span>
                 <span>force : <span className="font-weight-bold"> + 74 </span></span>
@@ -76,13 +75,14 @@ const Profil = (props) => {
                 <span>chance : <span className="font-weight-bold"> + 12 </span></span>
              </div>
              <div className="equipement">
-                 <h2>Equipement</h2>
-                 <img className="mt-3 ml-3" src="../img/sprites/enemies/actor1_5.png"/>
-                 <div className="item-case archer bottes"></div>
-                 <div className="item-case archer bras"></div>
-                 <div className="item-case archer arme"></div>
-                 <div className="item-case archer tete"></div>
-                 <div className="item-case archer corps"></div>
+                 <h2 className="text-center">Equipement</h2>
+                 {/*<img className="mt-3 ml-3" src="../img/sprites/enemies/actor1_5.png"/>*/}
+                 {/*<div className="item-case archer bottes"></div>*/}
+                 {/*<div className="item-case archer bras"></div>*/}
+                 {/*<div className="item-case archer arme"></div>*/}
+                 {/*<div className="item-case archer tete"></div>*/}
+                 {/*<div className="item-case archer corps"></div>*/}
+                 <img src="../img/gui/MainWindowCharacter/BodyRectangles.png"/>
              </div>
             <div className="caracteristiques">
                 <h2>Caracteristique (5)</h2>
@@ -127,25 +127,25 @@ const Profil = (props) => {
                 </div>
             </div>
         </div>
-        <div className="profil mt-5">
-            <div className="statistiques">
-                <h2>Statistiques générale</h2>
-                <span> Expérience totale : 3 080 690</span>
-                <span> Nombre monstre tués : 5650</span>
-                <span> Richesse max : 1 691 254</span>
-                <span> Morts : 74</span>
-                <span> Argent volé : 11 256</span>
-            </div>
+        {/*<div className="profil mt-5">*/}
+        {/*    <div className="statistiques">*/}
+        {/*        <h2>Statistiques générale</h2>*/}
+        {/*        <span> Expérience totale : 3 080 690</span>*/}
+        {/*        <span> Nombre monstre tués : 5650</span>*/}
+        {/*        <span> Richesse max : 1 691 254</span>*/}
+        {/*        <span> Morts : 74</span>*/}
+        {/*        <span> Argent volé : 11 256</span>*/}
+        {/*    </div>*/}
 
-            <div className="statistiques">
-                <h2>Joueur contre joueur</h2>
-                <span> Expérience totale : 3 080 690</span>
-                <span> Nombre monstre tués : 5650</span>
-                <span> Richesse max : 1 691 254</span>
-                <span> Morts : 74</span>
-                <span> Argent volé : 11 256</span>
-            </div>
-        </div>
+        {/*    <div className="statistiques">*/}
+        {/*        <h2>Joueur contre joueur</h2>*/}
+        {/*        <span> Expérience totale : 3 080 690</span>*/}
+        {/*        <span> Nombre monstre tués : 5650</span>*/}
+        {/*        <span> Richesse max : 1 691 254</span>*/}
+        {/*        <span> Morts : 74</span>*/}
+        {/*        <span> Argent volé : 11 256</span>*/}
+        {/*    </div>*/}
+        {/*</div>*/}
     </>
 }
 

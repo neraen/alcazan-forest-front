@@ -23,14 +23,17 @@ const ProfilPage = (props) => {
     }
 
     return <>
-        <main className="map-page">
-            <div className="top-container raw">
-                <div className="side-block px-5">
-                    <UsernameBlock user={user}/>
-                    <UserStatsBlock user={user} />
-                    <SideMenu />
-                </div>
-                <div className="profil-container col-8">
+        <main className="map-page ">
+            <div className="banner-map m-auto">
+                <h1 className="text-center title-map-font a">Profil</h1>
+            </div>
+            <div className="top-container mt-4">
+                {/*<div className="side-block px-5">*/}
+                {/*    <UsernameBlock user={user}/>*/}
+                {/*    <UserStatsBlock user={user} />*/}
+                {/*    /!*<SideMenu />*!/*/}
+                {/*</div>*/}
+                <div className="profil-container">
                     <Profil user={user}/>
                 </div>
             </div>

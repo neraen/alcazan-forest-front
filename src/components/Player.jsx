@@ -5,10 +5,8 @@ const Player = (props) => {
     const {setTarget, setIsPlayer, target} = useContext(MapContext)
 
     const handleTarget = () =>{
-        console.log(props.player)
         setTarget(props.player)
-        console.log(target)
-
+        window.localStorage.setItem('target', JSON.stringify(props.player));
     }
 
     return <>

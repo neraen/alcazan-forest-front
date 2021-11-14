@@ -1,29 +1,21 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import {ProgressBar} from "react-bootstrap";
-import MapContext from "../contexts/MapContext";
+import StatBar from "./UserInterface/StatBar";
+
 
 const Target = (props) => {
 
-    //const {target} = useContext(MapContext)
-
     return <>
-        {console.log(props.player)}
-        {console.log(props.playerTargeted)}
-        <h3 className="text-center title-font">Ciblage</h3>
         {(props.playerTargeted) &&
-
-        <div className="block-joueur-cible p-3">
             <div className="joueur-cible">
-                <h4 className="joueur-cible-name">{props.player.pseudo} / {props.player.classe.nom} niveau 18</h4>
-                <div className="d-flex align-items-center w100">
-                    <img src="/img/avatar/guerrier.png" alt="avatar" className="target-avatar"/>
-                    <img className="life-icon mr-2" src="/img/icons/pixel-life.png"/>
-                    <ProgressBar className="progress-bar-stats" variant="danger" now="44"/>
+                <h4 className="joueur-cible-name">{props.player.pseudo}</h4>
+                <div className="target-stats">
+                    <StatBar displayText={false} value={props.player.currentLife} max={props.player.maxLife} maxWidth={200} classN="lifeBar"/>
+                    <StatBar displayText={false} value={props.player.currentMana} max={props.player.maxMana} maxWidth={200} classN="manaBar"/>
+                    <img src="/img/gui/CharacterEnemy/AvatarEnemy.png" alt="avatar" className="avatar-player"/>
+                    <div className="joueur-cible-level">18</div>
                 </div>
             </div>
-        </div>
-        ||
-        <span>Aucune cible</span>
         }
     </>
 }

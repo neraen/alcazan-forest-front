@@ -43,9 +43,10 @@ import Target from "../components/Target";
                     <div className="top-container raw">
                         <div className="side-block px-5">
                             <UsernameBlock user={this.state.user}/>
+                            <Target player={this.state.target} playerTargeted={this.state.playerTargeted}/>
                             <UserStatsBlock user={this.state.user} />
                             <SideMenu />
-                            <Target player={this.state.target} playerTargeted={this.state.playerTargeted}/>
+
                             {/*<h3 className="text-center title-font mt-4">Chat</h3>*/}
                             {/*<div className="block-chat p-3">*/}
                             {/*    <form className="bottom d-flex" action="">*/}
@@ -54,6 +55,7 @@ import Target from "../components/Target";
                             {/*    </form>*/}
                             {/*</div>*/}
                         </div>
+
 
                         <div className="map-container mr-5" >
                             {this.state.display && <Map user={this.state.user}/> || <Loader />}

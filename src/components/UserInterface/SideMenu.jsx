@@ -4,7 +4,6 @@ import {Link} from "react-router-dom";
 const SideMenu = (props) => {
     return <>
         <div className="side-menu d-flex flex-wrap mt-3 p-3 row" >
-            <h3 className="text-center title-font">Menu</h3>
             <Link to="/carte" className="side-menu-link d-flex flex-column align-items-center mr-3 col-4 text-decoration-none">
                 <img className="side-menu-icon" src="/img/icons/map.svg" alt=""/>
                 <span>Carte</span>

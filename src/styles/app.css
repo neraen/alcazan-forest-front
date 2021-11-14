@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Akaya+Telivigala&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+/*@import url(../../public/fonts/BerryRotunda.ttf);*/
 
 body {
     background-color: azure!important;
-    background: url(../img/waterfall.png)!important;
+    background: url(../img/Scene-12.jpg)!important;
     background-size: cover!important;
     min-height: 100vh!important;
 }
@@ -11,6 +12,14 @@ body {
 main{
     min-height: 90vh!important;
 }
+
+/*@font-face {*/
+/*    font-family: 'BerryRotunda';*/
+/*    font-style: normal;*/
+/*    font-weight: normal;*/
+/*    font-display: swap;*/
+/*    src: url('../../public/fonts/BerryRotunda.ttf') format('ttf');*/
+/*}*/
 
 
 
@@ -80,26 +89,36 @@ main{
 }
 
 .banner-map{
-    background: url("../img/sprites/battlebacks2/Bridge.png");
-    max-width: 1248px;
+    background: url("../img/map/Panel.png");
+    background-size: cover;
     color: white;
     text-shadow: 1px 1px 2px black;
     text-transform: uppercase;
+    width: 340px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .cases{
     display: flex;
     flex-wrap: wrap;
-    width: 1248px;
-    height: 832px;
+    width: 1154px;
+    height: 770px;
     position: relative;
     z-index: 2;
+    -webkit-border-image: url(../img/map/Border.png);
+    -webkit-border-image-width: 50px!important;
+    -webkit-border-image-slice: 120!important;
+    -webkit-border-image-repeat: unset!important;
+    border: 1px black solid;
 }
 
 .case{
     content: "";
-    width: 52px;
-    height:52px;
+    width: 48px;
+    height:48px;
     /*background: rgba(255,255,255,0);*/
 }
 
@@ -109,27 +128,237 @@ main{
 }
 
 .user-stats-block{
-    background: #212529;
-    border-radius: 10px;
+    background: url("../img/gui/Panel2.png");
+    background-size: 355px 131px;
     color: white;
     min-width: 350px;
     max-width: 350px;
+    height: 131px;
+}
+
+.user-stats-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.user-stats-points{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
 }
 
 .username-block{
-    background: #212529;
-    border-radius: 10px;
+    /*background: url(../img/gui/CharacterPlayer/OverlayBorder.png);*/
+    /*background-size: 380px 180px;*/
     color: white;
-    min-width: 350px;
-    max-width: 350px;
+    width: 380px;
+    height: 130px;
+    position: relative;
 }
+
+.player-pseudo{
+    color: aliceblue;
+    font-size: 20px;
+    background:  url("../img/gui/CharacterPlayer/Panel.png");
+    background-size: cover;
+    position: absolute;
+    width: 289px;
+    height: 32px;
+    text-align: center;
+    top: 29px;
+    left: 64px;
+    z-index: -2;
+}
+
+.avatar-player{
+    width: 130px;
+    z-index: -1;
+    -webkit-border-image: url("../img/gui/CharacterPlayer/AvatarCircle.png");
+}
+
+.username-block .avatar-player{
+    position: absolute;
+    top: 32px;
+    left: 16px;
+}
+
+.lifeBar{
+    width: 230px;
+    height: 30px;
+    padding: 0;
+    background: url(../img/gui/CharacterPlayer/ProgressBar/BqBar.png);
+}
+
+.username-block .lifeBar{
+    position: absolute;
+    top: 53px;
+    left: 117px;
+    z-index: -2;
+}
+
+.lifeBar .valueBar{
+    width: 150px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.username-block .lifeBar .valueBar{
+    background: url(../img/gui/CharacterPlayer/ProgressBar/BarHealth.png);
+    background-size: contain;
+}
+
+.manaBar{
+    width: 230px;
+    height: 30px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url(../img/gui/CharacterPlayer/ProgressBar/BqBar.png);
+}
+
+.username-block .manaBar{
+    position: absolute;
+    top: 85px;
+    left: 117px;
+    z-index: -2;
+}
+
+.username-block .value-bar-text{
+    position: absolute;
+    left: 75px;
+    width: 200px;
+}
+
+.manaBar .valueBar{
+    width: 150px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.username-block .manaBar .valueBar{
+    background: url(../img/gui/CharacterPlayer/ProgressBar/BarMana.png);
+    background-size: contain;
+    position: absolute;
+    left: 0;
+}
+
+.player-level{
+    color: greenyellow;
+    background: url(../img/gui/CharacterPlayer/OverlayLevel.png);
+    background-size: 50px 50px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    position: absolute;
+    top: 100px;
+    left: 10px;
+    z-index: -2;
+}
+
+
+.joueur-cible .lifeBar{
+    position: absolute;
+    top: 57px;
+    left: 20px;
+    z-index: -1;
+    display: flex;
+    justify-content: right;
+
+}
+
+.joueur-cible .manaBar{
+    position: absolute;
+    top: 89px;
+    left: 20px;
+    z-index: -1;
+    display: flex;
+    justify-content: right;
+
+}
+
+.joueur-cible .lifeBar .valueBar{
+    background: url(../img/gui/CharacterEnemy/ProgressBar/BarHealth.png);
+    background-size: contain;
+}
+
+.joueur-cible .manaBar .valueBar{
+    background: url(../img/gui/CharacterEnemy/ProgressBar/BarMana.png);
+    background-size: contain;
+}
+
+.joueur-cible{
+    position: relative;
+    height: 180px;
+    /*background: url(../img/gui/CharacterEnemy/OverlayBorder.png);*/
+    /*background-size: 380px 180px;*/
+}
+
+.joueur-cible-name{
+    color: white;
+    text-align: center;
+    background: url(../img/gui/CharacterEnemy/PanelTitle.png);
+    background-size: cover;
+    width: 236px;
+    height: 34px;
+    position: absolute;
+    top: 28px;
+    left: 32px;
+    z-index: -2;
+    color: crimson;
+    text-shadow: 1px 1px 2px black;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.joueur-cible .avatar-player{
+    border-radius: 50%;
+    width: 120px;
+    position: absolute;
+    left: 220px;
+    top: 22px;
+    border-image: url(../img/gui/CharacterEnemy/AvatarCircle.png);
+    border: solid;
+}
+
+.joueur-cible-level{
+    color: crimson;
+    background: url(../img/gui/CharacterEnemy/OverlayLevel.png);
+    background-size: 50px 50px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    position: absolute;
+    top: 104px;
+    left: 306px;
+    z-index: -2;
+}
+
+.target-stats{
+
+}
+
 
 .joueur{
     background-image: url("../img/character/mage/guerrier.png")!important;
     background-size: cover;
     content: "";
-    width: 52px;
-    height: 52px;
+    width: 48px;
+    height: 48px;
     position: relative;
 }
 
@@ -157,8 +386,11 @@ main{
     /*border-image: url("public/img/sprites/titles2/Medieval.png") 30 / 19px round*/;
     /*border-image: url("public/img/sprites/titles2/Medieval.png") 30 / 19px round*/;
     width: auto;
-    border: 1px black solid;
     margin-right: 100px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 
@@ -179,8 +411,13 @@ main{
     width: 100%;
 }
 
+.side-block{
+    margin-right: 15px;
+}
+
 .side-menu{
-    background: #212529;
+    background: url("../img/gui/Panel3.png");
+    background-size: 391px 203px;
     border-radius: 10px;
     color: white;
     min-width: 350px;
@@ -196,52 +433,102 @@ main{
     height: 60px;
 }
 
-.spell-bar{
+.exp-icon-container{
+    background: url(../img/gui/Overlay.png);
+    background-size: 30px 30px;
+    width: 30px;
+    height: 30px;
+    padding-left: 5px;
+    position: absolute;
+    top: 13px;
+    left: -15px;
+}
+
+.exp-bar-container{
+    position: relative;
+}
+
+.expBar{
+    content: "";
+    background: url(../img/gui/exp/ProgressBar/Separator.png);
+    height: 9px;
+    width: 1000px;
+    background-size: cover;
+
+}
+
+.exp-bar-container .label-bar{
+    color: #ccc;
+    font-family: "Montserrat", sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+.expBar .valueBar{
+    background: url(../img/gui/exp/ProgressBar/Bar.png);
+    background-size: cover;
+    width: 800px;
+    content: "";
+    height: 9px;
+}
+
+.spell-bar {
     width: 1248px;
-    height: 100px;
+    padding: 20px;
     margin-left: 422px;
-    background: #212529;
-    border-radius: 10px;
-    -webkit-border-image: url(../img/icons/border-spellbar.png);
-    border-image-width: 1248px;
-    border-image-slice: 120;
-    border-image-repeat: unset;
-    border-style: solid;
+    background: url(../img/gui/spells/spell-bar/Panel.png);
+    background-position: center;
+    background-size: cover;
+}
+
+.spell-container{
+    position: relative;
 }
 
 .spell{
-    min-width: 70px;
-    min-height: 70px;
-    -webkit-border-image: url(../img/icons/border-spell2.png);
-    border-style: solid;
-    border-image-width: 70px;
-    border-image-slice: 120;
+    min-width: 71px;
+    min-height: 71px;
+    /*-webkit-border-image: url(../img/icons/border-spell2.png);*/
+    background: url(../img/gui/spells/spell-bar/Cell.png);
     border-image-repeat: unset;
     content: "";
     background-size: cover;
     margin-right: 5px;
+    display: flex;
+    justify-content: center;
+    padding-top: 3px;
+    cursor: pointer;
 }
 
-.block-joueur-cible{
-    background: #212529;
-    height: auto;
+
+/* Prevents you from clicked the button multiple times */
+.spell.disabled {
+    pointer-events: none;
+}
+
+/* Makes sure we click the skill not anything in it */
+.spell > * {
+    pointer-events: none;
+}
+
+
+
+.cooldown-filter {
     content: "";
-    border-radius: 10px;
-    -webkit-border-image: url(../img/icons/ciblage-border.png);
-    border-image-width: 50px;
-    border-image-slice: 120;
-    border-image-repeat: unset;
-    border-style: solid;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1000;
 }
 
-.joueur-cible-name{
-    color: white;
-    text-align: center;
+.img-spell{
+    width: 64px;
+    height: 64px;
 }
 
-.target-avatar{
-    max-width: 80px;
-}
+
 
 .block-chat{
     background: #212529;
@@ -476,12 +763,20 @@ section #text span{
 
 /** Profil **/
 
+.profil-container{
+    width: 80%;
+    margin: auto;
+}
+
 .profil{
-    background: rgba(255,255,255,0.8);
-    padding: 50px;
+    /*background: #212529e3;*/
+    background: url(../img/gui/MainWindowCharacter/Panel.png);
+    background-size: 100% 100%;
+    padding: 60px 100px;
     display: flex;
     justify-content: space-between;
     border-radius: 7px;
+    color: aliceblue;
 }
 
 .informations{
@@ -560,7 +855,7 @@ section #text span{
 }
 
 .equipement{
-    position: relative;
+    width: min-content;
 }
 
 .equipement img{
@@ -601,6 +896,9 @@ section #text span{
     top: 220px;
     left: 154px;
 }
+
+
+
 
 
 
