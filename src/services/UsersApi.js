@@ -10,15 +10,14 @@ function find(id){
 }
 
 function getLevelAndExperience(){
-    console.log('toto')
     return axios.get(API_URL + "joueur/niveau" ).then(response => response.data['hydra:member'])
 }
 
-function updatePosition(id, user){
-    return axios.patch(USER_API + "/"  + id,
-        {caseAbscisse: user.caseAbscisse, caseOrdonnee: user.caseOrdonnee}
-    );
-}
+// function updatePosition(id, user){
+//     return axios.patch(USER_API + "/"  + id,
+//         {caseAbscisse: user.caseAbscisse, caseOrdonnee: user.caseOrdonnee}
+//     );
+// }
 
 function getCaracteristiques(id){
     return axios.get(API_URL + "joueur/caracteristiques").then(response => response.data['hydra:member'])
@@ -29,9 +28,16 @@ function updateCaracteristiques(data){
 }
 
 function applyAttaqueToPlayer(target, spell){
-    console.log(target, spell)
-    console.log({target: target, spell: spell})
-    return axios.post(API_URL + "joueur/attack", {targetId: target.id, spellId: spell.id})
+    return axios.post(API_URL + "joueur/attack", {targetId: target.id, spellId: spell.id, type: target.type}).then(response => response.data)
+}
+
+function updatePosition(abscisse, ordonnee){
+    return axios.post(API_URL + "joueur/case/update_position", {caseAbscisse: abscisse, caseOrdonnee: ordonnee}).then(response => response.data)
+}
+
+function getExpJoueur(){
+    return axios.post(API_URL + "joueur/experience").then(response => response.data)
+
 }
 
 export default {
@@ -41,5 +47,6 @@ export default {
     getCaracteristiques,
     updateCaracteristiques,
     getLevelAndExperience,
-    applyAttaqueToPlayer
+    applyAttaqueToPlayer,
+    getExpJoueur
 }

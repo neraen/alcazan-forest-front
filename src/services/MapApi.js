@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {CARTE_API} from "../config";
+import {API_URL, CARTE_API} from "../config";
 
 function findAll(){
     return axios.get(CARTE_API)
@@ -8,7 +8,7 @@ function findAll(){
 
 
 function find(id){
-   return axios.get(CARTE_API + "/" + id)
+   return axios.post(API_URL + "map/cases/data", {mapId: id})
        .then(response => response.data)
 }
 

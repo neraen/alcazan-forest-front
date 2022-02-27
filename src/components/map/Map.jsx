@@ -5,24 +5,6 @@ import UsersApi from "../../services/UsersApi";
 import MapContext from "../../contexts/MapContext";
 
 
-// function useKey(key, cb){
-//     const callbackRef = useRef(cb)
-//
-//     useEffect(() => {
-//         callbackRef.current = cb
-//     })
-//
-//     useEffect(() => {
-//         function handle(event) {
-//             if(event.key === key){
-//                 callbackRef.current(event)
-//             }
-//         }
-//         document.addEventListener("keypress", handle);
-//         return () => document.removeEventListener("keypress", handle)
-//     }, [key])
-// }
-
 class Map extends React.Component {
 
     static contextType = MapContext;
@@ -34,88 +16,65 @@ class Map extends React.Component {
             name: "",
             abscisseJoueur: this.props.user.caseAbscisse,
             ordonneeJoueur: this.props.user.caseOrdonnee,
-            users: []
+            users: [],
+            unabledCases: []
         };
     }
 
     async componentDidMount () {
-        const target = this.context
         try {
             const data = await MapApi.find(this.props.user.map.id);
-            this.setState({cases: data.carteCarreaux, name: data.nom});
+            this.setState({cases: data.cases, name: data.mapInfo.nom});
+            this.setState({unabledCases: this.getUnabledMove()});
         }catch(error){
 
         }
         this.listenKeyboard();
-
     }
-
-
-    componentWillUnmount() {
-        //document.removeEventListener("keypress", handle)
-    }
-
 
     listenKeyboard() {
         document.addEventListener("keypress",  (event) => this.handleKeybord(event))
     }
 
-
-     handleKeybord(event){
+    handleKeybord(event){
         switch (event.key){
             case "z":
-                this.up()
-                var user = {...this.props.user, caseAbscisse: this.state.abscisseJoueur, caseOrdonnee: this.state.ordonneeJoueur}
-                this.updatePosition(user)
+                this.updatePosition( this.state.abscisseJoueur, this.state.ordonneeJoueur - 1);
                 break;
             case "s":
-                this.down()
-                var user = {...this.props.user, caseAbscisse: this.state.abscisseJoueur, caseOrdonnee: this.state.ordonneeJoueur}
-                this.updatePosition(user)
+                this.updatePosition( this.state.abscisseJoueur, this.state.ordonneeJoueur + 1);
                 break;
             case "q":
-                this.left()
-                var user = {...this.props.user, caseAbscisse: this.state.abscisseJoueur, caseOrdonnee: this.state.ordonneeJoueur}
-                this.updatePosition(user)
+                this.updatePosition( this.state.abscisseJoueur - 1, this.state.ordonneeJoueur);
                 break;
             case "d":
-                this.right()
-                var user = {...this.props.user, caseAbscisse: this.state.abscisseJoueur, caseOrdonnee: this.state.ordonneeJoueur}
-                this.updatePosition(user)
+                this.updatePosition( this.state.abscisseJoueur + 1, this.state.ordonneeJoueur);
                 break;
-            default:
-
         }
-        this.refreshMap()
     }
 
-    async updatePosition(user){
-        await UsersApi.updatePosition(user.id, user)
+    async updatePosition(abscisse, ordonnee){
+        const data = await UsersApi.updatePosition(abscisse, ordonnee)
+        this.setState({abscisseJoueur: abscisse, ordonneeJoueur: ordonnee});
+        this.setState({cases: data});
+        this.setState({unabledCases: this.getUnabledMove()});
     }
 
-    async refreshMap(){
-       const data = await MapApi.find(1);
-       this.setState({cases: data.carteCarreaux, name: data.nom});
+
+    getUnabledMove(){
+        const filteredOrdonnee= [ this.state.ordonneeJoueur-1, this.state.ordonneeJoueur, this.state.ordonneeJoueur+1];
+        const filteredAbscisse= [ this.state.abscisseJoueur-1, this.state.abscisseJoueur, this.state.abscisseJoueur+1];
+
+        const filteredCases = this.state.cases.filter(oneCase => filteredAbscisse.includes(oneCase.abscisse) && filteredOrdonnee.includes(oneCase.ordonnee) && oneCase.isUsable && !(oneCase.abscisse === this.state.abscisseJoueur && oneCase.ordonnee === this.state.ordonneeJoueur))
+
+        return filteredCases.map(oneCase => oneCase = oneCase.carteCarreauId);
     }
 
-    up(){
-        const newOrd = this.state.ordonneeJoueur - 1
-        this.setState({ordonneeJoueur: newOrd})
-    }
 
-    down(){
-        const newOrd = this.state.ordonneeJoueur + 1
-        this.setState({ordonneeJoueur: newOrd})
-    }
-
-    left(){
-        const newAbs = this.state.abscisseJoueur - 1
-        this.setState({abscisseJoueur: newAbs})
-    }
-
-    right(){
-        const newAbs = this.state.abscisseJoueur + 1
-        this.setState({abscisseJoueur: newAbs})
+    handleClick(carteCarreauId, abscisse, ordonnee){
+        if(this.state.unabledCases.includes(carteCarreauId)){
+            this.updatePosition(abscisse, ordonnee);
+        }
     }
 
     render()
@@ -124,12 +83,17 @@ class Map extends React.Component {
             <div className="banner-map">
                 <h1 className="text-center title-map-font">{this.state.name}</h1>
             </div>
-            <div className="cases" style={{backgroundImage: "url(../../../img/map/1.png)"}}>
+            <div className="cases" style={{backgroundImage: "url(../../../img/map/"+this.props.user.map.id+".png)"}}>
                 {this.state.cases.map(uniquecase => (
-                    <Case key={uniquecase.id} data={uniquecase.carreau}
-                          haveJoueur={(this.state.abscisseJoueur == uniquecase.abscisse && this.state.ordonneeJoueur == uniquecase.ordonnee) ?  true : false}
-                          otherPlayer={uniquecase.joueur ? uniquecase.joueur : false}
-                    />
+                    <div  onClick={() =>this.handleClick(uniquecase.carteCarreauId,uniquecase.abscisse, uniquecase.ordonnee)}>
+                        <Case key={uniquecase.carteCarreauId}
+                              abscisse={uniquecase.abscisse}
+                              ordonnee={uniquecase.ordonnee}
+                              haveJoueur={(this.state.abscisseJoueur == uniquecase.abscisse && this.state.ordonneeJoueur == uniquecase.ordonnee) ?  this.props.user : uniquecase.userId ? {pseudo: uniquecase.pseudo, classe: uniquecase.nomClasse, idJoueur: uniquecase.userId, niveau: uniquecase.niveau, alignement: uniquecase.nomAlignement} : false}
+                              hasMonstre={uniquecase.hasMonstre ? uniquecase.hasMonstre : false}
+                              isUnabled={this.state.unabledCases.includes(uniquecase.carteCarreauId)}
+                        />
+                    </div>
                 ))}
             </div>
         </>)

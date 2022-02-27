@@ -17,6 +17,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\src\components\map\Case.jsx">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\src\components\map\Map.jsx">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\src\components\profil.jsx">
           <value>
             <Attribute>

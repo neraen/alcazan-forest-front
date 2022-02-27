@@ -14,8 +14,8 @@ const UsernameBlock = ({user}) => {
 
     const fetchUserLevel = async () => {
         try {
-            const data = await UsersApi.getLevelAndExperience();
-            setUserData(data);
+            const experienceData = await UsersApi.getExpJoueur();
+            setUserData(experienceData);
         }catch(error){
 
         }
@@ -23,15 +23,6 @@ const UsernameBlock = ({user}) => {
 
     let lifePercent = Math.ceil(user.currentLife / user.maxLife * 100)
     let manaPercent = Math.ceil(user.currentMana / user.maxMana * 100)
-    let expPercent = 0
-    let expNextLevel = 'chargement';
-    let currentExp = 'chargement';
-    if(userData[0] !== undefined){
-        expNextLevel = userData[0].maxExpLevel;
-        currentExp = userData[0].experience;
-        expPercent = Math.ceil(currentExp / expNextLevel * 100)
-    }
-
 
     return <>
         <div className="username-block mb-3 row">
@@ -39,7 +30,7 @@ const UsernameBlock = ({user}) => {
             <img className="avatar-player" src="/img/gui/CharacterPlayer/Avatar.png" alt=""/>
             <StatBar value={user.currentLife} max={user.maxLife} maxWidth={200} classN="lifeBar"/>
             <StatBar value={user.currentMana} max={user.maxMana} maxWidth={200} classN="manaBar"/>
-            <div className="player-level">12</div>
+            <div className="player-level">{userData.niveau}</div>
             {/*<NavLink className="nav-link text-center" to="/">Messagerie</NavLink>*/}
         </div>
     </>

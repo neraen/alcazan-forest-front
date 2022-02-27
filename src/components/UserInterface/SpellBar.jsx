@@ -1,11 +1,20 @@
 import React, {useEffect, useState} from 'react'
 import Spell from "../spells/Spell";
 import Bar from "./Bar";
+import UsersApi from "../../services/UsersApi";
 
 const SpellBar = (props) => {
 
-    const [spells, setSpells] = useState({})
+    const [experienceData, setExperienceData] = useState();
 
+    useEffect(() => {
+        getExpJoueur()
+    }, [])
+
+    const getExpJoueur = async () => {
+       const experienceJoueur = await UsersApi.getExpJoueur();
+       setExperienceData(experienceJoueur);
+    }
 
     return <>
         <div className="spell-bar offset-2 mt-2 d-flex flex-column justify-content-center align-items-center px-4">
@@ -13,7 +22,10 @@ const SpellBar = (props) => {
                 <div className="exp-icon-container">
                     <img className="exp-icon" src="/img/gui/Xp.png" />
                 </div>
-                <Bar value={8742} max={10000} maxWidth={1000} classN="expBar"/>
+                {(experienceData) &&
+                <Bar value={experienceData.experienceActuelle} max={experienceData.experienceMax} maxWidth={1000} classN="expBar"/> ||
+                <Bar value={0} max={99999} maxWidth={1000} classN="expBar"/>
+                }
             </div>
             <div className="spells row align-items-center">
                 <div className="col-6 d-flex">

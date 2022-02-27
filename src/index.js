@@ -1,8 +1,8 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
 import Navbar from './components/Navbar'
 import HomePage from "./pages/HomePage";
-import { HashRouter, Switch, Route, withRouter, Redirect } from "react-router-dom";
+import { HashRouter, Switch, Route, withRouter } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import authAPI from "./services/authAPI";
@@ -11,10 +11,10 @@ import AuthContext from "./contexts/AuthContext";
 import PrivateRoute from "./components/PrivateRoute";
 import MapPage from "./pages/MapPage";
 import InventoryPage from "./pages/InventoryPage";
-import UsersApi from "./services/UsersApi";
-import {Provider} from "react-redux";
-import {CARTE_API, USER_API} from "./config";
-import MercureSubscriber from "@cerati/react-mercure";
+// import UsersApi from "./services/UsersApi";
+// import {Provider} from "react-redux";
+// import {CARTE_API, USER_API} from "./config";
+// import MercureSubscriber from "@cerati/react-mercure";
 //import store from "store/index"
 
 authAPI.setup();

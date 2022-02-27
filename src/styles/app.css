@@ -500,6 +500,19 @@ main{
     cursor: pointer;
 }
 
+.spell-filter{
+    background: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 71px;
+    min-height: 71px;
+    font-size: 22px;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+}
+
 
 /* Prevents you from clicked the button multiple times */
 .spell.disabled {
@@ -899,7 +912,25 @@ section #text span{
 
 
 
+.unabled-move{
+    background-color: rgba(255,255,255,0.6);
+}
 
+.unabled-move:hover{
+    background-color: rgba(0,0,0,0.6);
+}
+
+
+.block-notification{
+    max-width: 340px;
+    min-width: 0;
+    background-color: #200F00;
+    margin-top: 50px;
+    padding: 25px;
+    color: aliceblue;
+    text-align: center;
+    font-size: 14px;
+}
 
 
 
