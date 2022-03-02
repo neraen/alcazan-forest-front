@@ -31,19 +31,23 @@ function applyAttaqueToPlayer(target, spell){
     return axios.post(API_URL + "joueur/attack", {targetId: target.id, spellId: spell.id, type: target.type}).then(response => response.data)
 }
 
-function updatePosition(abscisse, ordonnee){
-    return axios.post(API_URL + "joueur/case/update_position", {caseAbscisse: abscisse, caseOrdonnee: ordonnee}).then(response => response.data)
+function updatePosition(mapId, abscisse, ordonnee){
+    return axios.post(API_URL + "joueur/case/update_position", {mapId: mapId, caseAbscisse: abscisse, caseOrdonnee: ordonnee}).then(response => response.data)
+}
+
+function changeMap(targetMapId){
+    return axios.post(API_URL + "joueur/map/update_position", {targetMapId: targetMapId}).then(response => response.data)
 }
 
 function getExpJoueur(){
     return axios.post(API_URL + "joueur/experience").then(response => response.data)
-
 }
 
 export default {
     register,
     find,
     updatePosition,
+    changeMap,
     getCaracteristiques,
     updateCaracteristiques,
     getLevelAndExperience,

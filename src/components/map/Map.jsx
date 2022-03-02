@@ -54,9 +54,16 @@ class Map extends React.Component {
     }
 
     async updatePosition(abscisse, ordonnee){
-        const data = await UsersApi.updatePosition(abscisse, ordonnee)
+        const data = await UsersApi.updatePosition(this.props.user.map.id, abscisse, ordonnee)
         this.setState({abscisseJoueur: abscisse, ordonneeJoueur: ordonnee});
         this.setState({cases: data});
+        this.setState({unabledCases: this.getUnabledMove()});
+    }
+
+    async changeMap(targetMapId){
+        const {mapId} = await UsersApi.changeMap(targetMapId);
+        const mapData = await MapApi.find(mapId);
+        this.setState({cases: mapData.cases, name: mapData.mapInfo.nom});
         this.setState({unabledCases: this.getUnabledMove()});
     }
 
@@ -71,9 +78,15 @@ class Map extends React.Component {
     }
 
 
-    handleClick(carteCarreauId, abscisse, ordonnee){
-        if(this.state.unabledCases.includes(carteCarreauId)){
-            this.updatePosition(abscisse, ordonnee);
+    handleClick(clickedCase){
+        console.log(clickedCase.isWrap)
+        if(clickedCase.isWrap){
+            this.changeMap(clickedCase.targetMapId)
+        }else if(clickedCase.pnjName){
+
+        }
+        else if(this.state.unabledCases.includes(clickedCase.carteCarreauId)){
+            this.updatePosition(clickedCase.abscisse, clickedCase.ordonnee);
         }
     }
 
@@ -83,14 +96,15 @@ class Map extends React.Component {
             <div className="banner-map">
                 <h1 className="text-center title-map-font">{this.state.name}</h1>
             </div>
-            <div className="cases" style={{backgroundImage: "url(../../../img/map/"+this.props.user.map.id+".png)"}}>
+            <div className="cases" style={{backgroundImage: "url(../../../img/map/"+this.props.user.map.id+".png)", backgroundSize: 'contain'}}>
                 {this.state.cases.map(uniquecase => (
-                    <div  onClick={() =>this.handleClick(uniquecase.carteCarreauId,uniquecase.abscisse, uniquecase.ordonnee)}>
+                    <div  onClick={() =>this.handleClick(uniquecase)}>
                         <Case key={uniquecase.carteCarreauId}
                               abscisse={uniquecase.abscisse}
                               ordonnee={uniquecase.ordonnee}
                               haveJoueur={(this.state.abscisseJoueur == uniquecase.abscisse && this.state.ordonneeJoueur == uniquecase.ordonnee) ?  this.props.user : uniquecase.userId ? {pseudo: uniquecase.pseudo, classe: uniquecase.nomClasse, idJoueur: uniquecase.userId, niveau: uniquecase.niveau, alignement: uniquecase.nomAlignement} : false}
                               hasMonstre={uniquecase.hasMonstre ? uniquecase.hasMonstre : false}
+                              hasPnj={uniquecase.pnjName ? {pnjName: uniquecase.pnjName, pnjSkin: uniquecase.pnjSkin, pnjAvatar: uniquecase.pnjAvatar, pnjDescription: uniquecase.pnjDescription} : false}
                               isUnabled={this.state.unabledCases.includes(uniquecase.carteCarreauId)}
                         />
                     </div>

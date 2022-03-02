@@ -207,8 +207,7 @@ main{
 }
 
 .username-block .lifeBar .valueBar{
-    background: url(../img/gui/CharacterPlayer/ProgressBar/BarHealth.png);
-    background-size: contain;
+    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(213,9,9,1) 39%);
 }
 
 .manaBar{
@@ -243,8 +242,7 @@ main{
 }
 
 .username-block .manaBar .valueBar{
-    background: url(../img/gui/CharacterPlayer/ProgressBar/BarMana.png);
-    background-size: contain;
+    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(9,130,213,1) 39%);;
     position: absolute;
     left: 0;
 }
@@ -287,13 +285,11 @@ main{
 }
 
 .joueur-cible .lifeBar .valueBar{
-    background: url(../img/gui/CharacterEnemy/ProgressBar/BarHealth.png);
-    background-size: contain;
+    background: linear-gradient(90deg, rgba(213,9,9,1) 61%, rgba(0,0,0,1) 100%);
 }
 
 .joueur-cible .manaBar .valueBar{
-    background: url(../img/gui/CharacterEnemy/ProgressBar/BarMana.png);
-    background-size: contain;
+    background: linear-gradient(90deg, rgba(9,130,213,1) 61%, rgba(0,0,0,1) 100%);
 }
 
 .joueur-cible{
@@ -367,6 +363,7 @@ main{
     top: 25px;
     left: 25px;
     background: aliceblue;
+    color: #200F00;
     min-width: 184px;
     border: solid black 1px;
 }
@@ -379,7 +376,49 @@ main{
 
 .joueur-name{
     text-align: center;
-    background: #76c893;
+    /*background: #76c893;*/
+    background: #200F00;
+    color: aliceblue;
+}
+
+.joueur-level{
+    padding-left: 10px;
+}
+
+/* PNJ */
+
+.pnj{
+    content: "";
+    width: 48px;
+    height: 48px;
+    position: relative;
+}
+
+.pnj:hover .pnj-hover{
+    display: flex!important;
+    z-index: 2;
+    border-radius: 5px;
+}
+
+.pnj-hover{
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    background: #200F00;
+    color: aliceblue;
+    min-width: 284px;
+    border: solid black 1px;
+    font-size: 14px;
+    padding: 3px;
+}
+
+.pnj-name{
+    font-weight: bold;
+    text-align: center;
+}
+
+.pnj-description{
+    font-style: italic;
 }
 
 .map-container{
@@ -942,5 +981,6 @@ section #text span{
     display: flex;
     align-items: center;
 }
+
 
 
