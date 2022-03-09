@@ -1,11 +1,28 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Modal from "./Modal";
 import useModal from "../hooks/useModal";
+import pnjApi from "../services/pnjApi";
 
 
 const Pnj = (props) => {
 
     const { isShowing: isDialogShowed, toggle: toggleDialogPnj } = useModal();
+    const [sequence, setSequence] = useState();
+
+    useEffect(() => {
+        getSequance()
+    }, []);
+
+    const getSequance = async () =>  {
+
+        const sequenceData = await pnjApi.getSequance(props.pnj.pnjId);
+        console.log(sequenceData);
+        setSequence(sequenceData);
+    }
+
+    const handleAction = () => {
+
+    }
 
 
     return <>
@@ -19,12 +36,15 @@ const Pnj = (props) => {
         <Modal
             isShowing={isDialogShowed}
             hide={toggleDialogPnj}
-            title="Léopold le grand Huvelle : un grand départ"
+            title={sequence && sequence[0].dialogTitle}
         >
             <div>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus consequuntur corporis delectus dolorem doloremque impedit,
-                necessitatibus nihil obcaecati officia repellendus reprehenderit,
-                saepe vel. A aliquam possimus praesentium temporibus voluptatum.
+
+                {sequence && sequence[0].dialogContent}
+
+                    {sequence && sequence.map(action => <><button className="btn-action">{action.actionName}</button><br/> </>)}
+
+
             </div>
         </Modal>
 

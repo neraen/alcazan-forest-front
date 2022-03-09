@@ -6,7 +6,7 @@ const Modal = ({ isShowing, hide, title, ...props }) =>
         <>
             <div className="modal-overlay">
 
-                    <div className="modal">
+                    <div className="modal-custom">
                         <div className="modal-header">
                             <h4>{title}</h4>
                             <button
@@ -24,21 +24,12 @@ const Modal = ({ isShowing, hide, title, ...props }) =>
 
             <style jsx="true">{`
             
-            .modal-overlay{
-                height: 500px;
-            width: 500px;
-            background: #200F00;
-            border: aliceblue solid;
-            position: relative;
-            bottom: 548px;
-            left: 48px;
-            z-index: 50;
-            color: aliceblue;
-            }
-            .modal {
+           
+            .modal-custom {
           height: 500px;
             width: 500px;
-            background: #200F00;
+            background: url(../../img/parchemin.jpg);
+            background-size: cover;
             border: aliceblue solid;
             position: relative;
             bottom: 548px;
@@ -56,7 +47,7 @@ const Modal = ({ isShowing, hide, title, ...props }) =>
             .modal-close-button {
               font-size: 1.4rem;
               font-weight: 700;
-              color: #000;
+              color: aliceblue;
               cursor: pointer;
               border: none;
               background: transparent;

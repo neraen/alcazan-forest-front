@@ -6,15 +6,23 @@ import UsersApi from "../../services/UsersApi";
 const SpellBar = (props) => {
 
     const [experienceData, setExperienceData] = useState();
+    const [spells, setSpells] = useState();
 
     useEffect(() => {
         getExpJoueur()
+        getPlayerSpells()
     }, [])
 
     const getExpJoueur = async () => {
        const experienceJoueur = await UsersApi.getExpJoueur();
        setExperienceData(experienceJoueur);
     }
+
+    const getPlayerSpells = async () => {
+        const spells = await UsersApi.getPlayerSpells();
+        setSpells(spells);
+    }
+
 
     return <>
         <div className="spell-bar offset-2 mt-2 d-flex flex-column justify-content-center align-items-center px-4">
@@ -29,10 +37,10 @@ const SpellBar = (props) => {
             </div>
             <div className="spells row align-items-center">
                 <div className="col-6 d-flex">
-                    {props.spells.map(spell => (
+                    {spells && spells.map(spell => (
                         <Spell key={spell.name} spell={spell} />
                     ))}
-                    {[...Array(12 - props.spells.length)].map((x, i) =>
+                    {spells && [...Array(12 - spells.length)].map((x, i) =>
                         <div  className="spell" key={i}>
 
                         </div>

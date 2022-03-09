@@ -50,7 +50,8 @@ const Spell = (props) => {
     const handleAttack = async event => {
         activateSkill();
         const target = JSON.parse(window.localStorage.getItem('target'));
-        const attackStats = await UsersApi.applyAttaqueToPlayer(target, props.spell)
+        console.log(props.spell.id);
+        const attackStats = await UsersApi.applyAttaqueToPlayer(target, props.spell.id)
         console.log(attackStats)
         publish({id: target.id, type: target.type, experience: attackStats.experience, damage: attackStats.damage})
 
@@ -63,7 +64,7 @@ const Spell = (props) => {
     return <>
         <div className="spell-container"  onClick={handleAttack}>
             <div className={"spell-filter spell-filter-" + props.spell.id}>{time > 0 && (time/1000).toLocaleString('fr-FR', {maximumFractionDigits: 1})}</div>
-            <div className="spell">
+            <div title={props.spell.name} className="spell">
                 <img src={"../../../img/gui/spells/spell-icon/2/" + props.spell.icone} className="img-spell"/>
             </div>
         </div>

@@ -350,8 +350,8 @@ main{
 
 
 .joueur{
-    background-image: url("../img/character/mage/guerrier.png")!important;
-    background-size: cover;
+    /*background-image: url("../img/character/mage/guerrier.png")!important;*/
+    background-size: contain;
     content: "";
     width: 48px;
     height: 48px;
@@ -984,3 +984,9 @@ section #text span{
 
 
 
+.btn-action{
+    background: none;
+    border: white;
+    color: cadetblue;
+    font-style: italic;
+}

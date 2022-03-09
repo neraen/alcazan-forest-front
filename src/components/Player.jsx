@@ -4,6 +4,7 @@ import MapContext from "../contexts/MapContext";
 const Player = (props) => {
 
     useEffect(() => {
+        console.log(props.player.classe+"_"+ props.player.sexe)
         if(props.hasMonstre){
             setTarget(props.hasMonstre, "monstre")
             window.localStorage.setItem('target', JSON.stringify({id: props.hasMonstre, type: "monstre"}));
@@ -18,7 +19,7 @@ const Player = (props) => {
     }
 
     return <>
-        <div className="joueur" onClick={handleTarget}>
+        <div className="joueur" style={{backgroundImage: "url(../img/classes/"+props.player.nomClasse+"_"+ props.player.sexe +".png)"}} onClick={handleTarget}>
             <div className="joueur-hover d-none flex-column">
                 <div className="joueur-name">{props.player.pseudo}</div>
                 <div className="joueur-level">Niveau : {props.player.niveau}</div>

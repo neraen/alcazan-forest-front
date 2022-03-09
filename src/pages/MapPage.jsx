@@ -37,13 +37,11 @@ export const publish = (data) => {mainSubject.next(data); console.log('under')}
     }
 
      async componentDidMount() {
-         const user = await UsersApi.find(await authAPI.getUserInfo().id)
+         const user = await UsersApi.find();
          this.setState({user: user, display: true})
          this.subscription = mainSubject
              .subscribe(data => {
-                 console.log('test')
                  if(data){
-                     console.log(data)
                      this.setState({ targetId: data.id, type: data.type, needUpdate: !this.state.needUpdate, experience: data.experience, damage: data.damage })
                  }
              })
@@ -76,7 +74,7 @@ export const publish = (data) => {mainSubject.next(data); console.log('under')}
 
                     </div>
                     <div className="footer-block">
-                        {this.state.display && <SpellBar spells={this.state.user.classe.sortileges} player={this.state.target} playerTargeted={this.state.playerTargeted}/>}
+                        {this.state.display && <SpellBar  player={this.state.target} playerTargeted={this.state.playerTargeted}/>}
                     </div>
                 </main>
             </MapContext.Provider>
