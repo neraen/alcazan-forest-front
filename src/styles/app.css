@@ -910,9 +910,7 @@ section #text span{
     width: min-content;
 }
 
-.equipement img{
-    width: 130%!important;
-}
+
 
 .item-case{
     content: "";
@@ -924,29 +922,46 @@ section #text span{
     position: absolute;
 }
 
-.archer.bottes{
-    top: 383px;
-    left: 92px;
+
+.tete{
+    top: 48px;
+    left: 170px;
 }
 
-.archer.bras{
-    top: 168px;
-    left: 48px;
+.cou{
+    top: 47px;
+    left: 301px;
 }
 
-.archer.arme{
-    top: 171px;
-    left: 261px;
+.corps{
+    top: 148px;
+    left: 170px;
 }
 
-.archer.tete{
-    top: 78px;
-    left: 124px;
+.bras-gauche{
+    top: 216px;
+    left: 102px;
 }
 
-.archer.corps{
-    top: 220px;
-    left: 154px;
+.bras-droit{
+    top: 216px;
+    left: 240px;
+}
+
+.jambes{
+    top: 286px;
+    left: 170px;
+}
+
+.bottes{
+    top: 385px;
+    left: 170px;
+}
+
+.icone-equipement{
+    width: 60px;
+    height: 60px;
+    border: solid black 1px;
 }
 
 

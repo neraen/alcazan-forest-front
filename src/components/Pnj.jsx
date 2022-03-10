@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import Modal from "./Modal";
 import useModal from "../hooks/useModal";
 import pnjApi from "../services/pnjApi";
+import UserActionApi from "../services/UserActionApi";
 
 
 const Pnj = (props) => {
@@ -10,18 +11,17 @@ const Pnj = (props) => {
     const [sequence, setSequence] = useState();
 
     useEffect(() => {
-        getSequance()
+        getSequence()
     }, []);
 
-    const getSequance = async () =>  {
+    const getSequence = async () =>  {
 
-        const sequenceData = await pnjApi.getSequance(props.pnj.pnjId);
-        console.log(sequenceData);
+        const sequenceData = await pnjApi.getSequence(props.pnj.pnjId);
         setSequence(sequenceData);
     }
 
-    const handleAction = () => {
-
+    const handleAction = async (link, params) => {
+        await UserActionApi.applyUserAction(link, params)
     }
 
 
@@ -33,21 +33,20 @@ const Pnj = (props) => {
             </div>
         </div>
 
+        {sequence === [] &&
         <Modal
             isShowing={isDialogShowed}
             hide={toggleDialogPnj}
             title={sequence && sequence[0].dialogTitle}
         >
             <div>
-
                 {sequence && sequence[0].dialogContent}
-
-                    {sequence && sequence.map(action => <><button className="btn-action">{action.actionName}</button><br/> </>)}
+                {sequence && sequence.map(action => <><button onClick={() => handleAction(action.actionLink, action.actionParams)} className="btn-action">{action.actionName}</button><br/> </>)}
 
 
             </div>
         </Modal>
-
+        }
     </>
 }
 

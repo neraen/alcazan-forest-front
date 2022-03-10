@@ -8,12 +8,12 @@ const InventoryPage = (props) => {
 
     return <>
         <div className="side-block">
-            <UsernameBlock />
-            <SideMenu />
+            {/*<UsernameBlock />*/}
+            {/*<SideMenu />*/}
         </div>
         <Inventory />
         <div className="footer-block">
-            <SpellBar />
+            {/*<SpellBar />*/}
         </div>
     </>
 }

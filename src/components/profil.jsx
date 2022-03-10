@@ -31,20 +31,7 @@ const Profil = (props) => {
         setCaracteristiques({...caracteristiques, [name]: value})
     }
 
-    function attaque(principale, secondaire, level){
-        let somme = 0;
-        let max = 0;
-        let min = 10000;
-        for(let x = 0; x < 1000; x++){
-            let attaque = Math.floor(50 + (level * 1.5 + 20 * Math.random()) + (Math.random() * (principale + level - secondaire - level) + secondaire) * 1.6)
-            max = max < attaque ? attaque : max;
-            min = min < attaque ? min : attaque;
-            somme = somme + attaque;
-        }
-        console.log("max : " + max);
-        console.log("min : " + min);
-        console.log("moyenne : " + somme / 1000);
-    }
+
 
     const handleClick = (name, value) => {
         setCaracteristiques({...caracteristiques, [name] :  value})
@@ -74,15 +61,18 @@ const Profil = (props) => {
                 <span>concentration :<span className="font-weight-bold"> + 1 </span></span>
                 <span>chance : <span className="font-weight-bold"> + 12 </span></span>
              </div>
-             <div className="equipement">
-                 <h2 className="text-center">Equipement</h2>
+             <div className="equipement position-relative">
+                 <h2 className="text-center ">Equipement</h2>
                  {/*<img className="mt-3 ml-3" src="../img/sprites/enemies/actor1_5.png"/>*/}
-                 {/*<div className="item-case archer bottes"></div>*/}
-                 {/*<div className="item-case archer bras"></div>*/}
-                 {/*<div className="item-case archer arme"></div>*/}
-                 {/*<div className="item-case archer tete"></div>*/}
-                 {/*<div className="item-case archer corps"></div>*/}
-                 <img src="../img/gui/MainWindowCharacter/BodyRectangles.png"/>
+
+                 <div className="item-case tete"><img className="icone-equipement" src="../img/equipement/tete/chapeau25.png" alt=""/></div>
+                 <div className="item-case cou"><img className="icone-equipement" src="../img/equipement/cou/collier01_a.png" alt=""/></div>
+                 <div className="item-case corps"><img className="icone-equipement" src="../img/equipement/corps/haut12.png" alt=""/></div>
+                 <div className="item-case bras-gauche"><img className="icone-equipement" src="../img/equipement/bras-droit/arc9.png" alt=""/></div>
+                 <div className="item-case bras-droit"><img className="icone-equipement" src="../img/equipement/bras-gauche/anneau12.png" alt=""/></div>
+                 <div className="item-case jambes"><img className="icone-equipement" src="../img/equipement/jambes/bas38.png" alt=""/></div>
+                 <div className="item-case bottes"><img className="icone-equipement" src="../img/equipement/pieds/chaussons_volcano_scintillant.png" alt=""/></div>
+                 <img className="" src="../img/gui/MainWindowCharacter/inventaire_masculin.png"/>
              </div>
             <div className="caracteristiques">
                 <h2>Caracteristique (5)</h2>

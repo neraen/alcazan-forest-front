@@ -28,8 +28,7 @@ const Modal = ({ isShowing, hide, title, ...props }) =>
             .modal-custom {
           height: 500px;
             width: 500px;
-            background: url(../../img/parchemin.jpg);
-            background-size: cover;
+            background: #200F00;
             border: aliceblue solid;
             position: relative;
             bottom: 548px;
@@ -42,6 +41,7 @@ const Modal = ({ isShowing, hide, title, ...props }) =>
               display: flex;
               justify-content: space-between;
               align-items: center;
+         
             }
 
             .modal-close-button {

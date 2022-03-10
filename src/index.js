@@ -44,7 +44,7 @@ const Index = () => {
                         <Route path="/about" component={RegisterPage} />
                         <PrivateRoute path="/profil" component={ProfilPage} />
                         <PrivateRoute path="/carte" component={MapPage} />
-                        <PrivateRoute path="/inventory" component={InventoryPage} />
+                        <PrivateRoute path="/inventaire" component={InventoryPage} />
                         <Route path="/" component={HomePage} />
                     </Switch>
 
