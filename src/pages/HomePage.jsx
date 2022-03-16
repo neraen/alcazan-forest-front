@@ -38,140 +38,48 @@ const HomePage = (props) => {
                     <span> Alcazan Forest </span>
                 </h2>
 
-                <img src="../img/bird1.png" alt="" id="bird1" />
-                <img src="../img/bird2.png" alt="" id="bird2" />
+                <img src={require('../img/bird1.png').default} alt="" id="bird1" />
+                <img src={require('../img/bird2.png').default} alt="" id="bird2" />
                 {/*<img src="img/moondetour2.png" alt="" id="moon" />*/}
-                <img src="../img/sun.png" alt="" id="sun" />
-                <img src="../img/waterfall.png" alt="" id="forest" />
-                <a href="" id="btn"><span>S'inscrire</span></a>
-                <img src="../img/rocks1.png" alt="" id="rocks" />
-                <img src="../img/war.png" alt="" id="war" />
+                <img src={require('../img/sun.png').default} alt="" id="sun" />
+                <img src={require('../img/waterfall.png').default} alt="" id="forest" />
+                <a href="/inscription" id="btn"><span>S'inscrire</span></a>
+                <img src={require('../img/rocks1.png').default} alt="" id="rocks" />
+                <img src={require('../img/war.png').default} alt="" id="war" />
 
             </section>
-            <div className="sec">
-                <h2>
-
-                </h2>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aliquid, amet aperiam asperiores
-                assumenda beatae dicta est explicabo iste laborum magni maiores nobis quia rerum ut vitae voluptate?
-                Ipsum, similique
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, aspernatur dolorum error esse
-                    et
-                    illum libero molestias odio quam qui rem temporibus unde vero. Dolores dolorum fugit porro quod
-                    sunt?
-                </p>
-                <p>Adipisci, atque corporis cumque debitis dolore dolorem eveniet fugiat illum in itaque iusto libero
-                    minus
-                    neque non numquam, officiis omnis pariatur quas quasi quibusdam ratione recusandae reiciendis rerum
-                    tenetur
-                    voluptatem.
-                </p>
-                <p>Ad culpa ducimus eius, et eveniet ex illum ipsam laborum minima, quia quod repudiandae. A
-                    consequuntur
-                    eligendi eos error labore laboriosam libero, magni maxime nesciunt perspiciatis rem, sapiente ut
-                    voluptas.
-                </p>
-                <p>Alias, eligendi enim eos iure molestias nostrum optio quas quo? Commodi cupiditate ducimus et eveniet
-                    facere harum illum inventore ipsa neque odio provident quaerat quod repudiandae, sequi veritatis,
-                    vitae
-                    voluptatem.
-                </p>
-                <p>Adipisci at ducimus et eveniet facilis ipsa iste itaque iusto quasi, rem, rerum, tempora! A aut
-                    consequuntur corporis delectus eaque eligendi, id impedit magnam nulla quaerat quam, reprehenderit,
-                    rerum
-                    sint!
-                </p>
-
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aliquid, amet aperiam asperiores
-                assumenda beatae dicta est explicabo iste laborum magni maiores nobis quia rerum ut vitae voluptate?
-                Ipsum, similique
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, aspernatur dolorum error esse
-                    et
-                    illum libero molestias odio quam qui rem temporibus unde vero. Dolores dolorum fugit porro quod
-                    sunt?
-                </p>
-                <p>Adipisci, atque corporis cumque debitis dolore dolorem eveniet fugiat illum in itaque iusto libero
-                    minus
-                    neque non numquam, officiis omnis pariatur quas quasi quibusdam ratione recusandae reiciendis rerum
-                    tenetur
-                    voluptatem.
-                </p>
-                <p>Ad culpa ducimus eius, et eveniet ex illum ipsam laborum minima, quia quod repudiandae. A
-                    consequuntur
-                    eligendi eos error labore laboriosam libero, magni maxime nesciunt perspiciatis rem, sapiente ut
-                    voluptas.
-                </p>
-                <p>Alias, eligendi enim eos iure molestias nostrum optio quas quo? Commodi cupiditate ducimus et eveniet
-                    facere harum illum inventore ipsa neque odio provident quaerat quod repudiandae, sequi veritatis,
-                    vitae
-                    voluptatem.
-                </p>
-                <p>Adipisci at ducimus et eveniet facilis ipsa iste itaque iusto quasi, rem, rerum, tempora! A aut
-                    consequuntur corporis delectus eaque eligendi, id impedit magnam nulla quaerat quam, reprehenderit,
-                    rerum
-                    sint!
-                </p>
-
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aliquid, amet aperiam asperiores
-                assumenda beatae dicta est explicabo iste laborum magni maiores nobis quia rerum ut vitae voluptate?
-                Ipsum, similique
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, aspernatur dolorum error esse
-                    et
-                    illum libero molestias odio quam qui rem temporibus unde vero. Dolores dolorum fugit porro quod
-                    sunt?
-                </p>
-                <p>Adipisci, atque corporis cumque debitis dolore dolorem eveniet fugiat illum in itaque iusto libero
-                    minus
-                    neque non numquam, officiis omnis pariatur quas quasi quibusdam ratione recusandae reiciendis rerum
-                    tenetur
-                    voluptatem.
-                </p>
-                <p>Ad culpa ducimus eius, et eveniet ex illum ipsam laborum minima, quia quod repudiandae. A
-                    consequuntur
-                    eligendi eos error labore laboriosam libero, magni maxime nesciunt perspiciatis rem, sapiente ut
-                    voluptas.
-                </p>
-                <p>Alias, eligendi enim eos iure molestias nostrum optio quas quo? Commodi cupiditate ducimus et eveniet
-                    facere harum illum inventore ipsa neque odio provident quaerat quod repudiandae, sequi veritatis,
-                    vitae
-                    voluptatem.
-                </p>
-                <p>Adipisci at ducimus et eveniet facilis ipsa iste itaque iusto quasi, rem, rerum, tempora! A aut
-                    consequuntur corporis delectus eaque eligendi, id impedit magnam nulla quaerat quam, reprehenderit,
-                    rerum
-                    sint!
-                </p>
-
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aliquid, amet aperiam asperiores
-                assumenda beatae dicta est explicabo iste laborum magni maiores nobis quia rerum ut vitae voluptate?
-                Ipsum, similique
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, aspernatur dolorum error esse
-                    et
-                    illum libero molestias odio quam qui rem temporibus unde vero. Dolores dolorum fugit porro quod
-                    sunt?
-                </p>
-                <p>Adipisci, atque corporis cumque debitis dolore dolorem eveniet fugiat illum in itaque iusto libero
-                    minus
-                    neque non numquam, officiis omnis pariatur quas quasi quibusdam ratione recusandae reiciendis rerum
-                    tenetur
-                    voluptatem.
-                </p>
-                <p>Ad culpa ducimus eius, et eveniet ex illum ipsam laborum minima, quia quod repudiandae. A
-                    consequuntur
-                    eligendi eos error labore laboriosam libero, magni maxime nesciunt perspiciatis rem, sapiente ut
-                    voluptas.
-                </p>
-                <p>Alias, eligendi enim eos iure molestias nostrum optio quas quo? Commodi cupiditate ducimus et eveniet
-                    facere harum illum inventore ipsa neque odio provident quaerat quod repudiandae, sequi veritatis,
-                    vitae
-                    voluptatem.
-                </p>
-                <p>Adipisci at ducimus et eveniet facilis ipsa iste itaque iusto quasi, rem, rerum, tempora! A aut
-                    consequuntur corporis delectus eaque eligendi, id impedit magnam nulla quaerat quam, reprehenderit,
-                    rerum
-                    sint!
-                </p>
+            <div className="main-content">
+                <div className="main-presentation">
+                    <div className="homepage-about">
+                        <h2 className="homepage-about-title">A propos d'Alcazan Forest </h2>
+                        Alcazan Forest est un MMORPG sur navigateur web
+                    </div>
+                    <div className="homepage-feature">
+                        <h2 className="homepage-about-title">Contenu </h2>
+                        <ul className="homepage-about-feature-list">
+                            <li className="homepage-about-feature-list-element"></li>
+                            <li className="homepage-about-feature-list-element"></li>
+                            <li className="homepage-about-feature-list-element"></li>
+                            <li className="homepage-about-feature-list-element"></li>
+                            <li className="homepage-about-feature-list-element"></li>
+                            <li className="homepage-about-feature-list-element"></li>
+                        </ul>
+                    </div>
+                </div>
+                <hr />
+                <div className="presentation">
+                    <h2>Screenshot</h2>
+                    <div className="presentation-screenshots">
+                        <img className="presentation-screenshot" src="../img/screen1.png" />
+                        <img className="presentation-screenshot" src="../img/screen1.png" />
+                        <img className="presentation-screenshot" src="../img/screen1.png" />
+                        <img className="presentation-screenshot" src="../img/screen1.png" />
+                        <img className="presentation-screenshot" src="../img/screen1.png" />
+                        <img className="presentation-screenshot" src="../img/screen1.png" />
+                    </div>
+                </div>
             </div>
+
         </>
     )
 }

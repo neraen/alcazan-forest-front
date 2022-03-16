@@ -95,7 +95,7 @@ class Map extends React.Component {
             <div className="banner-map">
                 <h1 className="text-center title-map-font">{this.state.name}</h1>
             </div>
-            <div className="cases" style={{backgroundImage: "url(../../../img/map/"+this.state.mapId+".png)", backgroundSize: 'contain'}}>
+            <div className="cases" style={{backgroundImage: "url("+require("../../img/map/"+this.state.mapId+".png").default+")", backgroundSize: 'contain'}}>
                 {this.state.cases.map(uniquecase => (
                     <div  onClick={() =>this.handleClick(uniquecase)}>
                         <Case key={uniquecase.carteCarreauId}

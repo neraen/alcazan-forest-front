@@ -4,13 +4,25 @@
 
 body {
     background-color: azure!important;
-    background: url(../img/Scene-12.jpg)!important;
     background-size: cover!important;
     min-height: 100vh!important;
 }
 
 main{
     min-height: 90vh!important;
+}
+
+.main-auth-bg{
+    background: url(../img/Scene-12.jpg);
+    background-size: cover!important;
+}
+
+.login-page-main{
+    background: url(../img/moon2.png);
+    background-size: cover!important;
+    background-position-y: center;
+    content: "";
+    height: 100vh;
 }
 
 /*@font-face {*/
@@ -156,6 +168,7 @@ main{
     width: 380px;
     height: 130px;
     position: relative;
+    z-index: 10000;
 }
 
 .player-pseudo{
@@ -295,6 +308,7 @@ main{
 .joueur-cible{
     position: relative;
     height: 180px;
+    z-index: 10000;
     /*background: url(../img/gui/CharacterEnemy/OverlayBorder.png);*/
     /*background-size: 380px 180px;*/
 }
@@ -775,13 +789,28 @@ section #text span{
 /*}*/
 
 
-.sec{
+.main-content{
     position: relative;
     padding: 100px;
     background: #b8dbd9;
     opacity: 1;
-    top: -300px
+    top: -300px;
+    display: flex;
+    flex-direction: column;
 }
+
+.main-presentation{
+    display: flex;
+    justify-content: space-between;
+}
+
+.homepage-about-title{
+    font-size: 2.2em;
+    color: #333;
+}
+
+
+
 
 #bird1{
     z-index: 5000;
@@ -805,13 +834,19 @@ section #text span{
     left: 60px;
 }
 
-
-
-.sec h2{
-    font-size: 3.5em;
-    color: #fff;
-
+.presentation-screenshots{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
+
+.presentation-screenshot{
+    width: 25vw;
+    margin-top: 25px;
+}
+
+
+
 
 /** Profil **/
 

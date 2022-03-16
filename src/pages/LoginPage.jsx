@@ -36,21 +36,23 @@ const LoginPage = ({history }) =>{
 
     return (
         <>
-            <form className="form-login" onSubmit={handleSubmit}>
-                <h1 style={{color: '#222'}}>Connexion</h1>
-                <div className="form-group">
-                    <label htmlFor="username">Adresse email</label>
-                    <input type="email" name="username" id="username" className={"form-control" + (error ? " is-invalid": "")} value={credentials.username} onChange={handleChange}/>
-                    {error && <p className="invalid-feedback">{error}</p>}
-                </div>
-                <div className="form-group">
-                    <label htmlFor="password">Mot de passe</label>
-                    <input type="password" name="password" id="password" className="form-control" value={credentials.password} onChange={handleChange}/>
-                </div>
-                <div className="form-group">
-                    <button type="submit" className="btn btn-success">Je me connecte</button>
-                </div>
-            </form>
+            <div className="login-page-main">
+                <form className="form-login" onSubmit={handleSubmit}>
+                    <h1 style={{color: '#222'}}>Connexion</h1>
+                    <div className="form-group">
+                        <label htmlFor="username">Adresse email</label>
+                        <input type="email" name="username" id="username" className={"form-control" + (error ? " is-invalid": "")} value={credentials.username} onChange={handleChange}/>
+                        {error && <p className="invalid-feedback">{error}</p>}
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="password">Mot de passe</label>
+                        <input type="password" name="password" id="password" className="form-control" value={credentials.password} onChange={handleChange}/>
+                    </div>
+                    <div className="form-group">
+                        <button type="submit" className="btn btn-success">Je me connecte</button>
+                    </div>
+                </form>
+            </div>
         </>
     );
 }

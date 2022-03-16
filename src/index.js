@@ -11,6 +11,7 @@ import AuthContext from "./contexts/AuthContext";
 import PrivateRoute from "./components/PrivateRoute";
 import MapPage from "./pages/MapPage";
 import InventoryPage from "./pages/InventoryPage";
+
 // import UsersApi from "./services/UsersApi";
 // import {Provider} from "react-redux";
 // import {CARTE_API, USER_API} from "./config";
@@ -24,6 +25,8 @@ const Index = () => {
 
     const NavbarWitRouter = withRouter(Navbar)
 
+
+
     const context = {
         isAuthenticated: isAuthenticated,
         setIsAuthenticated: setIsAuthenticated
@@ -36,7 +39,7 @@ const Index = () => {
             <AuthContext.Provider value={context}>
             <HashRouter>
                 <NavbarWitRouter />
-                <main className={!isAuthenticated ? "": "" + "pt-5"}>
+                <main className={!isAuthenticated ? "": "main-auth-bg" + " pt-5"}>
                     <Switch>
                         <Route path="/connexion" component={LoginPage}/>
                         <Route path="/inscription" component={RegisterPage} />
