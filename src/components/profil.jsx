@@ -13,17 +13,21 @@ const Profil = (props) => {
         chance: 0
     })
 
+    const [maxCaracsAllowed, setMaxCaracsAllowed] = useState(0);
+
     useEffect(() => {
         fetchCaracteristiques(props.user.id)
     }, []);
 
     const fetchCaracteristiques =  async id => {
-        const caracs = await UsersApi.getCaracteristiques(id)
+        const caracsInfo = await UsersApi.getCaracteristiques(id)
+        const caracs = caracsInfo.caracteristiques
         let caracsToSet = caracteristiques
         caracs.map((value) => {
-            caracsToSet = {...caracsToSet, [value.caracteristique.nom] : value.points}
+            caracsToSet = {...caracsToSet, [value.nom] : value.points}
         })
         setCaracteristiques(caracsToSet);
+        setMaxCaracsAllowed(caracsInfo.maxCaracsAllowed);
     }
 
     const handleChange = ({currentTarget}) => {
@@ -38,7 +42,15 @@ const Profil = (props) => {
     }
 
     const handleSubmit = () => {
-        UsersApi.updateCaracteristiques(caracteristiques);
+        if(maxCaracsAllowed - getActualCaracacteristiques() >= 0){
+            UsersApi.updateCaracteristiques(caracteristiques);
+        }else{
+            console.log('la le gars essaie clairement de m\'enculer');
+        }
+    }
+
+    const getActualCaracacteristiques = () => {
+        return Object.values(caracteristiques).reduce((prevCarac, nextCarac)  => prevCarac + nextCarac);
     }
 
 
@@ -50,7 +62,6 @@ const Profil = (props) => {
                 <span>Niveau : 12</span>
                 <span>guilde : aucune</span>
                 <span>Alignement : aucun</span>
-                <span>karma : malandrin</span>
 
                 <h2 className="mt-5">Equipement</h2>
 
@@ -75,41 +86,41 @@ const Profil = (props) => {
                  <img className="" src="../img/gui/MainWindowCharacter/inventaire_masculin.png"/>
              </div>
             <div className="caracteristiques">
-                <h2>Caracteristique (5)</h2>
+                <h2>Caracteristique ({maxCaracsAllowed - getActualCaracacteristiques()})</h2>
                 <div className="champ-caracteristique">
-                    <button className="btn-caracteristique" onClick={() => handleClick('constitution', caracteristiques.constitution + 1)} ><i>+</i></button>
+                    <button className="btn-caracteristique" disabled={(maxCaracsAllowed - getActualCaracacteristiques()) <= 0} onClick={() => handleClick('constitution', caracteristiques.constitution + 1)} ><i>+</i></button>
                         <Field className="" disabled="disabled" name="constitution" label="Constitution" placeholder="" onChange={handleChange} value={caracteristiques.constitution} />
-                    <button className="btn-caracteristique-reverse" onClick={() => handleClick('constitution', caracteristiques.constitution - 1)}><i>-</i></button>
+                    <button className="btn-caracteristique-reverse" disabled={caracteristiques.constitution <= 0} onClick={() => handleClick('constitution', caracteristiques.constitution - 1)}><i>-</i></button>
                 </div>
 
                 <div className="champ-caracteristique">
-                    <button className="btn-caracteristique" onClick={() => handleClick('force', caracteristiques.force + 1)}><i>+</i></button>
+                    <button className="btn-caracteristique" disabled={(maxCaracsAllowed - getActualCaracacteristiques()) <= 0} onClick={() => handleClick('force', caracteristiques.force + 1)}><i>+</i></button>
                         <Field disabled="disabled" name="force" label="Force" placeholder="" onChange={handleChange} value={caracteristiques.force} />
-                    <button className="btn-caracteristique-reverse" onClick={() => handleClick('force', caracteristiques.force - 1)}><i>-</i></button>
+                    <button className="btn-caracteristique-reverse" disabled={caracteristiques.force <= 0} onClick={() => handleClick('force', caracteristiques.force - 1)}><i>-</i></button>
                 </div>
 
                 <div className="champ-caracteristique">
-                    <button className="btn-caracteristique" onClick={() => handleClick('dexterite', caracteristiques.dexterite + 1)}><i>+</i></button>
+                    <button className="btn-caracteristique" disabled={(maxCaracsAllowed - getActualCaracacteristiques()) <= 0} onClick={() => handleClick('dexterite', caracteristiques.dexterite + 1)}><i>+</i></button>
                         <Field disabled="disabled" name="dexterite" label="Dextérité" placeholder="" onChange={handleChange} value={caracteristiques.dexterite} />
-                    <button className="btn-caracteristique-reverse" onClick={() => handleClick('dexterite', caracteristiques.dexterite - 1)}><i>-</i></button>
+                    <button className="btn-caracteristique-reverse" disabled={caracteristiques.dexterite <= 0} onClick={() => handleClick('dexterite', caracteristiques.dexterite - 1)}><i>-</i></button>
                 </div>
 
                 <div className="champ-caracteristique">
-                    <button className="btn-caracteristique" onClick={() => handleClick('intelligence', caracteristiques.intelligence + 1)}><i>+</i></button>
+                    <button className="btn-caracteristique" disabled={(maxCaracsAllowed - getActualCaracacteristiques()) <= 0} onClick={() => handleClick('intelligence', caracteristiques.intelligence + 1)}><i>+</i></button>
                          <Field disabled="disabled" name="intelligence" label="Intelligence" placeholder="" onChange={handleChange} value={caracteristiques.intelligence} />
-                    <button className="btn-caracteristique-reverse" onClick={() => handleClick('intelligence', caracteristiques.intelligence -1)}><i>-</i></button>
+                    <button className="btn-caracteristique-reverse" disabled={caracteristiques.intelligence <= 0} onClick={() => handleClick('intelligence', caracteristiques.intelligence -1)}><i>-</i></button>
                 </div>
 
                 <div className="champ-caracteristique">
-                    <button className="btn-caracteristique" onClick={() => handleClick('concentration', caracteristiques.concentration + 1)}><i>+</i></button>
+                    <button className="btn-caracteristique" disabled={(maxCaracsAllowed - getActualCaracacteristiques()) <= 0} onClick={() => handleClick('concentration', caracteristiques.concentration + 1)}><i>+</i></button>
                         <Field disabled="disabled" name="concentration" label="Concentration" placeholder="" onChange={handleChange} value={caracteristiques.concentration} />
-                    <button className="btn-caracteristique-reverse" onClick={() => handleClick('concentration', caracteristiques.concentration-1)}><i>-</i></button>
+                    <button className="btn-caracteristique-reverse" disabled={caracteristiques.concentration <= 0} onClick={() => handleClick('concentration', caracteristiques.concentration-1)}><i>-</i></button>
                 </div>
 
                 <div className="champ-caracteristique">
-                    <button className="btn-caracteristique" onClick={() => handleClick('chance', caracteristiques.chance + 1)}><i>+</i></button>
+                    <button className="btn-caracteristique" disabled={(maxCaracsAllowed - getActualCaracacteristiques()) <= 0} onClick={() => handleClick('chance', caracteristiques.chance + 1)}><i>+</i></button>
                         <Field disabled="disabled" name="chance" label="Chance" placeholder="" onChange={handleChange} value={caracteristiques.chance} />
-                    <button className="btn-caracteristique-reverse" onClick={() => handleClick('chance', caracteristiques.chance-1)}><i>-</i></button>
+                    <button className="btn-caracteristique-reverse" disabled={caracteristiques.chance <= 0} onClick={() => handleClick('chance', caracteristiques.chance-1)}><i>-</i></button>
                 </div>
 
                 <div className="champ-caracteristique">

@@ -1,5 +1,7 @@
 import React, {useContext, useEffect} from 'react'
 import MapContext from "../contexts/MapContext";
+import {connect} from "react-redux";
+import {updatePlayerTarget} from "../store/actions";
 
 const Player = (props) => {
 
@@ -15,6 +17,7 @@ const Player = (props) => {
 
     const handleTarget = () =>{
         setTarget(props.player.idJoueur, "player")
+        //props.updatePlayerTarget({targetId: props.player.idJoueur, type: "player"})
         window.localStorage.setItem('target', JSON.stringify({id: props.player.idJoueur, type: "player"}));
     }
 
@@ -30,3 +33,10 @@ const Player = (props) => {
 }
 
 export default Player
+
+// export default connect(null, (dispatch, ownProps) => {
+//     return {
+//         ownProps,
+//         updatePlayerTarget: (targetId, type) => dispatch(updatePlayerTarget(targetId, type))
+//     }
+// })(Player)

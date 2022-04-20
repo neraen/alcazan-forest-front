@@ -1040,3 +1040,270 @@ section #text span{
     color: cadetblue;
     font-style: italic;
 }
+
+.loader{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/** INVENTAIRE **/
+
+.banner-map-inventory{
+    display: flex;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.inventaire-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #212529;
+    height: 70vh;
+    max-width: 60vw;
+    margin: auto;
+    border-radius: 10px;
+}
+
+.inventaire-header{
+    width: 100%;
+    height: 60px;
+    background: #540b0e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 60px;
+    border-radius: 10px 10px 0 0;
+}
+
+.inventaire-title{
+    margin-right: 30px;
+    padding: 10px;
+    color: grey;
+    cursor: pointer;
+}
+
+.no-style-link{
+    text-decoration: none;
+    color: grey;
+}
+
+.inventaire-active{
+    color: aliceblue!important;
+}
+
+.inventaire-layout{
+    display: flex;
+}
+
+.inventaire-left-part{
+    margin-right: 60px;
+}
+
+.inventaire-right-part{
+    display: flex;
+    flex-direction: column;
+}
+
+.inventaire-subtitle{
+    display: flex;
+    justify-content: center;
+    color: aliceblue;
+}
+
+.inventaire-equipements, .inventaire-consommables, .inventaire-objets{
+    background: url("../img/gui/MainWindowCharacter/Cells.png");
+    background-size: cover;
+    width: 350px;
+    height: 470px;
+}
+
+.inventaire-items{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 350px;
+    margin-right: 60px;
+}
+
+.inventaire-item{
+    width: 50px;
+    height: 50px;
+    margin-left: 6px;
+    margin-top: 4px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    position: relative;
+}
+
+.inventaire-item-quantity{
+    position: absolute;
+    left: 3px;
+    top: 0px;
+    z-index: 100;
+    color: black;
+    font-size: 14px;
+}
+
+.inventaire-item-hover{
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    background: aliceblue;
+    color: #200F00;
+    min-width: 184px;
+    border: solid black 1px;
+    z-index: -1;
+    width: 360px;
+}
+
+.inventaire-item:hover .inventaire-item-hover, .item-case:hover .inventaire-item-hover{
+    display: flex!important;
+    flex-direction: column;
+    z-index: 2;
+    border-radius: 5px;
+}
+
+/** rareté **/
+
+/** COMMUN */
+.inventaire-item-hover.commun .inventaire-item-hover-header, .inventaire-item-hover.commun .inventaire-item-hover-footer, .inventaire-objets .inventaire-item-hover-header {
+    background: grey;
+}
+
+.inventaire-item-hover.commun .inventaire-item-hover-body, .inventaire-objets .inventaire-item-hover-body{
+    background: lightgrey;
+}
+
+
+/** PEU COMMUN */
+.inventaire-item-hover.peu-commun .inventaire-item-hover-header, .inventaire-item-hover.peu-commun .inventaire-item-hover-footer{
+    background: #52796f;
+}
+
+.inventaire-item-hover.peu-commun .inventaire-item-hover-body{
+    background: #d8f3dc;
+}
+
+/** RARE */
+
+.inventaire-item-hover.rare .inventaire-item-hover-header, .inventaire-item-hover.rare .inventaire-item-hover-footer{
+    background: #61a5c2;
+}
+
+.inventaire-item-hover.rare .inventaire-item-hover-body{
+    background: #cce6f4;
+}
+
+/** EPIQUE */
+
+.inventaire-item-hover.epique .inventaire-item-hover-header, .inventaire-item-hover.epique .inventaire-item-hover-footer{
+    background: #7364d2;
+}
+
+.inventaire-item-hover.epique .inventaire-item-hover-body{
+    background: #c1cdf9;
+}
+
+/** LEGENDAIRE */
+
+.inventaire-item-hover.legendaire .inventaire-item-hover-header, .inventaire-item-hover.legendaire .inventaire-item-hover-footer{
+    background: #cca000;
+}
+
+.inventaire-item-hover.legendaire .inventaire-item-hover-body{
+    background: #fcefb4;
+}
+
+/** HEROIQUE */
+
+.inventaire-item-hover.heroique .inventaire-item-hover-header, .inventaire-item-hover.heroique .inventaire-item-hover-footer{
+    background: #9e2a2b;
+}
+
+.inventaire-item-hover.heroique .inventaire-item-hover-body{
+    background: #ffa69e;
+}
+
+
+.inventaire-item-hover-header{
+
+    border-bottom: black solid 1px;
+    color: aliceblue;
+    text-align: center;
+}
+
+.inventaire-item-hover-body{
+    padding: 10px;
+}
+
+.inventaire-item-hover-footer{
+    border-top: black solid 1px;
+    color: aliceblue;
+    text-align: center;
+}
+
+.inventaire-item-title{
+    text-align: center;
+    font-weight: bold;
+}
+
+.inventaire-item-element-italic{
+    font-style: italic;
+}
+
+.inventaire-item-element-strong{
+    font-weight: bold;
+}
+
+.inventaire-item-img{
+    width: 50px;
+    height: 50px;
+}
+
+.inventaire-equipement-caracteristiques{
+    color: aliceblue;
+}
+
+
+.inventaire-right-part .tete{
+    top: 1px;
+    left: 170px;
+}
+
+.inventaire-right-part .cou{
+    top: 1px;
+    left: 301px;
+}
+
+.inventaire-right-part .corps{
+    top: 101px;
+    left: 170px;
+}
+
+.inventaire-right-part .bras-gauche{
+    top: 169px;
+    left: 102px;
+}
+
+.inventaire-right-part .bras-droit{
+    top: 169px;
+    left: 240px;
+}
+
+.inventaire-right-part .jambes{
+    top: 239px;
+    left: 170px;
+}
+
+.inventaire-right-part .bottes{
+    top: 338px;
+    left: 170px;
+}
+
+

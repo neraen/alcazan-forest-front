@@ -3,14 +3,13 @@ import UsernameBlock from "../components/UserInterface/UsernameBlock";
 import SideMenu from "../components/UserInterface/SideMenu";
 import Map from "../components/map/Map";
 import SpellBar from "../components/UserInterface/SpellBar";
-
 import UserStatsBlock from "../components/UserInterface/UserStatsBlock";
 import UsersApi from "../services/UsersApi";
-import authAPI from "../services/authAPI";
 import Loader from "../components/Loader";
 import MapContext from "../contexts/MapContext";
 import Target from "../components/Target";
-import {BehaviorSubject, Subject} from "rxjs";
+import {BehaviorSubject} from "rxjs";
+import { connect } from "react-redux";
 
 
 const mainSubject = new BehaviorSubject();
@@ -31,8 +30,10 @@ export const publish = (data) => {mainSubject.next(data); console.log('under')}
             isPlayer: false,
             type: "none",
             needUpdate: false,
+            newExperience: 0,
             experience: 0,
-            damage: 0
+            damage: 0,
+            droppedItems: ""
         }
     }
 
@@ -42,9 +43,11 @@ export const publish = (data) => {mainSubject.next(data); console.log('under')}
          this.subscription = mainSubject
              .subscribe(data => {
                  if(data){
-                     this.setState({ targetId: data.id, type: data.type, needUpdate: !this.state.needUpdate, experience: data.experience, damage: data.damage })
+                     this.setState({ targetId: data.id, type: data.type, needUpdate: !this.state.needUpdate, newExperience: data.newExperience, experience: data.experience, damage: data.damage, droppedItems: data.droppedItems })
                  }
              })
+
+         console.log(this.state.droppedItems)
      }
 
      componentWillUnmount() {
@@ -65,7 +68,10 @@ export const publish = (data) => {mainSubject.next(data); console.log('under')}
                             {this.state.type !== "none" && <Target needUpdate={this.state.needUpdate} target={this.state.targetId} type={this.state.type}/>}
                             <UserStatsBlock user={this.state.user} />
                             <SideMenu />
-                            <div className="block-notification">{(this.state.damage > 0) && "Vous infligez "+ this.state.damage +" points de dommages et vous gagnez "+this.state.experience+" points d'expériences"}</div>
+                            <div className="block-notification">
+                                {(this.state.damage > 0) && "Vous infligez "+ this.state.damage +" points de dommages et vous gagnez "+this.state.experience+" points d'expériences"} <br />
+                                {(this.state.droppedItems !== "" && this.state.droppedItems !== undefined) && "En mourrant le monstre laisse tomber ceci : " + this.state.droppedItems}
+                            </div>
                         </div>
 
                         <div className="map-container mr-5" >
@@ -74,7 +80,7 @@ export const publish = (data) => {mainSubject.next(data); console.log('under')}
 
                     </div>
                     <div className="footer-block">
-                        {this.state.display && <SpellBar  player={this.state.target} playerTargeted={this.state.playerTargeted}/>}
+                        {this.state.display && <SpellBar newExperience={this.state.newExperience}  player={this.state.target} playerTargeted={this.state.playerTargeted}/>}
                     </div>
                 </main>
             </MapContext.Provider>
@@ -82,6 +88,8 @@ export const publish = (data) => {mainSubject.next(data); console.log('under')}
     }
 }
 
-
-
 export default MapPage
+
+// export default connect((state, ownProperties) =>{
+//     return state
+// })(MapPage)

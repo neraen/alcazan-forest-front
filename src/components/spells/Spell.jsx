@@ -53,7 +53,9 @@ const Spell = (props) => {
         console.log(props.spell.id);
         const attackStats = await UsersApi.applyAttaqueToPlayer(target, props.spell.id)
         console.log(attackStats)
-        publish({id: target.id, type: target.type, experience: attackStats.experience, damage: attackStats.damage})
+        console.log( attackStats.droppedItems[0])
+
+        publish({id: target.id, type: target.type, experience: attackStats.experience, damage: attackStats.damage, newExperience: attackStats.newExperience, droppedItems: attackStats.droppedItems[0]})
 
     }
 

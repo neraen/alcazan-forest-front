@@ -11,12 +11,13 @@ import AuthContext from "./contexts/AuthContext";
 import PrivateRoute from "./components/PrivateRoute";
 import MapPage from "./pages/MapPage";
 import InventoryPage from "./pages/InventoryPage";
+import {Provider} from "react-redux";
 
 // import UsersApi from "./services/UsersApi";
 // import {Provider} from "react-redux";
 // import {CARTE_API, USER_API} from "./config";
 // import MercureSubscriber from "@cerati/react-mercure";
-//import store from "store/index"
+import store from "./store/index"
 
 authAPI.setup();
 
@@ -64,4 +65,4 @@ const Index = () => {
 }
 
 const rootElement = document.querySelector('#app');
-ReactDOM.render(<Index />, rootElement);
+ReactDOM.render(<Provider store={store} ><Index /></Provider>, rootElement);

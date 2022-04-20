@@ -35,7 +35,7 @@ const Target = (props) => {
         }
         {(props.type === "monstre" && target) &&
         <div className="joueur-cible">
-            <h4 className="joueur-cible-name">{target.nomMonstre}</h4>
+            <h4 className="joueur-cible-name">{target.nomMonstre} x {target.quantiteMonstre} </h4>
             <div className="target-stats">
                 <StatBar displayText={false} value={target.monstreLife} max={target.monstreLifeMax} maxWidth={200} classN="lifeBar"/>
                 <img src={"/img/monstre/"+target.imageMonstre+".png"} alt="avatar" className="avatar-player"/>

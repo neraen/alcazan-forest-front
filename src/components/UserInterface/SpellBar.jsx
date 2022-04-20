@@ -9,7 +9,10 @@ const SpellBar = (props) => {
     const [spells, setSpells] = useState();
 
     useEffect(() => {
-        getExpJoueur()
+        if(props.newExperience === 0){
+            getExpJoueur()
+        }
+
         getPlayerSpells()
     }, [])
 
@@ -31,14 +34,14 @@ const SpellBar = (props) => {
                     <img className="exp-icon" src="/img/gui/Xp.png" />
                 </div>
                 {(experienceData) &&
-                <Bar value={experienceData.experienceActuelle} max={experienceData.experienceMax} maxWidth={1000} classN="expBar"/> ||
+                <Bar value={props.newExperience !== 0 ? props.newExperience : experienceData.experienceActuelle} max={experienceData.experienceMax} maxWidth={1000} classN="expBar"/> ||
                 <Bar value={0} max={99999} maxWidth={1000} classN="expBar"/>
                 }
             </div>
             <div className="spells row align-items-center">
                 <div className="col-6 d-flex">
                     {spells && spells.map(spell => (
-                        <Spell key={spell.name} spell={spell} />
+                        <Spell key={spell.id} spell={spell} />
                     ))}
                     {spells && [...Array(12 - spells.length)].map((x, i) =>
                         <div  className="spell" key={i}>

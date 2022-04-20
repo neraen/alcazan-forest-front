@@ -63,9 +63,15 @@ class Map extends React.Component {
     }
 
     async changeMap(targetMapId, targetWrap){
-        const mapId = await UsersApi.changeMap(targetMapId, targetWrap);
-        const mapData = await MapApi.find(mapId);
-        this.setState({cases: mapData.cases, name: mapData.mapInfo.nom, mapId: mapData.mapId});
+        const mapPosition = await UsersApi.changeMap(targetMapId, targetWrap);
+        const mapData = await MapApi.find(mapPosition.mapId);
+        this.setState({
+            cases: mapData.cases,
+            name: mapData.mapInfo.nom,
+            mapId: mapData.mapId,
+            ordonneeJoueur: mapPosition.ordonnee,
+            abscisseJoueur: mapPosition.abscisse
+        });
         this.setState({unabledCases: this.getUnabledMove()});
     }
 

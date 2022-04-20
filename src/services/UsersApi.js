@@ -18,7 +18,7 @@ function getPlayerSpells(){
 }
 
 function getCaracteristiques(id){
-    return axios.get(API_URL + "joueur/caracteristiques").then(response => response.data['hydra:member'])
+    return axios.get(API_URL + "joueur/caracteristiques").then(response => response.data)
 }
 
 function updateCaracteristiques(data){

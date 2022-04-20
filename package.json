@@ -8,6 +8,7 @@
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "dotenv": "^8.2.0",
+    "formik": "^2.2.9",
     "jquery": "^3.5.1",
     "jwt-decode": "^3.1.2",
     "node-sass": "^6.0.1",
@@ -15,12 +16,16 @@
     "react-bootstrap": "^1.5.0",
     "react-content-loader": "^6.0.1",
     "react-dom": "^17.0.1",
-    "react-redux": "^7.2.2",
+    "react-redux": "^7.2.8",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.3",
-    "redux": "^4.0.5",
+    "redux": "^4.1.2",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.4.1",
     "rxjs": "^7.5.4",
-    "rxjs-compat": "^6.6.7"
+    "rxjs-compat": "^6.6.7",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -59,6 +59,8 @@ const Navbar = ({history}) => {
                     }
                 </ul>
             </div>
+            <div>Alcazan Forest MMORPG médieval</div>
+
         </nav>
     );
 }
