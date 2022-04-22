@@ -88,8 +88,8 @@ export const publish = (data) => {mainSubject.next(data); console.log('under')}
     }
 }
 
-export default MapPage
+//export default MapPage
 
-// export default connect((state, ownProperties) =>{
-//     return state
-// })(MapPage)
+export default connect((state, ownProperties) =>{
+    return {target: state.target, experience: state.experience, ownProperties}
+})(MapPage)

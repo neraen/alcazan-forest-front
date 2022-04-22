@@ -44,8 +44,6 @@ const Profil = (props) => {
     const handleSubmit = () => {
         if(maxCaracsAllowed - getActualCaracacteristiques() >= 0){
             UsersApi.updateCaracteristiques(caracteristiques);
-        }else{
-            console.log('la le gars essaie clairement de m\'enculer');
         }
     }
 

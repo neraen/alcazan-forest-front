@@ -32,11 +32,11 @@ const Player = (props) => {
     </>
 }
 
-export default Player
+//export default Player
 
-// export default connect(null, (dispatch, ownProps) => {
-//     return {
-//         ownProps,
-//         updatePlayerTarget: (targetId, type) => dispatch(updatePlayerTarget(targetId, type))
-//     }
-// })(Player)
+export default connect(null, (dispatch, ownProps) => {
+    return {
+        ownProps,
+        updatePlayerTarget: (targetId, type) => dispatch(updatePlayerTarget(targetId, type))
+    }
+})(Player)

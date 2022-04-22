@@ -30,6 +30,12 @@ export const playerStatsReducer = (state = {
                 target: action.target
             }
         }
+        case actions.REMOVE_PLAYER_TARGET: {
+            return {
+                ...state,
+                target: {}
+            }
+        }
         default: {
             return state;
         }
