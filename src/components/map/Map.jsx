@@ -57,9 +57,9 @@ class Map extends React.Component {
 
     async updatePosition(abscisse, ordonnee){
         const data = await UsersApi.updatePosition(this.state.mapId, abscisse, ordonnee)
-        this.setState({abscisseJoueur: abscisse, ordonneeJoueur: ordonnee});
-        this.setState({cases: data});
-        this.setState({unabledCases: this.getUnabledMove()});
+        this.setState({abscisseJoueur: abscisse, ordonneeJoueur: ordonnee, cases: data},
+            () => this.setState({unabledCases: this.getUnabledMove()}));
+
     }
 
     async changeMap(targetMapId, targetWrap){

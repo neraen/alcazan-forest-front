@@ -1307,3 +1307,25 @@ section #text span{
 }
 
 
+
+.loader {
+    width: 70px;
+    height: 70px;
+    display: inline-block;
+    position: relative;
+}
+.loader::after , .loader::before {
+                content: '';
+                width : 70px;
+                height: 70px;
+                border:2px solid aliceblue;
+                position: absolute;
+                left:0;
+                top: 0;
+                animation: rotation 2s ease-in-out infinite alternate;
+            }
+.loader::after {
+     border-color: greenyellow;
+     animation-direction: alternate-reverse;
+ }
+

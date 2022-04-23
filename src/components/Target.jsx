@@ -1,48 +1,69 @@
-import React, {useEffect, useState} from 'react'
+import React, {Component, useEffect, useState} from 'react'
 import {ProgressBar} from "react-bootstrap";
 import StatBar from "./UserInterface/StatBar";
-import GameApi from "../services/GameApi";
+import {connect} from "react-redux";
+import { fetchTargetInfo } from "../store/actions";
 
 
-const Target = (props) => {
+class Target extends Component{
 
-    const [target, setTarget] = useState();
-
-    useEffect(() => {
-        console.log(props);
-        getTargetInfo();
-    }, [props.needUpdate])
-
-    const getTargetInfo = async () => {
-        const target = await GameApi.getTargetInfos(props.target, props.type)
-        console.log(target)
-        setTarget(target)
+    constructor(props){
+        super(props);
     }
 
-    return <>
-        {(props.type === "player" && target) &&
-        <div className="joueur-cible">
-            <h4 className="joueur-cible-name">{target.pseudo}</h4>
-            <div className="target-stats">
-                <StatBar displayText={false} value={target.currentLife} max={target.maxLife} maxWidth={200}
-                         classN="lifeBar"/>
-                <StatBar displayText={false} value={target.currentMana} max={target.maxMana} maxWidth={200}
-                         classN="manaBar"/>
-                <img src="/img/gui/CharacterEnemy/AvatarEnemy.png" alt="avatar" className="avatar-player"/>
-                <div className="joueur-cible-level">{target.niveau}</div>
-            </div>
-        </div>
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.warn(prevProps, this.props);
+        if ((prevProps.target.type !== this.props.target.type)
+            || (prevProps.target.targetId !== this.props.target.targetId)
+            // || (prevProps.target.currentLife !== this.props.target.currentLife)
+            // || (prevProps.target.monstreLife !== this.props.target.monstreLife)
+        ) {
+            this.props.fetchTargetInfo(this.props.target.targetId, this.props.target.type);
         }
-        {(props.type === "monstre" && target) &&
-        <div className="joueur-cible">
-            <h4 className="joueur-cible-name">{target.nomMonstre} x {target.quantiteMonstre} </h4>
-            <div className="target-stats">
-                <StatBar displayText={false} value={target.monstreLife} max={target.monstreLifeMax} maxWidth={200} classN="lifeBar"/>
-                <img src={"/img/monstre/"+target.imageMonstre+".png"} alt="avatar" className="avatar-player"/>
+    }
+
+
+    // const getTargetInfo = async () => {
+    //     const target = await GameApi.getTargetInfos(props.target, props.type)
+    //     console.log(target)
+    //     setTarget(target)
+    // }
+    render() {
+
+        return (<>
+
+            {(this.props.target.type === "player" && this.props.target) &&
+            <div className="joueur-cible">
+                <h4 className="joueur-cible-name">{this.props.target.pseudo}</h4>
+                <div className="target-stats">
+                    <StatBar displayText={false} value={this.props.target.currentLife} max={this.props.target.maxLife}
+                             maxWidth={200}
+                             classN="lifeBar"/>
+                    <StatBar displayText={false} value={this.props.target.currentMana} max={this.props.target.maxMana}
+                             maxWidth={200}
+                             classN="manaBar"/>
+                    <img src="/img/gui/CharacterEnemy/AvatarEnemy.png" alt="avatar" className="avatar-player"/>
+                    <div className="joueur-cible-level">{this.props.target.niveau}</div>
+                </div>
             </div>
-        </div>
-        }
-    </>
+            }
+            {(this.props.target.type === "monstre" && this.props.target) &&
+            <div className="joueur-cible">
+                <h4 className="joueur-cible-name">{this.props.target.nomMonstre} x {this.props.target.quantiteMonstre} </h4>
+                <div className="target-stats">
+                    <StatBar displayText={false} value={this.props.target.monstreLife} max={this.props.target.monstreLifeMax}
+                             maxWidth={200} classN="lifeBar"/>
+                    <img src={"/img/monstre/" + this.props.target.imageMonstre + ".png"} alt="avatar"
+                         className="avatar-player"/>
+                </div>
+            </div>
+            }
+        </>);
+    }
 }
 
-export default Target
+export default connect(state => {
+    console.log(state);
+    let target = state.data;
+    return {target};
+}, {fetchTargetInfo})(Target);

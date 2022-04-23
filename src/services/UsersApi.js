@@ -25,8 +25,8 @@ function updateCaracteristiques(data){
     return axios.post(API_URL + "joueur/caracteristiques/update", data)
 }
 
-function applyAttaqueToPlayer(target, spell){
-    return axios.post(API_URL + "joueur/attack", {targetId: target.id, spellId: spell, type: target.type}).then(response => response.data)
+function applyAttaqueToPlayer(targetId, targetType , spellId){
+    return axios.post(API_URL + "joueur/attack", {targetId: targetId, spellId: spellId, type: targetType}).then(response => response.data)
 }
 
 function updatePosition(mapId, abscisse, ordonnee){

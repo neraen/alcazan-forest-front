@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import UsersApi from "../../services/UsersApi";
 import {publish} from "../../pages/MapPage";
+import {connect} from "react-redux";
+import {fetchTargetInfo} from "../../store/actions";
 
 const Spell = (props) => {
 
@@ -48,23 +50,22 @@ const Spell = (props) => {
     }
 
     const handleAttack = async event => {
-        activateSkill();
-        const target = JSON.parse(window.localStorage.getItem('target'));
-        console.log(props.spell.id);
-        const attackStats = await UsersApi.applyAttaqueToPlayer(target, props.spell.id)
-        console.log(attackStats)
-        console.log( attackStats.droppedItems[0])
+        if(props.target.type === "player"){
+            activateSkill();
+        }
+        const attackStats = await UsersApi.applyAttaqueToPlayer(props.target.targetId, props.target.type, props.spell.id)
+        await props.fetchTargetInfo(props.target.targetId, props.target.type);
 
-        publish({id: target.id, type: target.type, experience: attackStats.experience, damage: attackStats.damage, newExperience: attackStats.newExperience, droppedItems: attackStats.droppedItems[0]})
+        publish({experience: attackStats.experience, damage: attackStats.damage, newExperience: attackStats.newExperience, droppedItems: attackStats.droppedItems[0]})
 
     }
 
-    const attaqueDamage = (principale, secondaire, level) => {
-        return Math.floor(50 + (level * 1.5 + 20 * Math.random()) + (Math.random() * (principale + level - secondaire - level) + secondaire) * 1.6)
-    }
+    // const attaqueDamage = (principale, secondaire, level) => {
+    //     return Math.floor(50 + (level * 1.5 + 20 * Math.random()) + (Math.random() * (principale + level - secondaire - level) + secondaire) * 1.6)
+    // }
 
     return <>
-        <div className="spell-container"  onClick={handleAttack}>
+        <div className="spell-container" disabled={time > 0}  onClick={handleAttack}>
             <div className={"spell-filter spell-filter-" + props.spell.id}>{time > 0 && (time/1000).toLocaleString('fr-FR', {maximumFractionDigits: 1})}</div>
             <div title={props.spell.name} className="spell">
                 <img src={"../../../img/gui/spells/spell-icon/2/" + props.spell.icone} className="img-spell"/>
@@ -73,4 +74,7 @@ const Spell = (props) => {
     </>
 }
 
-export default Spell
+export default connect((state, ownProps) => {
+    let target = state.data;
+    return {target, ownProps};
+}, {fetchTargetInfo})(Spell);

@@ -25,10 +25,7 @@ export const publish = (data) => {mainSubject.next(data); console.log('under')}
         this.state = {
             user: {},
             display: false,
-            target: {},
-            targetId: 0,
             isPlayer: false,
-            type: "none",
             needUpdate: false,
             newExperience: 0,
             experience: 0,
@@ -43,11 +40,9 @@ export const publish = (data) => {mainSubject.next(data); console.log('under')}
          this.subscription = mainSubject
              .subscribe(data => {
                  if(data){
-                     this.setState({ targetId: data.id, type: data.type, needUpdate: !this.state.needUpdate, newExperience: data.newExperience, experience: data.experience, damage: data.damage, droppedItems: data.droppedItems })
+                     this.setState({needUpdate: !this.state.needUpdate, newExperience: data.newExperience, experience: data.experience, damage: data.damage, droppedItems: data.droppedItems })
                  }
              })
-
-         console.log(this.state.droppedItems)
      }
 
      componentWillUnmount() {
@@ -65,7 +60,7 @@ export const publish = (data) => {mainSubject.next(data); console.log('under')}
                     <div className="top-container raw">
                         <div className="side-block px-5">
                             <UsernameBlock user={this.state.user}/>
-                            {this.state.type !== "none" && <Target needUpdate={this.state.needUpdate} target={this.state.targetId} type={this.state.type}/>}
+                            <Target />
                             <UserStatsBlock user={this.state.user} />
                             <SideMenu />
                             <div className="block-notification">
@@ -88,8 +83,7 @@ export const publish = (data) => {mainSubject.next(data); console.log('under')}
     }
 }
 
-//export default MapPage
-
 export default connect((state, ownProperties) =>{
+    console.log(state);
     return {target: state.target, experience: state.experience, ownProperties}
 })(MapPage)

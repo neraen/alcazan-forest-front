@@ -8,17 +8,18 @@ const Player = (props) => {
     useEffect(() => {
         console.log(props.player.classe+"_"+ props.player.sexe)
         if(props.hasMonstre){
-            setTarget(props.hasMonstre, "monstre")
-            window.localStorage.setItem('target', JSON.stringify({id: props.hasMonstre, type: "monstre"}));
+           // setTarget(props.hasMonstre, "monstre")
+            props.updatePlayerTarget({targetId: props.hasMonstre, type: "monstre"})
+          //  window.localStorage.setItem('target', JSON.stringify({id: props.hasMonstre, type: "monstre"}));
         }
     }, [])
 
     const {setTarget, setIsPlayer, target} = useContext(MapContext)
 
     const handleTarget = () =>{
-        setTarget(props.player.idJoueur, "player")
-        //props.updatePlayerTarget({targetId: props.player.idJoueur, type: "player"})
-        window.localStorage.setItem('target', JSON.stringify({id: props.player.idJoueur, type: "player"}));
+       // setTarget(props.player.idJoueur, "player")
+        props.updatePlayerTarget({targetId: props.player.idJoueur, type: "player"})
+        //window.localStorage.setItem('target', JSON.stringify({id: props.player.idJoueur, type: "player"}));
     }
 
     return <>

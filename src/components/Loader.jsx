@@ -27,7 +27,7 @@ const Loader = (props) => {
     // </ContentLoader>
     return(
         <div className="loader">
-            <img  src='../img/Hourglass.gif'/>
+
         </div>
     )
 }

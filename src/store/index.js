@@ -1,5 +1,5 @@
 import {applyMiddleware, createStore} from "redux";
-import {playerStatsReducer} from "./reducers";
+import {distanceReducer, playerStatsReducer} from "./reducers";
 import {logger} from "redux-logger/src";
 import {composeWithDevTools} from "redux-devtools-extension/developmentOnly";
 import thunk from "redux-thunk";
