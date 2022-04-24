@@ -33,7 +33,7 @@ const Pnj = (props) => {
             </div>
         </div>
 
-        {sequence === [] &&
+        {sequence !== [] &&
         <Modal
             isShowing={isDialogShowed}
             hide={toggleDialogPnj}

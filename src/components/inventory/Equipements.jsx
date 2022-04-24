@@ -41,7 +41,6 @@ const Equipements = (props) => {
             critique: 0
         }
 
-        console.log(equipementEquipe)
         await equipementEquipe.forEach((equipement) => {
             equipement.caracteristiques.forEach((caracteristique => {
                 switch (caracteristique.nom){
@@ -74,14 +73,7 @@ const Equipements = (props) => {
             }))
         })
 
-        console.log(caracteristiques);
-
-
         await setCaracteristiquesBonus(caracteristiques)
-
-
-
-        console.log(caracteristiquesBonus)
     }
 
     const handleTakeOffEquipement = async (idEquipement) => {
@@ -168,13 +160,6 @@ const Equipements = (props) => {
                             </div>
                         </div>
                     )}
-                    {/*<div className="item-case tete"><img className="icone-equipement" src="../img/equipement/tete/chapeau25.png" alt=""/></div>*/}
-                    {/*<div className="item-case cou"><img className="icone-equipement" src="../img/equipement/cou/collier01_a.png" alt=""/></div>*/}
-                    {/*<div className="item-case corps"><img className="icone-equipement" src="../img/equipement/corps/haut12.png" alt=""/></div>*/}
-                    {/*<div className="item-case bras-gauche"><img className="icone-equipement" src="../img/equipement/bras-droit/arc9.png" alt=""/></div>*/}
-                    {/*<div className="item-case bras-droit"><img className="icone-equipement" src="../img/equipement/bras-gauche/anneau12.png" alt=""/></div>*/}
-                    {/*<div className="item-case jambes"><img className="icone-equipement" src="../img/equipement/jambes/bas38.png" alt=""/></div>*/}
-                    {/*<div className="item-case bottes"><img className="icone-equipement" src="../img/equipement/pieds/chaussons_volcano_scintillant.png" alt=""/></div>*/}
                     <img className="" src="../img/gui/MainWindowCharacter/inventaire_masculin.png"/>
                 </div>
                 <div className="inventaire-equipement-caracteristiques">

@@ -40,7 +40,7 @@ const Index = () => {
             <AuthContext.Provider value={context}>
             <HashRouter>
                 <NavbarWitRouter />
-                <main className={!isAuthenticated ? "": "main-auth-bg" + " pt-5"}>
+                <main className={!isAuthenticated ? "": "main-auth-bg"}>
                     <Switch>
                         <Route path="/connexion" component={LoginPage}/>
                         <Route path="/inscription" component={RegisterPage} />

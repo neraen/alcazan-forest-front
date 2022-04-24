@@ -8,7 +8,7 @@ const Modal = ({ isShowing, hide, title, ...props }) =>
 
                     <div className="modal-custom">
                         <div className="modal-header">
-                            <h4>{title}</h4>
+                            <h4 className="custom-modal-title">{title}</h4>
                             <button
                                 type="button"
                                 className="modal-close-button"
@@ -24,17 +24,24 @@ const Modal = ({ isShowing, hide, title, ...props }) =>
 
             <style jsx="true">{`
             
+            .custom-modal-title{
+                text-align: center;
+                display: flex;
+                align-items: center;
+            }
            
             .modal-custom {
-          height: 500px;
-            width: 500px;
-            background: #200F00;
-            border: aliceblue solid;
-            position: relative;
-            bottom: 548px;
-            left: 48px;
-            z-index: 50;
-            color: aliceblue;
+                height: 500px;
+                width: 500px;
+                background: rgba(0,0,0,0.5);
+                border: rgba(255,255,255,0.4) 1px solid;
+                position: relative;
+                bottom: 548px;
+                left: 48px;
+                backdrop-filter: blur(20px);
+                z-index: 50;
+                color: aliceblue;
+                border-radius: 10px;
             }
 
             .modal-header {

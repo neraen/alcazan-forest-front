@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import Field from "./forms/Field";
 import UsersApi from "../services/UsersApi";
+import InventaireApi from "../services/InventaireApi";
+import carateristiqueService from "../services/carateristiqueService";
 
 const Profil = (props) => {
 
@@ -11,13 +13,34 @@ const Profil = (props) => {
         intelligence: 0,
         concentration: 0,
         chance: 0
+    });
+
+    const [caracteristiquesBonus, setCaracteristiquesBonus] = useState({
+        armure: 0,
+        force: 0,
+        dexterite: 0,
+        constitution: 0,
+        intelligence: 0,
+        concentration: 0,
+        chance: 0,
+        critique: 0
     })
+
+    const [equipementEquipe, setEquipementEquipe] = useState([])
 
     const [maxCaracsAllowed, setMaxCaracsAllowed] = useState(0);
 
     useEffect(() => {
         fetchCaracteristiques(props.user.id)
+        fetchEquipementEquipe();
     }, []);
+
+    const fetchEquipementEquipe = async () => {
+        const dataEquipementEquipe = await InventaireApi.getEquipementEquipe();
+        const caracteristiquesBonus  = await carateristiqueService.computeEquipementCaracs(dataEquipementEquipe);
+        setEquipementEquipe(dataEquipementEquipe);
+        setCaracteristiquesBonus(caracteristiquesBonus);
+    }
 
     const fetchCaracteristiques =  async id => {
         const caracsInfo = await UsersApi.getCaracteristiques(id)
@@ -63,26 +86,78 @@ const Profil = (props) => {
 
                 <h2 className="mt-5">Equipement</h2>
 
-                <span>constitution : <span className="font-weight-bold"> + 18 </span></span>
-                <span>force : <span className="font-weight-bold"> + 74 </span></span>
-                <span>dexterité : <span className="font-weight-bold"> +118 </span></span>
-                <span>intelligence : <span className="font-weight-bold"> + 2 </span></span>
-                <span>concentration :<span className="font-weight-bold"> + 1 </span></span>
-                <span>chance : <span className="font-weight-bold"> + 12 </span></span>
+                <span>constitution : &nbsp;
+                    <span className="font-weight-bold">
+                        <span style={{color: "red"}}> {caracteristiques.constitution } </span> + <span style={{color: "yellowgreen"}}>{caracteristiquesBonus.constitution}</span> &nbsp;
+                        ({caracteristiques.constitution  + caracteristiquesBonus.constitution})
+                    </span>
+                </span>
+                <span>force : &nbsp;
+                    <span className="font-weight-bold">
+                        <span style={{color: "red"}}>  {caracteristiques.force } </span> + <span style={{color: "yellowgreen"}}> {caracteristiquesBonus.force}</span> &nbsp;
+                        ({caracteristiques.force  + caracteristiquesBonus.force})
+                    </span>
+                </span>
+                <span>dexterité : &nbsp;
+                    <span className="font-weight-bold">
+                        <span style={{color: "red"}}> {caracteristiques.dexterite } </span> + <span style={{color: "yellowgreen"}}> {caracteristiquesBonus.dexterite}</span> &nbsp;
+                        ({caracteristiques.dexterite  + caracteristiquesBonus.dexterite})
+                    </span>
+                </span>
+                <span>intelligence : &nbsp;
+                    <span className="font-weight-bold">
+                        <span style={{color: "red"}}> {caracteristiques.intelligence } </span> + <span style={{color: "yellowgreen"}}>{caracteristiquesBonus.intelligence}</span> &nbsp;
+                         ({caracteristiques.intelligence  + caracteristiquesBonus.intelligence})
+                    </span>
+                </span>
+                <span>concentration : &nbsp;
+                    <span className="font-weight-bold">
+                        <span style={{color: "red"}}> {caracteristiques.concentration } </span> + <span style={{color: "yellowgreen"}}>{caracteristiquesBonus.concentration}</span> &nbsp;
+                         ({caracteristiques.concentration  + caracteristiquesBonus.concentration})
+                    </span>
+                </span>
+                <span>chance : &nbsp;
+                    <span className="font-weight-bold">
+                        <span style={{color: "red"}}> {caracteristiques.chance } </span> + <span style={{color: "yellowgreen"}}>{caracteristiquesBonus.chance}</span> &nbsp;
+                         ({caracteristiques.chance  + caracteristiquesBonus.chance})
+                    </span>
+                </span>
              </div>
+
              <div className="equipement position-relative">
                  <h2 className="text-center ">Equipement</h2>
-                 {/*<img className="mt-3 ml-3" src="../img/sprites/enemies/actor1_5.png"/>*/}
+                 {equipementEquipe && equipementEquipe.map((equipement) =>
+                     <div className={"item-case "+equipement.position}><img className="icone-equipement" src={"../img/equipement/"+equipement.position+"/"+equipement.imageEquipement} alt=""/>
+                         <div className={"inventaire-item-hover " + equipement.rarityName}>
+                             <div className="inventaire-item-hover-header">
+                                 {equipement.nomEquipement}
+                             </div>
+                             <div className="inventaire-item-hover-body">
+                                 <div className="inventaire-item-title">- Caractéritiques -</div>
+                                 {equipement.caracteristiques.map((caracteristique) =>
+                                     <div key={'caracteristique'+caracteristique.id}>
+                                         {caracteristique.nom[0].toUpperCase()+caracteristique.nom.slice(1)} : + {caracteristique.valeur}
+                                     </div>
+                                 )}
+                                 <hr />
+                                 <div className="inventaire-item-element">
+                                     <div className="inventaire-item-element-strong">Description : </div>
+                                     <div className="inventaire-item-element-italic"> {equipement.descriptionEquipement} </div>
+                                 </div>
+                                 <div className="inventaire-item-element">
+                                     <div className="inventaire-item-element-strong">valeur : {equipement.prixReventeEquipement} Pièces d'or </div>
 
-                 <div className="item-case tete"><img className="icone-equipement" src="../img/equipement/tete/chapeau25.png" alt=""/></div>
-                 <div className="item-case cou"><img className="icone-equipement" src="../img/equipement/cou/collier01_a.png" alt=""/></div>
-                 <div className="item-case corps"><img className="icone-equipement" src="../img/equipement/corps/haut12.png" alt=""/></div>
-                 <div className="item-case bras-gauche"><img className="icone-equipement" src="../img/equipement/bras-droit/arc9.png" alt=""/></div>
-                 <div className="item-case bras-droit"><img className="icone-equipement" src="../img/equipement/bras-gauche/anneau12.png" alt=""/></div>
-                 <div className="item-case jambes"><img className="icone-equipement" src="../img/equipement/jambes/bas38.png" alt=""/></div>
-                 <div className="item-case bottes"><img className="icone-equipement" src="../img/equipement/pieds/chaussons_volcano_scintillant.png" alt=""/></div>
+                                 </div>
+                             </div>
+                             <div className="inventaire-item-hover-footer">
+                                 Niveau requis : {equipement.levelMinEquipement}
+                             </div>
+                         </div>
+                     </div>
+                 )}
                  <img className="" src="../img/gui/MainWindowCharacter/inventaire_masculin.png"/>
              </div>
+
             <div className="caracteristiques">
                 <h2>Caracteristique ({maxCaracsAllowed - getActualCaracacteristiques()})</h2>
                 <div className="champ-caracteristique">
@@ -126,25 +201,25 @@ const Profil = (props) => {
                 </div>
             </div>
         </div>
-        {/*<div className="profil mt-5">*/}
-        {/*    <div className="statistiques">*/}
-        {/*        <h2>Statistiques générale</h2>*/}
-        {/*        <span> Expérience totale : 3 080 690</span>*/}
-        {/*        <span> Nombre monstre tués : 5650</span>*/}
-        {/*        <span> Richesse max : 1 691 254</span>*/}
-        {/*        <span> Morts : 74</span>*/}
-        {/*        <span> Argent volé : 11 256</span>*/}
-        {/*    </div>*/}
+        <div className="profil mt-5">
+            <div className="statistiques">
+                <h2>Statistiques générale</h2>
+                <span> Expérience totale : 3 080 690</span>
+                <span> Nombre monstre tués : 5650</span>
+                <span> Richesse max : 1 691 254</span>
+                <span> Morts : 74</span>
+                <span> Argent volé : 11 256</span>
+            </div>
 
-        {/*    <div className="statistiques">*/}
-        {/*        <h2>Joueur contre joueur</h2>*/}
-        {/*        <span> Expérience totale : 3 080 690</span>*/}
-        {/*        <span> Nombre monstre tués : 5650</span>*/}
-        {/*        <span> Richesse max : 1 691 254</span>*/}
-        {/*        <span> Morts : 74</span>*/}
-        {/*        <span> Argent volé : 11 256</span>*/}
-        {/*    </div>*/}
-        {/*</div>*/}
+            <div className="statistiques">
+                <h2>Joueur contre joueur</h2>
+                <span> Expérience totale : 3 080 690</span>
+                <span> Nombre monstre tués : 5650</span>
+                <span> Richesse max : 1 691 254</span>
+                <span> Morts : 74</span>
+                <span> Argent volé : 11 256</span>
+            </div>
+        </div>
     </>
 }
 

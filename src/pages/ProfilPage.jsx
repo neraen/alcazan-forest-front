@@ -23,7 +23,7 @@ const ProfilPage = (props) => {
     }
 
     return <>
-        <main className="map-page ">
+        <main className="main-profil-page ">
             <div className="banner-map m-auto">
                 <h1 className="text-center title-map-font a">Profil</h1>
             </div>
