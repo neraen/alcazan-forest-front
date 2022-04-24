@@ -3,6 +3,8 @@ import MapApi from "../../services/MapApi";
 import Case from "./Case";
 import UsersApi from "../../services/UsersApi";
 import MapContext from "../../contexts/MapContext";
+import {connect} from "react-redux";
+import {updatePositionJoueur} from "../../store/actions";
 
 
 class Map extends React.Component {
@@ -20,10 +22,10 @@ class Map extends React.Component {
             unabledCases: [],
             mapId: this.props.user.mapId
         };
+        this.props.updatePositionJoueur({abscisse: this.props.user.caseAbscisse, ordonnee: this.props.user.caseOrdonnee})
     }
 
     async componentDidMount () {
-        console.log(this.props.user)
         try {
             const data = await MapApi.find(this.state.mapId);
             this.setState({cases: data.cases, name: data.mapInfo.nom});
@@ -58,7 +60,10 @@ class Map extends React.Component {
     async updatePosition(abscisse, ordonnee){
         const data = await UsersApi.updatePosition(this.state.mapId, abscisse, ordonnee)
         this.setState({abscisseJoueur: abscisse, ordonneeJoueur: ordonnee, cases: data},
-            () => this.setState({unabledCases: this.getUnabledMove()}));
+            () => {
+                this.setState({unabledCases: this.getUnabledMove()})
+                this.props.updatePositionJoueur({abscisse: abscisse, ordonnee: ordonnee})
+            });
 
     }
 
@@ -77,8 +82,8 @@ class Map extends React.Component {
 
 
     getUnabledMove(){
-        const filteredOrdonnee= [ this.state.ordonneeJoueur-1, this.state.ordonneeJoueur, this.state.ordonneeJoueur+1];
-        const filteredAbscisse= [ this.state.abscisseJoueur-1, this.state.abscisseJoueur, this.state.abscisseJoueur+1];
+        const filteredOrdonnee= [ this.state.ordonneeJoueur-1, this.state.ordonneeJoueur, this.state.ordonneeJoueur+1 ];
+        const filteredAbscisse= [ this.state.abscisseJoueur-1, this.state.abscisseJoueur, this.state.abscisseJoueur+1 ];
 
         const filteredCases = this.state.cases.filter(oneCase => filteredAbscisse.includes(oneCase.abscisse) && filteredOrdonnee.includes(oneCase.ordonnee) && oneCase.isUsable && !(oneCase.abscisse === this.state.abscisseJoueur && oneCase.ordonnee === this.state.ordonneeJoueur || oneCase.userId !== null))
 
@@ -119,14 +124,6 @@ class Map extends React.Component {
     }
 }
 
-/*const MapStore = connect(
-    (state) => ({
-        cases: [],
-        name: "",
-        abscisseJoueur: this.props.user.caseAbscisse,
-        ordonneeJoueur: this.props.user.caseOrdonnee,
-        users: []
-    })
-)(Map)*/
-
-export default Map
+export default connect((state, ownProps) => {
+    return {state, ownProps};
+}, {updatePositionJoueur})(Map);

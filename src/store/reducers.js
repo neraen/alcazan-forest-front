@@ -3,33 +3,26 @@ import {combineReducers} from "redux";
 
 export const playerStatsReducer = (state = {
     data: {
-        targetId: 0,
-        type: "none",
-        abscisseTarget: 0,
-        ordonneeTarget:0
+        target: {
+            targetId: 0,
+            type: "none"
+        },
+        positionJoueur: {
+            abscisseTarget: 0,
+            ordonneeTarget:0
+        },
+        joueurState: {
+            experience: 0,
+            newExperience: 0,
+            damage: 0,
+            droppedItems: "",
+            pa: 0
+        }
     },
     loading: false,
     error: null
 }, action) => {
     switch (action.type){
-        case actions.UPDATE_PLAYER_LIFE: {
-            return {
-                ...state,
-                life: action.life
-            }
-        }
-        case actions.UPDATE_PLAYER_MANA: {
-            return {
-                ...state,
-                mana: action.mana
-            }
-        }
-        case actions.UPDATE_PLAYER_EXPERIENCE: {
-            return {
-                ...state,
-                experience: action.experience
-            }
-        }
         case actions.REQUEST_TARGET:
             return {
                 ...state,
@@ -38,7 +31,7 @@ export const playerStatsReducer = (state = {
         case actions.UPDATE_PLAYER_TARGET: {
             return {
                 ...state,
-                data: {...state.data, ...action.payload},
+                data: {...state.data, target: {...state.data.target, ...action.payload}},
                 loading: false,
                 error: null
             }
@@ -47,7 +40,7 @@ export const playerStatsReducer = (state = {
             if (action.target) {
                 return {
                     ...state,
-                    data: {...state.data, ...action.target},
+                    data: {...state.data, target: {...state.data.target, ...action.target}},
                     loading: false,
                     error: null
                 }
@@ -69,10 +62,16 @@ export const playerStatsReducer = (state = {
                 target: {}
             }
         }
-        case actions.UPDATE_DISTANCE_TARGET: {
+        case actions.UPDATE_POSITION_JOUEUR: {
             return {
                 ...state,
-                distance: action.payload
+                data: {...state.data, positionJoueur: action.coordonnees}
+            }
+        }
+        case actions.UPDATE_JOUEUR_STATE: {
+            return {
+                ...state,
+                data: {...state.data, joueurState: {...state.joueurState, ...action.joueurState}}
             }
         }
         default: {

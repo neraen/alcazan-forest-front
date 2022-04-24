@@ -12,22 +12,11 @@ class Target extends Component{
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        console.warn(prevProps, this.props);
-        if ((prevProps.target.type !== this.props.target.type)
-            || (prevProps.target.targetId !== this.props.target.targetId)
-            // || (prevProps.target.currentLife !== this.props.target.currentLife)
-            // || (prevProps.target.monstreLife !== this.props.target.monstreLife)
-        ) {
+        if ((prevProps.target.type !== this.props.target.type) || (prevProps.target.targetId !== this.props.target.targetId)) {
             this.props.fetchTargetInfo(this.props.target.targetId, this.props.target.type);
         }
     }
 
-
-    // const getTargetInfo = async () => {
-    //     const target = await GameApi.getTargetInfos(props.target, props.type)
-    //     console.log(target)
-    //     setTarget(target)
-    // }
     render() {
 
         return (<>
@@ -63,7 +52,6 @@ class Target extends Component{
 }
 
 export default connect(state => {
-    console.log(state);
-    let target = state.data;
+    let target = state.data.target;
     return {target};
 }, {fetchTargetInfo})(Target);

@@ -1307,25 +1307,108 @@ section #text span{
 }
 
 
+.loader-section{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ccc;
+    cursor: pointer;
+    transition: 0.3s linear;
+    width: 100vh;
+    height: 70vh;
+    background: #263238;
+}
 
-.loader {
-    width: 70px;
-    height: 70px;
+[data-index="73"] {
+    justify-content: normal;
+}
+
+.loader-73 {
+    width: 0;
+    height: 4.8px;
     display: inline-block;
     position: relative;
+    background: #FFF;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    -webkit-animation: animFw 8s linear infinite;
+    animation: animFw 8s linear infinite;
 }
-.loader::after , .loader::before {
-                content: '';
-                width : 70px;
-                height: 70px;
-                border:2px solid aliceblue;
-                position: absolute;
-                left:0;
-                top: 0;
-                animation: rotation 2s ease-in-out infinite alternate;
-            }
-.loader::after {
-     border-color: greenyellow;
-     animation-direction: alternate-reverse;
- }
+.loader-73::after, .loader-73::before {
+    content: "";
+    width: 10px;
+    height: 1px;
+    background: #FFF;
+    position: absolute;
+    top: 9px;
+    right: -2px;
+    opacity: 0;
+    transform: rotate(-45deg) translateX(0px);
+    -webkit-animation: coli1 0.3s linear infinite;
+    animation: coli1 0.3s linear infinite;
+}
+.loader-73::before {
+    top: -4px;
+    transform: rotate(45deg);
+    -webkit-animation: coli2 0.3s linear infinite;
+    animation: coli2 0.3s linear infinite;
+}
 
+@-webkit-keyframes animFw {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100%;
+    }
+}
+@keyframes animFw {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+@-webkit-keyframes coli1 {
+    0% {
+        transform: rotate(-45deg) translateX(0px);
+        opacity: 0.7;
+    }
+    100% {
+        transform: rotate(-45deg) translateX(-45px);
+        opacity: 0;
+    }
+}
+@keyframes coli1 {
+    0% {
+        transform: rotate(-45deg) translateX(0px);
+        opacity: 0.7;
+    }
+    100% {
+        transform: rotate(-45deg) translateX(-45px);
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes coli2 {
+    0% {
+        transform: rotate(45deg) translateX(0px);
+        opacity: 1;
+    }
+    100% {
+        transform: rotate(45deg) translateX(-45px);
+        opacity: 0.7;
+    }
+}
+@keyframes coli2 {
+    0% {
+        transform: rotate(45deg) translateX(0px);
+        opacity: 1;
+    }
+    100% {
+        transform: rotate(45deg) translateX(-45px);
+        opacity: 0.7;
+    }
+}

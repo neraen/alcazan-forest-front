@@ -1,22 +1,39 @@
 import React, {useEffect, useState} from 'react'
 import UsersApi from "../../services/UsersApi";
+import computeDistance from "../../services/distanceCalculator";
 import {publish} from "../../pages/MapPage";
 import {connect} from "react-redux";
-import {fetchTargetInfo} from "../../store/actions";
+import {fetchTargetInfo, updateJoueurState} from "../../store/actions";
+import distanceCalculator from "../../services/distanceCalculator";
 
 const Spell = (props) => {
 
     const [passedTime, setPassedTime] = useState(100);
     const [time, setTime] = useState(0);
+    const [disable, setDisable] = useState(false);
 
 
     useEffect(() => {
         if(passedTime >= 100){
-            document.querySelector(".spell-filter-" + props.spell.id).style.background = 'none';
+            if(!disable){
+                document.querySelector(".spell-filter-" + props.spell.id).style.background = 'none';
+            }else{
+                document.querySelector(".spell-filter-" + props.spell.id).style.background = 'rgba(255,0,0,0.35)';
+            }
         }else{
             document.querySelector(".spell-filter-" + props.spell.id).style.background = 'conic-gradient(rgba(0, 0, 0, 0.6) '+ passedTime +'% ,rgba(0, 0, 0, 0.1)  '+ passedTime +'%)';
         }
 
+        if(props.target.type === "player"){
+            const distance = distanceCalculator.computeDistance(props.target.abscisseTarget, props.target.ordonneeTarget, props.positionJoueur.abscisse, props.positionJoueur.ordonnee);
+            if(props.spell.portee < distance){
+                setDisable(true);
+            }else{
+                setDisable(false);
+            }
+        }else{
+            setDisable(false)
+        }
     })
 
     const SECOND_IN_MS = 1000;
@@ -50,14 +67,32 @@ const Spell = (props) => {
     }
 
     const handleAttack = async event => {
+
         if(props.target.type === "player"){
-            activateSkill();
+            const distance = distanceCalculator.computeDistance(props.target.abscisseTarget, props.target.ordonneeTarget, props.positionJoueur.abscisse, props.positionJoueur.ordonnee);
+            if(props.spell.portee < distance){
+                setDisable(true)
+            }else{
+                if(passedTime >= 100){
+                    setDisable(false)
+                    activateSkill();
+                    await launchAttack();
+                }
+            }
+        }else{
+            await launchAttack();
         }
+    }
+
+    const launchAttack = async () => {
         const attackStats = await UsersApi.applyAttaqueToPlayer(props.target.targetId, props.target.type, props.spell.id)
         await props.fetchTargetInfo(props.target.targetId, props.target.type);
-
-        publish({experience: attackStats.experience, damage: attackStats.damage, newExperience: attackStats.newExperience, droppedItems: attackStats.droppedItems[0]})
-
+        props.updateJoueurState({
+            experience: attackStats.experience,
+            damage: attackStats.damage,
+            newExperience: attackStats.newExperience,
+            droppedItems: (attackStats.droppedItems[0] !== undefined) ? attackStats.droppedItems[0] : ""
+        })
     }
 
     // const attaqueDamage = (principale, secondaire, level) => {
@@ -65,7 +100,8 @@ const Spell = (props) => {
     // }
 
     return <>
-        <div className="spell-container" disabled={time > 0}  onClick={handleAttack}>
+        {/*{disable && <div>La cible est trop loin</div>}*/}
+        <div className={"spell-container"} onClick={handleAttack}>
             <div className={"spell-filter spell-filter-" + props.spell.id}>{time > 0 && (time/1000).toLocaleString('fr-FR', {maximumFractionDigits: 1})}</div>
             <div title={props.spell.name} className="spell">
                 <img src={"../../../img/gui/spells/spell-icon/2/" + props.spell.icone} className="img-spell"/>
@@ -75,6 +111,8 @@ const Spell = (props) => {
 }
 
 export default connect((state, ownProps) => {
-    let target = state.data;
-    return {target, ownProps};
-}, {fetchTargetInfo})(Spell);
+    let target = state.data.target;
+    console.log(state.data);
+    let positionJoueur = state.data.positionJoueur;
+    return {target, positionJoueur, ownProps};
+}, {fetchTargetInfo, updateJoueurState})(Spell);

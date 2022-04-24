@@ -26,9 +26,10 @@ const Loader = (props) => {
     //     <circle cx="433" cy="214" r="66" />
     // </ContentLoader>
     return(
-        <div className="loader">
+        <section className="loader-section">
+            <span className="loader-73"></span>
+        </section>
 
-        </div>
     )
 }
 

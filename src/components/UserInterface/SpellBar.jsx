@@ -5,11 +5,11 @@ import UsersApi from "../../services/UsersApi";
 
 const SpellBar = (props) => {
 
-    const [experienceData, setExperienceData] = useState();
+    const [experienceData, setExperienceData] = useState({experienceActuelle : 0, experienceMax: 0});
     const [spells, setSpells] = useState();
 
     useEffect(() => {
-        if(props.newExperience === 0){
+        if(experienceData.experienceMax === 0){
             getExpJoueur()
         }
 

@@ -1,36 +1,13 @@
 import GameApi from "../services/GameApi";
 
-export const UPDATE_PLAYER_LIFE = 'update player life';
-export const UPDATE_PLAYER_MANA = 'update player mana';
-export const UPDATE_PLAYER_EXPERIENCE = 'update player experience';
 export const UPDATE_PLAYER_TARGET = "update player target";
 export const REMOVE_PLAYER_TARGET = "remove player target";
 export const REQUEST_TARGET = "request target";
 export const FETCH_TARGET_SUCCESS = "fetch target success";
 export const FETCH_TARGET_ERROR = "fetch target error";
-export const UPDATE_DISTANCE_TARGET = "update distance target";
 export const UPDATE_POSITION_JOUEUR = "update position joueur";
+export const UPDATE_JOUEUR_STATE = "update joueur state";
 
-export const updatePlayerLife = (payload) => {
-    return{
-        type: UPDATE_PLAYER_LIFE,
-        payload
-    }
-}
-
-export const updatePlayerMana = (payload) => {
-    return{
-        type: UPDATE_PLAYER_MANA,
-        payload
-    }
-}
-
-export const updatePlayerExperience = (payload) => {
-    return{
-        type: UPDATE_PLAYER_EXPERIENCE,
-        payload
-    }
-}
 
 export const updatePlayerTarget = (payload) => {
     return{
@@ -59,7 +36,7 @@ export const fetchTargetSuccess = (target) => {
     }
 }
 
-export const fetchTodoError = (error) => {
+export const fetchTargetError = (error) => {
     return {
         type: FETCH_TARGET_ERROR,
         error
@@ -75,15 +52,22 @@ export const fetchTargetInfo = (target, type) => {
                 dispatch(fetchTargetSuccess(target));
             },
             error => {
-                dispatch(fetchTodoError(error));
+                dispatch(fetchTargetError(error));
             }
         )
     }
 }
 
-export const updatePositionJoueur = (payload) => {
+export const updatePositionJoueur = (coordonnees) => {
     return{
         type: UPDATE_POSITION_JOUEUR,
-        payload
+        coordonnees
+    }
+}
+
+export const updateJoueurState = (joueurState) => {
+    return{
+        type: UPDATE_JOUEUR_STATE,
+        joueurState
     }
 }

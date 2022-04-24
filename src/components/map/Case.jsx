@@ -6,7 +6,6 @@ import Pnj from "../Pnj";
 const Case = (props) => {
 
     useEffect(() => {
-        console.log(props.haveJoueur)
     }, [])
 
     return <>
