@@ -145,7 +145,7 @@ const Profil = (props) => {
                                      <div className="inventaire-item-element-italic"> {equipement.descriptionEquipement} </div>
                                  </div>
                                  <div className="inventaire-item-element">
-                                     <div className="inventaire-item-element-strong">valeur : {equipement.prixReventeEquipement} Pièces d'or </div>
+                                     <div className="inventaire-item-element-strong">valeur : {equipement.prixReventeEquipement} <img src="../img/gui/MainWindowCharacter/icons/Money03.png" />  </div>
 
                                  </div>
                              </div>

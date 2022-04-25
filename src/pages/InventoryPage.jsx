@@ -9,14 +9,16 @@ const InventoryPage = (props) => {
 
 
     return <>
-        <div className="side-block">
-            {/*<UsernameBlock />*/}
-            {/*<SideMenu />*/}
-        </div>
-        <Inventory />
-        <div className="footer-block">
-            {/*<SpellBar />*/}
-        </div>
+        <main className="main-inventory-page">
+            <div className="side-block">
+                {/*<UsernameBlock />*/}
+                {/*<SideMenu />*/}
+            </div>
+            <Inventory />
+            <div className="footer-block">
+                {/*<SpellBar />*/}
+            </div>
+        </main>
     </>
 }
 

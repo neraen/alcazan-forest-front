@@ -33,6 +33,14 @@ main{
     height: 100vh;
 }
 
+.main-inventory-page{
+    background: url(../img/bgJeu.png);
+    background-size: cover!important;
+    background-position-y: center;
+    content: "";
+    height: 100vh;
+}
+
 /*@font-face {*/
 /*    font-family: 'BerryRotunda';*/
 /*    font-style: normal;*/
@@ -1108,17 +1116,19 @@ section #text span{
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: #212529;
+    background: rgba(0,0,0,0.4);
     height: 70vh;
     max-width: 60vw;
     margin: auto;
     border-radius: 10px;
+    backdrop-filter: blur(20px);
+    border: solid 1px #333;
 }
 
 .inventaire-header{
     width: 100%;
     height: 60px;
-    background: #540b0e;
+    background: rgba(0,0,0, 0.8);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1129,7 +1139,7 @@ section #text span{
 .inventaire-title{
     margin-right: 30px;
     padding: 10px;
-    color: grey;
+    color: aliceblue;
     cursor: pointer;
 }
 
@@ -1196,16 +1206,56 @@ section #text span{
     font-size: 14px;
 }
 
-.inventaire-item-hover{
+.inventaire-item-hover {
+    background: rgba(255,255,255, 0.4);
+    min-width: 184px;
+    width: 360px;
+    padding: 3px;
     position: absolute;
+    border-radius: 6px;
+    text-align: center;
+    color: aliceblue;
+    cursor: pointer;
+    font-family: cursive;
     top: 25px;
     left: 25px;
-    background: aliceblue;
-    color: #200F00;
-    min-width: 184px;
-    border: solid black 1px;
     z-index: -1;
-    width: 360px;
+    display: none;
+    border: solid black 1px;
+}
+
+.inventaire-item-hover::before {
+    content: "";
+    width: 102%;
+    height: 101%;
+    border-radius: 8px;
+    position: absolute;
+    z-index: -1;
+    top: -0.75%;
+    left: -0.8%;
+    animation: spin 2.5s linear infinite;
+}
+
+.inventaire-item-hover::after {
+    content: "";
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    transform: scale(0.8);
+    filter: blur(calc(200 / 6));
+    opacity: 1;
+    transition: opacity .5s;
+    animation: spin 3.5s linear infinite;
+}
+
+.inventaire-item-hover-header{
+    font-size: 1.15em;
+}
+
+.inventaire-item-hover-header, .inventaire-item-hover-footer, .inventaire-item-hover-body{
+    backdrop-filter: blur(20px);
+    background: rgba(0,0,0,0.9);
 }
 
 .inventaire-item:hover .inventaire-item-hover, .item-case:hover .inventaire-item-hover{
@@ -1215,65 +1265,75 @@ section #text span{
     border-radius: 5px;
 }
 
-/** rareté **/
 
-/** COMMUN */
-.inventaire-item-hover.commun .inventaire-item-hover-header, .inventaire-item-hover.commun .inventaire-item-hover-footer, .inventaire-objets .inventaire-item-hover-header {
-    background: grey;
+.inventaire-item-hover.commun:before, .inventaire-item-hover.commun:after{
+    background-image: linear-gradient(
+            var(--rotate)
+            , #adb5bd, #6c757d 43%, #495057);
 }
 
-.inventaire-item-hover.commun .inventaire-item-hover-body, .inventaire-objets .inventaire-item-hover-body{
-    background: lightgrey;
+.inventaire-item-hover.peu-commun:before, .inventaire-item-hover.peu-commun:after{
+    background-image: linear-gradient(
+            var(--rotate)
+            , #9ef01a, #70e000 43%, #008000);
 }
 
-
-/** PEU COMMUN */
-.inventaire-item-hover.peu-commun .inventaire-item-hover-header, .inventaire-item-hover.peu-commun .inventaire-item-hover-footer{
-    background: #52796f;
+.inventaire-item-hover.rare:before, .inventaire-item-hover.rare:after{
+    background-image: linear-gradient(
+            var(--rotate)
+            , #5ddcff, #3c67e3 43%, #4e00c2);
 }
 
-.inventaire-item-hover.peu-commun .inventaire-item-hover-body{
-    background: #d8f3dc;
+.inventaire-item-hover.epique:before, .inventaire-item-hover.epuique:after{
+    background-image: linear-gradient(
+            var(--rotate)
+            , #ada7ff, #a06cd5 43%, #4e00c2);
 }
 
-/** RARE */
-
-.inventaire-item-hover.rare .inventaire-item-hover-header, .inventaire-item-hover.rare .inventaire-item-hover-footer{
-    background: #61a5c2;
+.inventaire-item-hover.legendaire:before, .inventaire-item-hover.legendaire:after{
+    background-image: linear-gradient(
+            var(--rotate)
+            , #fee440, #ffd60a 43%, #ffc300);
 }
 
-.inventaire-item-hover.rare .inventaire-item-hover-body{
-    background: #cce6f4;
+.inventaire-item-hover.heroique::before, .inventaire-item-hover.heroique::after {
+    background-image: linear-gradient(
+            var(--rotate), #d00000, #e85d04, #ffb703, #43aa8b, #3d5a80, #5a189a);
 }
-
-/** EPIQUE */
-
-.inventaire-item-hover.epique .inventaire-item-hover-header, .inventaire-item-hover.epique .inventaire-item-hover-footer{
-    background: #7364d2;
-}
-
-.inventaire-item-hover.epique .inventaire-item-hover-body{
-    background: #c1cdf9;
-}
-
-/** LEGENDAIRE */
-
-.inventaire-item-hover.legendaire .inventaire-item-hover-header, .inventaire-item-hover.legendaire .inventaire-item-hover-footer{
-    background: #cca000;
-}
-
-.inventaire-item-hover.legendaire .inventaire-item-hover-body{
-    background: #fcefb4;
-}
-
-/** HEROIQUE */
 
 .inventaire-item-hover.heroique .inventaire-item-hover-header, .inventaire-item-hover.heroique .inventaire-item-hover-footer{
-    background: #9e2a2b;
+    backdrop-filter: blur(20px);
+    background: rgba(0,0,0,0.9);
 }
 
 .inventaire-item-hover.heroique .inventaire-item-hover-body{
-    background: #ffa69e;
+    backdrop-filter: blur(20px);
+    background: rgba(0,0,0,0.9);
+}
+
+.inventaire-item-hover. .inventaire-item-hover-header{
+    border-radius: 7px 7px 0 0;
+}
+
+.inventaire-item-hover. .inventaire-item-hover-footer{
+    border-radius: 0 0 7px 7px;
+}
+
+
+/** Test **/
+@property --rotate {
+    syntax: "<angle>";
+    initial-value: 132deg;
+    inherits: false;
+}
+
+@keyframes spin {
+    0% {
+        --rotate: 0deg;
+    }
+    100% {
+        --rotate: 360deg;
+    }
 }
 
 
