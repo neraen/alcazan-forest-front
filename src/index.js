@@ -12,10 +12,6 @@ import PrivateRoute from "./components/PrivateRoute";
 import MapPage from "./pages/MapPage";
 import InventoryPage from "./pages/InventoryPage";
 import {Provider} from "react-redux";
-
-// import UsersApi from "./services/UsersApi";
-// import {Provider} from "react-redux";
-// import {CARTE_API, USER_API} from "./config";
 // import MercureSubscriber from "@cerati/react-mercure";
 import store from "./store/index"
 
@@ -35,31 +31,28 @@ const Index = () => {
 
 
     return(
-        /*<Provider store={store} >*/
+        <AuthContext.Provider value={context}>
+        <HashRouter>
+            <NavbarWitRouter />
+            <main className={!isAuthenticated ? "": "main-auth-bg"}>
+                <Switch>
+                    <Route path="/connexion" component={LoginPage}/>
+                    <Route path="/inscription" component={RegisterPage} />
+                    <Route path="/preview" component={RegisterPage} />
+                    <Route path="/about" component={RegisterPage} />
+                    <PrivateRoute path="/profil" component={ProfilPage} />
+                    <PrivateRoute path="/carte" component={MapPage} />
+                    <PrivateRoute path="/inventaire" redirectTo="/inventaire/equipement" component={InventoryPage} />
+                    <Route path="/" component={HomePage} />
+                </Switch>
 
-            <AuthContext.Provider value={context}>
-            <HashRouter>
-                <NavbarWitRouter />
-                <main className={!isAuthenticated ? "": "main-auth-bg"}>
-                    <Switch>
-                        <Route path="/connexion" component={LoginPage}/>
-                        <Route path="/inscription" component={RegisterPage} />
-                        <Route path="/preview" component={RegisterPage} />
-                        <Route path="/about" component={RegisterPage} />
-                        <PrivateRoute path="/profil" component={ProfilPage} />
-                        <PrivateRoute path="/carte" component={MapPage} />
-                        <PrivateRoute path="/inventaire" component={InventoryPage} />
-                        <Route path="/" component={HomePage} />
-                    </Switch>
+            </main>
+            <footer className="footer">
+                Clement Silvestre - jeu en cours de construction
+            </footer>
 
-                </main>
-                <footer className="footer">
-                    Clement Silvestre - jeu en cours de construction
-                </footer>
-
-            </HashRouter>
-            </AuthContext.Provider>
-        //</Provider>
+        </HashRouter>
+        </AuthContext.Provider>
     )
 
 }

@@ -1,7 +1,5 @@
 import React, {useEffect, useState} from 'react'
 import UsersApi from "../../services/UsersApi";
-import computeDistance from "../../services/distanceCalculator";
-import {publish} from "../../pages/MapPage";
 import {connect} from "react-redux";
 import {fetchTargetInfo, updateJoueurState} from "../../store/actions";
 import distanceCalculator from "../../services/distanceCalculator";
@@ -95,10 +93,6 @@ const Spell = (props) => {
         })
     }
 
-    // const attaqueDamage = (principale, secondaire, level) => {
-    //     return Math.floor(50 + (level * 1.5 + 20 * Math.random()) + (Math.random() * (principale + level - secondaire - level) + secondaire) * 1.6)
-    // }
-
     return <>
         {/*{disable && <div>La cible est trop loin</div>}*/}
         <div className={"spell-container"} onClick={handleAttack}>
@@ -112,7 +106,6 @@ const Spell = (props) => {
 
 export default connect((state, ownProps) => {
     let target = state.data.target;
-    console.log(state.data);
     let positionJoueur = state.data.positionJoueur;
     return {target, positionJoueur, ownProps};
 }, {fetchTargetInfo, updateJoueurState})(Spell);

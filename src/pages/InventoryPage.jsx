@@ -14,7 +14,7 @@ const InventoryPage = (props) => {
                 {/*<UsernameBlock />*/}
                 {/*<SideMenu />*/}
             </div>
-            <Inventory />
+            <Inventory {...props}/>
             <div className="footer-block">
                 {/*<SpellBar />*/}
             </div>

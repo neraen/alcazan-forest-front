@@ -1103,6 +1103,14 @@ section #text span{
     align-items: center;
 }
 
+.center-loader{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 96vh;
+}
+
 
 /** INVENTAIRE **/
 
@@ -1423,7 +1431,7 @@ section #text span{
     transition: 0.3s linear;
     width: 100vh;
     height: 70vh;
-    background: #263238;
+    background: rgba(0,0,0,0);
 }
 
 [data-index="73"] {

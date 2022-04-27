@@ -6,9 +6,6 @@ function register(user){
 }
 
 function applyUserAction(link, params){
-    console.log(params)
-    //let obj = Object.create(params)
-    console.log(JSON.parse(params))
     return axios.post(API_URL + link, JSON.parse(params)).then(response => response.data)
 }
 
