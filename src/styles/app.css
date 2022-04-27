@@ -1526,3 +1526,211 @@ section #text span{
         opacity: 0.7;
     }
 }
+
+
+/** MEDIA QUERY */
+
+@media screen and (max-width: 1370px){
+
+    .main-auth-bg{
+        height: unset;
+    }
+
+    .title-map-font{
+        font-size: 1.5em;
+    }
+
+    .banner-map{
+        width: 152px;
+        height: 43px;
+        position: relative;
+        top: -15px;
+    }
+
+    .side-block{
+        margin-top: 50px;
+    }
+
+    .username-block{
+        width: 228px;
+        height: 78px;
+    }
+
+    .player-pseudo{
+        width: 151px;
+        height: 20px;
+        font-size: 15px;
+        margin-top: 2px;
+    }
+
+    .avatar-player{
+        width: 78px;
+    }
+
+    .player-level{
+        background-size: 38px 38px;
+        width: 38px;
+        height: 38px;
+        font-size: 14px;
+        top: 65px;
+        left: 10px;
+    }
+
+
+    .lifeBar{
+        width: 138px;
+        height: 18px;
+    }
+
+    .manaBar{
+        width: 138px;
+        height: 18px;
+    }
+
+    .lifeBar .valueBar{
+        height: 18px;
+    }
+
+    .manaBar .valueBar{
+        height: 18px;
+    }
+
+    .username-block .avatar-player{
+        top: 38px;
+        left: 19px;
+    }
+
+    .username-block .lifeBar{
+        top: 48px;
+        left: 77px;
+    }
+
+    .username-block .manaBar{
+        top: 66px;
+        left: 77px;
+    }
+
+    .username-block .value-bar-text {
+        left: 40px;
+        width: 200px;
+        font-size: 14px;
+    }
+
+    .joueur-cible{
+        height: 120px;
+    }
+
+    .joueur-cible .avatar-player{
+        width: 72px;
+        left: 150px;
+        top: 33px;
+    }
+
+    .joueur-cible-name{
+        width: 142px;
+        height: 21px;
+        top: 39px;
+        left: 24px;
+        font-size: 14px;
+    }
+
+    .joueur-cible .manaBar{
+        top: 75px;
+    }
+
+    .joueur-cible-level {
+        background-size: 38px 38px;
+        width: 38px;
+        height: 38px;
+        font-size: 14px;
+        position: absolute;
+        top: 83px;
+        left: 195px;
+    }
+    .user-stats-block {
+        background-size: 212px 131px;
+        color: white;
+        min-width: 210px;
+        max-width: 210px;
+        height: 131px;
+        margin-left: 6px;
+    }
+
+    .user-stats-block .coin-icon{
+        width: 16px;
+        height: 16px;
+    }
+
+    .user-stats-container span{
+        font-size: 14px;
+    }
+
+    .user-stats-points{
+        font-size: 14px;
+    }
+
+    .user-stats-points img{
+        width: 20px;
+        height: 20px;
+    }
+
+    .side-menu{
+        background-size: 234px 216px;
+        min-width: 210px;
+        max-width: 210px;
+        font-size: 12px;
+        margin-left: 6px;
+    }
+
+    .side-menu-link{
+        width: 85px;
+    }
+
+    .side-menu-icon{
+        width: 42px;
+        height: 42px;
+    }
+
+    .spell-bar{
+        width: 850px;
+        padding: 20px;
+        margin-left: 362px;
+    }
+
+    .expBar{
+        width: 760px;
+        height: 7px;
+    }
+
+    .valueBar{
+        height: 7px;
+    }
+
+    .spell, .spell-filter{
+        width: 58px;
+        height: 58px;
+        min-height: 58px;
+        min-width: 58px;
+    }
+
+    .img-spell{
+        width: 51px;
+        height: 51px;
+    }
+
+
+    .cases{
+        width: 962px;
+        height: 642px;
+    }
+
+    .case{
+        width: 40px;
+        height: 40px;
+    }
+
+    .joueur{
+        width: 39px;
+        height: 39px;
+    }
+}

@@ -21,6 +21,7 @@ function setAxiosToken(token){
 }
 
 function setup(){
+    axios.defaults.headers['Access-Control-Allow-Origin'] = "*";
     const token = window.localStorage.getItem("authToken")
     if(token) {
         const {exp: expiration} = jwtDecode(token)
