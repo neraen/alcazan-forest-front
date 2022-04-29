@@ -34,7 +34,7 @@ const SpellBar = (props) => {
                     <img className="exp-icon" src="/img/gui/Xp.png" />
                 </div>
                 {(experienceData) &&
-                <Bar value={props.newExperience !== 0 ? props.newExperience : experienceData.experienceActuelle} max={experienceData.experienceMax} maxWidth={1000} classN="expBar"/> ||
+                <Bar value={props.newExperience !== 0  ? props.newExperience : experienceData.experienceActuelle} max={experienceData.experienceMax} maxWidth={1000} classN="expBar"/> ||
                 <Bar value={0} max={99999} maxWidth={1000} classN="expBar"/>
                 }
             </div>
@@ -43,7 +43,7 @@ const SpellBar = (props) => {
                     {spells && spells.map(spell => (
                         <Spell key={spell.id} spell={spell} />
                     ))}
-                    {spells && [...Array(12 - spells.length)].map((x, i) =>
+                    {spells && [...Array(10 - spells.length)].map((x, i) =>
                         <div  className="spell" key={i}>
 
                         </div>

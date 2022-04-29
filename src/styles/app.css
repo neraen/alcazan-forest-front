@@ -1530,7 +1530,7 @@ section #text span{
 
 /** MEDIA QUERY */
 
-@media screen and (max-width: 1370px){
+@media screen and (max-width: 1400px){
 
     .main-auth-bg{
         height: unset;
@@ -1706,6 +1706,12 @@ section #text span{
         height: 7px;
     }
 
+    .block-notification {
+        margin-top: 20px;
+        padding: 7px;
+        font-size: 11px;
+    }
+
     .spell, .spell-filter{
         width: 58px;
         height: 58px;
@@ -1733,4 +1739,389 @@ section #text span{
         width: 39px;
         height: 39px;
     }
+}
+
+
+/********************************** ADMINISTRATION ***********************************/
+
+.main-administration-page{
+    backdrop-filter: blur(20px);
+    background: rgba(0,0,0,0.4);
+}
+
+.administration-side-menu{
+    height: 90vh;
+    width: 290px;
+    background: rgba(0,0,0,0.4);
+}
+
+.administration-nav-links{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.administration-nav-link{
+    padding: 20px;
+    list-style: none;
+
+}
+
+.administration-nav-link a{
+    list-style: none;
+    text-decoration: none;
+    color: aliceblue;
+}
+
+
+@media screen and (min-width:1400px) and (max-width:1700px){
+
+    .main-auth-bg{
+        height: unset;
+    }
+
+    .title-map-font{
+        font-size: 1.5em;
+    }
+
+    .banner-map{
+        width: 152px;
+        height: 43px;
+        position: relative;
+        top: -15px;
+    }
+
+    .side-block{
+        margin-top: 50px;
+    }
+
+    .username-block{
+        width: 228px;
+        height: 78px;
+    }
+
+    .player-pseudo{
+        width: 151px;
+        height: 20px;
+        font-size: 15px;
+        margin-top: 2px;
+    }
+
+    .avatar-player{
+        width: 78px;
+    }
+
+    .player-level{
+        background-size: 38px 38px;
+        width: 38px;
+        height: 38px;
+        font-size: 14px;
+        top: 65px;
+        left: 10px;
+    }
+
+
+    .lifeBar{
+        width: 138px;
+        height: 18px;
+    }
+
+    .manaBar{
+        width: 138px;
+        height: 18px;
+    }
+
+    .lifeBar .valueBar{
+        height: 18px;
+    }
+
+    .manaBar .valueBar{
+        height: 18px;
+    }
+
+    .username-block .avatar-player{
+        top: 38px;
+        left: 19px;
+    }
+
+    .username-block .lifeBar{
+        top: 48px;
+        left: 77px;
+    }
+
+    .username-block .manaBar{
+        top: 66px;
+        left: 77px;
+    }
+
+    .username-block .value-bar-text {
+        left: 40px;
+        width: 200px;
+        font-size: 14px;
+    }
+
+    .joueur-cible{
+        height: 120px;
+    }
+
+    .joueur-cible .avatar-player{
+        width: 72px;
+        left: 150px;
+        top: 33px;
+    }
+
+    .joueur-cible-name{
+        width: 142px;
+        height: 21px;
+        top: 39px;
+        left: 24px;
+        font-size: 14px;
+    }
+
+    .joueur-cible .manaBar{
+        top: 75px;
+    }
+
+    .joueur-cible-level {
+        background-size: 38px 38px;
+        width: 38px;
+        height: 38px;
+        font-size: 14px;
+        position: absolute;
+        top: 83px;
+        left: 195px;
+    }
+    .user-stats-block {
+        background-size: 212px 131px;
+        color: white;
+        min-width: 210px;
+        max-width: 210px;
+        height: 131px;
+        margin-left: 6px;
+    }
+
+    .user-stats-block .coin-icon{
+        width: 16px;
+        height: 16px;
+    }
+
+    .user-stats-container span{
+        font-size: 14px;
+    }
+
+    .user-stats-points{
+        font-size: 14px;
+    }
+
+    .user-stats-points img{
+        width: 20px;
+        height: 20px;
+    }
+
+    .side-menu{
+        background-size: 234px 216px;
+        min-width: 210px;
+        max-width: 210px;
+        font-size: 12px;
+        margin-left: 6px;
+    }
+
+    .side-menu-link{
+        width: 85px;
+    }
+
+    .side-menu-icon{
+        width: 42px;
+        height: 42px;
+    }
+
+    .spell-bar{
+        width: 850px;
+        padding: 20px;
+        margin-left: 362px;
+    }
+
+    .expBar{
+        width: 760px;
+        height: 7px;
+    }
+
+    .valueBar{
+        height: 7px;
+    }
+
+    .block-notification {
+        margin-top: 20px;
+        padding: 7px;
+        font-size: 11px;
+    }
+
+    .spell, .spell-filter{
+        width: 58px;
+        height: 58px;
+        min-height: 58px;
+        min-width: 58px;
+    }
+
+    .img-spell{
+        width: 51px;
+        height: 51px;
+    }
+
+
+    .cases{
+        width: 1058px;
+        height: 705px;
+    }
+
+    .case{
+        width: 44px;
+        height: 44px;
+    }
+
+    .joueur{
+        width: 43px;
+        height: 43px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .navbar{
+        display: none;
+    }
+
+    .banner-map{
+        display: none;
+    }
+
+    .top-container{
+        display: flex;
+        flex: 1 1 auto!important;
+    }
+
+    .side-block{
+        margin: 0;
+        padding: 0;
+        max-height: 450px;
+    }
+
+    .username-block {
+        position: relative;
+        top: -27px;
+    }
+
+    .user-stats-block {
+        position: relative;
+        top: -59px;
+        background: rgba(0,0,0,0.8);
+        border-radius: 8px;
+        max-height: 50px;
+    }
+
+    .user-stats-block span{
+        width: 50px;
+
+    }
+
+    .user-stats-points{
+        display: flex;
+    }
+
+    .user-stats-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .user-stats-container img{
+        display: none;
+
+    }
+
+    .user-stats-container span{
+        font-size: 10px;
+    }
+
+    .side-menu {
+        position: relative;
+        top: -60px;
+        background: rgba(0,0,0,0.8);
+    }
+
+    .side-menu-icon {
+        width: 28px;
+        height: 28px;
+    }
+
+    .side-menu-link{
+        font-size: 10px;
+    }
+
+    .joueur-cible {
+        height: 120px;
+        position: relative;
+        top: -50px;
+    }
+
+    .block-notification {
+        position: relative;
+        top: -65px;
+        font-size: 8px;
+        margin-left: 6px;
+        width: 199px;
+    }
+
+    .cases{
+        width: 674px;
+        height: 449px;
+    }
+
+    .case{
+        width: 28px;
+        height: 28px;
+    }
+
+    .spell-bar {
+        width: 400px;
+        height: 280px;
+        transform: rotate(90deg);
+        position: absolute;
+        top: 79px;
+        left: -535px;
+        background: none;
+        z-index: 0;
+    }
+
+    .spell, .spell-filter {
+        width: 40px;
+        height: 40px;
+        min-height: 40px;
+        min-width: 40px;
+    }
+
+    .spell img{
+        width: 31px;
+        height: 31px;
+    }
+
+    .exp-bar-container{
+        width: 300px;
+        position: absolute;
+        top: 70px;
+        left: -53px;
+        display: none;
+    }
+
+    .joueur{
+        width: 27px;
+        height: 27px;
+    }
+
+    .pnj{
+        width: 27px;
+        height: 27px;
+        background-size: cover;
+    }
+
+
 }

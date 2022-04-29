@@ -1,7 +1,4 @@
-import React, {useEffect} from 'react'
-import UsernameBlock from "../components/UserInterface/UsernameBlock";
-import SideMenu from "../components/UserInterface/SideMenu";
-import SpellBar from "../components/UserInterface/SpellBar";
+import React from 'react'
 import Inventory from "../components/Inventory";
 
 const InventoryPage = (props) => {

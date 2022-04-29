@@ -5,7 +5,7 @@ import AuthContext from "../contexts/AuthContext";
 
 const Navbar = ({history}) => {
 
-    const {isAuthenticated, setIsAuthenticated } = useContext(AuthContext)
+    const {isAuthenticated, setIsAuthenticated, role } = useContext(AuthContext)
 
     const handleLogout = () => {
         authAPI.logout();
@@ -30,6 +30,13 @@ const Navbar = ({history}) => {
                         <li className="nav-item">
                         <NavLink className="nav-link link-dark" to="/inventaire">Inventaire</NavLink>
                         </li>
+                        {role.includes('ROLE_ADMIN') && (
+                            <>
+                                <li className="nav-item">
+                                    <NavLink className="nav-link link-dark" to="/administration">Administration</NavLink>
+                                </li>
+                            </>
+                        )}
                     </>
                     ||
                     <>

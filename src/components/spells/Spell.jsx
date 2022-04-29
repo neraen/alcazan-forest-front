@@ -89,6 +89,8 @@ const Spell = (props) => {
             experience: attackStats.experience,
             damage: attackStats.damage,
             newExperience: attackStats.newExperience,
+            lifeJoueur: attackStats.lifeJoueur,
+            damageReturns: attackStats.damageReturns,
             droppedItems: (attackStats.droppedItems[0] !== undefined) ? attackStats.droppedItems[0] : ""
         })
     }

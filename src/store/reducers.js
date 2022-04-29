@@ -15,7 +15,9 @@ export const playerStatsReducer = (state = {
             experience: 0,
             newExperience: 0,
             damage: 0,
+            damageReturns: 0,
             droppedItems: "",
+            lifeJoueur: 0,
             pa: 0
         }
     },
@@ -59,7 +61,7 @@ export const playerStatsReducer = (state = {
         case actions.REMOVE_PLAYER_TARGET: {
             return {
                 ...state,
-                target: {}
+                data: {...state.data, target: {}},
             }
         }
         case actions.UPDATE_POSITION_JOUEUR: {

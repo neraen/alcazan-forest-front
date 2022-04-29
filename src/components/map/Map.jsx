@@ -4,7 +4,7 @@ import Case from "./Case";
 import UsersApi from "../../services/UsersApi";
 import MapContext from "../../contexts/MapContext";
 import {connect} from "react-redux";
-import {updatePositionJoueur} from "../../store/actions";
+import {updatePositionJoueur, removePlayerTarget} from "../../store/actions";
 
 
 class Map extends React.Component {
@@ -59,6 +59,9 @@ class Map extends React.Component {
 
     async updatePosition(abscisse, ordonnee){
         const data = await UsersApi.updatePosition(this.state.mapId, abscisse, ordonnee)
+        if(this.props.target.type === "monstre"){
+            this.props.removePlayerTarget();
+        }
         this.setState({abscisseJoueur: abscisse, ordonneeJoueur: ordonnee, cases: data},
             () => {
                 this.setState({unabledCases: this.getUnabledMove()})
@@ -125,5 +128,5 @@ class Map extends React.Component {
 }
 
 export default connect((state, ownProps) => {
-    return {state, ownProps};
-}, {updatePositionJoueur})(Map);
+    return {target: state.data.target, ownProps};
+}, {updatePositionJoueur, removePlayerTarget})(Map);

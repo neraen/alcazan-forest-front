@@ -14,44 +14,47 @@ import InventoryPage from "./pages/InventoryPage";
 import {Provider} from "react-redux";
 // import MercureSubscriber from "@cerati/react-mercure";
 import store from "./store/index"
+import AdministrationPage from "./administration/pages/AdministrationPage";
 
 authAPI.setup();
 
-const Index = () => {
+const Index =  () => {
     const [isAuthenticated, setIsAuthenticated] = useState(authAPI.isAuthenticated());
+    const [role, setRole] = useState(authAPI.getRoles());
 
     const NavbarWitRouter = withRouter(Navbar)
 
 
-
     const context = {
         isAuthenticated: isAuthenticated,
-        setIsAuthenticated: setIsAuthenticated
+        setIsAuthenticated: setIsAuthenticated,
+        role: role
     }
 
 
-    return(
+    return (
         <AuthContext.Provider value={context}>
-        <HashRouter>
-            <NavbarWitRouter />
-            <main className={!isAuthenticated ? "": "main-auth-bg"}>
-                <Switch>
-                    <Route path="/connexion" component={LoginPage}/>
-                    <Route path="/inscription" component={RegisterPage} />
-                    <Route path="/preview" component={RegisterPage} />
-                    <Route path="/about" component={RegisterPage} />
-                    <PrivateRoute path="/profil" component={ProfilPage} />
-                    <PrivateRoute path="/carte" component={MapPage} />
-                    <PrivateRoute path="/inventaire" redirectTo="/inventaire/equipement" component={InventoryPage} />
-                    <Route path="/" component={HomePage} />
-                </Switch>
+            <HashRouter>
+                <NavbarWitRouter/>
+                <main className={!isAuthenticated ? "" : "main-auth-bg"}>
+                    <Switch>
+                        <Route path="/connexion" component={LoginPage}/>
+                        <Route path="/inscription" component={RegisterPage}/>
+                        <Route path="/preview" component={RegisterPage}/>
+                        <Route path="/about" component={RegisterPage}/>
+                        <PrivateRoute path="/profil" component={ProfilPage}/>
+                        <PrivateRoute path="/carte" component={MapPage}/>
+                        <PrivateRoute path="/inventaire" redirectTo="/inventaire/equipement" component={InventoryPage}/>
+                        <PrivateRoute path="/administration"  isAdmin={true} component={AdministrationPage}/>
+                        <Route path="/" component={HomePage}/>
+                    </Switch>
 
-            </main>
-            <footer className="footer">
-                Clement Silvestre - jeu en cours de construction
-            </footer>
+                </main>
+                <footer className="footer">
+                    Clement Silvestre - jeu en cours de construction
+                </footer>
 
-        </HashRouter>
+            </HashRouter>
         </AuthContext.Provider>
     )
 

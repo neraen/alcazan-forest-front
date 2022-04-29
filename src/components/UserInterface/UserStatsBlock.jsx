@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import UsersApi from "../../services/UsersApi";
 import {ProgressBar} from "react-bootstrap";
+import {connect} from "react-redux";
+import {updateJoueurState} from "../../store/actions";
 
 const UserStatsBlock = ({user}) => {
 
@@ -19,17 +21,6 @@ const UserStatsBlock = ({user}) => {
         }
     }
 
-    let lifePercent = Math.ceil(user.currentLife / user.maxLife * 100)
-    let manaPercent = Math.ceil(user.currentMana / user.maxMana * 100)
-    let expPercent = 0
-    let expNextLevel = 'chargement';
-    let currentExp = 'chargement';
-    if(userData[0] !== undefined){
-        expNextLevel = userData[0].maxExpLevel;
-        currentExp = userData[0].experience;
-        expPercent = Math.ceil(currentExp / expNextLevel * 100)
-    }
-
     return <>
         <div className="user-stats-block py-3 px-3 row">
             <div className="user-stats-container">
@@ -44,4 +35,5 @@ const UserStatsBlock = ({user}) => {
     </>
 }
 
-export default UserStatsBlock
+
+export default UserStatsBlock;

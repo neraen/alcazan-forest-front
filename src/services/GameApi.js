@@ -7,6 +7,10 @@ function getTargetInfos(id, type){
        //.then(response => response.data)
 }
 
+function getDegatsFuite(){
+    return axios.post(API_URL + "joueur/fuite")
+}
+
 
 export default {
     getTargetInfos

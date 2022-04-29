@@ -21,7 +21,6 @@ function setAxiosToken(token){
 }
 
 function setup(){
-    axios.defaults.headers['Access-Control-Allow-Origin'] = "*";
     const token = window.localStorage.getItem("authToken")
     if(token) {
         const {exp: expiration} = jwtDecode(token)
@@ -42,6 +41,16 @@ function isAuthenticated(){
     return false
 }
 
+function getRoles(){
+    const token = window.localStorage.getItem("authToken");
+
+    if(token) {
+        const tokenData = jwtDecode(token);
+        return tokenData.roles;
+    }
+    return ['ROLE_USER'];
+}
+
 function getUserInfo(){
     const token = window.localStorage.getItem("authToken")
     if(token) {
@@ -60,7 +69,8 @@ export default {
     logout,
     setup,
     isAuthenticated,
-    getUserInfo
+    getUserInfo,
+    getRoles
 }
 
 

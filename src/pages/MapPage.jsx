@@ -8,6 +8,7 @@ import UsersApi from "../services/UsersApi";
 import Loader from "../components/Loader";
 import Target from "../components/Target";
 import { connect } from "react-redux";
+import {updateJoueurState} from "../store/actions";
 
 
  class MapPage extends React.Component{
@@ -22,7 +23,16 @@ import { connect } from "react-redux";
 
      async componentDidMount() {
          const user = await UsersApi.find();
-         this.setState({user: user, display: true})
+         this.setState({user: user, display: true}, () => {
+             this.props.updateJoueurState({
+                 lifeJoueur: this.state.user.currentLife,
+                 experience: 0,
+                 newExperience: 0,
+                 damage: 0,
+                 damageReturns: 0,
+                 droppedItems: "",
+             })
+         })
      }
 
     render(){
@@ -32,11 +42,12 @@ import { connect } from "react-redux";
                         <div className="side-block px-5">
                             <UsernameBlock user={this.state.user}/>
                             <Target />
-                            <UserStatsBlock user={this.state.user} />
+                            <UserStatsBlock user={this.state.user}/>
                             <SideMenu />
                             {this.props.joueurState !== undefined &&  (
                                 <div className="block-notification">
                                     {(this.props.joueurState.damage > 0) && "Vous infligez "+ this.props.joueurState.damage +" points de dommages et vous gagnez "+this.props.joueurState.experience+" points d'expériences"} <br />
+                                    {(this.props.joueurState.damageReturns > 0) && "Le monstre riposte et vous inflige "+ this.props.joueurState.damageReturns +" points de dommage"} <br />
                                     {(this.props.joueurState.droppedItems !== "") && (<span>En mourrant le monstre laisse tomber ceci : <strong>{this.props.joueurState.droppedItems}</strong></span>)}
                                 </div>
                             )}
@@ -56,5 +67,5 @@ import { connect } from "react-redux";
 }
 
 export default connect((state, ownProperties) =>{
-    return {joueurState: state.data.joueurState, ownProperties}
-})(MapPage)
+    return {joueurState: {...state.data.joueurState}, ownProperties}
+}, {updateJoueurState})(MapPage)

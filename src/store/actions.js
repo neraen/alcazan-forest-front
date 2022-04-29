@@ -16,10 +16,9 @@ export const updatePlayerTarget = (payload) => {
     }
 }
 
-export const removePlayerTarget = (payload) => {
+export const removePlayerTarget = () => {
     return {
         type: REMOVE_PLAYER_TARGET,
-        payload
     }
 }
 
