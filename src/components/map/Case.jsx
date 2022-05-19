@@ -8,6 +8,7 @@ const Case = (props) => {
     useEffect(() => {
     }, [])
 
+
     return <>
         <div className={"case "+ (props.isUnabled && "unabled-move" || 'disabled-move') } style={{border: "rgba(255, 255, 255, .5) 1px solid"}} >
             { props.hasPnj && <Pnj pnj={props.hasPnj}/>}

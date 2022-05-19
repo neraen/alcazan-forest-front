@@ -8,6 +8,15 @@ export const FETCH_TARGET_ERROR = "fetch target error";
 export const UPDATE_POSITION_JOUEUR = "update position joueur";
 export const UPDATE_JOUEUR_STATE = "update joueur state";
 
+export const SET_CASES = "set cases";
+export const UPDATE_DIFF_CASES = "update diff cases";
+export const TOGGLE_COLLISION_CASE = "toggle Collision Cases";
+export const UPDATE_MODE_MAP_MAKER = "update mode mapmaker";
+export const ADD_WRAP_TOOL = "add wrap tool"
+export const ADD_WRAP_CASE = "add wrap case"
+export const ADD_PNJ_CASE = "add pnj case"
+export const ADD_MONSTER_CASE = "add monster case"
+
 
 export const updatePlayerTarget = (payload) => {
     return{
@@ -68,5 +77,61 @@ export const updateJoueurState = (joueurState) => {
     return{
         type: UPDATE_JOUEUR_STATE,
         joueurState
+    }
+}
+
+export const setCases = (cases) => {
+    return{
+        type: SET_CASES,
+        cases
+    }
+}
+
+export const updateDiffCases = (cases) => {
+    return{
+        type: UPDATE_DIFF_CASES,
+        cases
+    }
+}
+
+export const toggleCollisionCase = (index) => {
+    return{
+        type: TOGGLE_COLLISION_CASE,
+        index
+    }
+}
+
+export const addWrapCase = (index) => {
+    return{
+        type: ADD_WRAP_CASE,
+        index
+    }
+}
+
+export const addPnjCase = (index) => {
+    return{
+        type: ADD_PNJ_CASE,
+        index
+    }
+}
+
+export const addMonsterCase = (index) => {
+    return{
+        type: ADD_MONSTER_CASE,
+        index
+    }
+}
+
+export const updateModeMapMaker = (mode) => {
+    return{
+        type: UPDATE_MODE_MAP_MAKER,
+        mode
+    }
+}
+
+export const addWrapTool= (wrap) => {
+    return{
+        type: ADD_WRAP_TOOL,
+        wrap
     }
 }

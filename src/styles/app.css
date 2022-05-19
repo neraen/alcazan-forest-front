@@ -147,6 +147,7 @@ main{
     content: "";
     width: 48px;
     height:48px;
+    position: relative;
     /*background: rgba(255,255,255,0);*/
 }
 
@@ -1747,6 +1748,20 @@ section #text span{
 .main-administration-page{
     backdrop-filter: blur(20px);
     background: rgba(0,0,0,0.4);
+    display: flex;
+}
+
+.layout-administration{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    flex-direction: column;
+}
+
+.layout-administration h1{
+    color: aliceblue;
+    position: relative;
+    left: 20px;
 }
 
 .administration-side-menu{
@@ -1771,6 +1786,113 @@ section #text span{
     list-style: none;
     text-decoration: none;
     color: aliceblue;
+}
+
+
+/*** MAP MAKER **/
+
+
+.map-maker-container{
+    display: flex;
+    align-items: self-start;
+}
+
+.map-maker-block-map{
+    margin-left: 20px;
+}
+
+.map-maker-title{
+    color: aliceblue;
+    text-align: center;
+}
+
+
+
+
+
+.map-maker-block-outils{
+    background: rgba(0, 0, 0, 0.41);
+    border-radius: 8px;
+    padding: 50px;
+    margin: 25px;
+
+}
+
+.map-maker-btn-outils-container{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.map-maker-btn-outils{
+    padding: 15px;
+    border-radius: 7px;
+    border: aliceblue;
+    margin: 20px;
+    width: 200px;
+}
+
+.btn-collison{
+    background: #e5989b;
+}
+
+.btn-wrap{
+    background: #b5e48c;
+}
+
+.btn-pnj{
+    background: #bbadff;
+}
+
+.btn-monstre{
+    background: #ade8f4;
+}
+
+.map-maker-btn-validation{
+    background: aliceblue;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    border-radius: 7px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.map-maker-hover-collision:hover, .map-maker-collision{
+    background: rgba(255,0,0,0.4);
+    cursor: pointer;
+}
+
+.map-maker-hover-wrap:hover, .map-maker-wrap{
+    background: rgba(0,255,0,0.4);
+    cursor: pointer;
+}
+
+.map-maker-hover-pnj:hover, .map-maker-pnj{
+    background: rgba(0,0,255,0.4);
+    cursor: pointer;
+}
+
+.map-maker-hover-monstre:hover, .map-maker-monstre{
+    background: rgba(0,0,0,0.8);
+    cursor: pointer;
+}
+
+.editable-case-hover{
+    position: absolute;
+    background: rgba(0,0,0,0.8);
+    display: none;
+    top: 25px;
+    left: 25px;
+    width: 250px;
+    z-index: 150;
+    padding: 15px;
+    border-radius: 7px;
+    color: aliceblue;
+}
+
+.map-maker-pnj:hover .editable-case-hover, .map-maker-wrap:hover .editable-case-hover{
+    display: block;
 }
 
 

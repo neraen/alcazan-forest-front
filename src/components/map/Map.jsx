@@ -43,16 +43,24 @@ class Map extends React.Component {
     handleKeybord(event){
         switch (event.key){
             case "z":
-                this.updatePosition( this.state.abscisseJoueur, this.state.ordonneeJoueur - 1);
+                if(this.verifiyMove(this.state.abscisseJoueur, this.state.ordonneeJoueur - 1)){
+                    this.updatePosition( this.state.abscisseJoueur, this.state.ordonneeJoueur - 1);
+                }
                 break;
             case "s":
-                this.updatePosition( this.state.abscisseJoueur, this.state.ordonneeJoueur + 1);
+                if(this.verifiyMove(this.state.abscisseJoueur, this.state.ordonneeJoueur + 1)) {
+                    this.updatePosition(this.state.abscisseJoueur, this.state.ordonneeJoueur + 1);
+                }
                 break;
             case "q":
-                this.updatePosition( this.state.abscisseJoueur - 1, this.state.ordonneeJoueur);
+                if(this.verifiyMove(this.state.abscisseJoueur - 1, this.state.ordonneeJoueur)) {
+                    this.updatePosition(this.state.abscisseJoueur - 1, this.state.ordonneeJoueur);
+                }
                 break;
             case "d":
-                this.updatePosition( this.state.abscisseJoueur + 1, this.state.ordonneeJoueur);
+                if(this.verifiyMove(this.state.abscisseJoueur + 1, this.state.ordonneeJoueur)) {
+                    this.updatePosition(this.state.abscisseJoueur + 1, this.state.ordonneeJoueur);
+                }
                 break;
         }
     }
@@ -83,6 +91,10 @@ class Map extends React.Component {
         this.setState({unabledCases: this.getUnabledMove()});
     }
 
+    verifiyMove(abscisse, ordonnee){
+        const newCaseId = this.state.cases.filter(oneCase => oneCase.abscisse === abscisse && oneCase.ordonnee === ordonnee)[0].carteCarreauId;
+        return this.state.unabledCases.filter(oneCase => oneCase === newCaseId).length
+    }
 
     getUnabledMove(){
         const filteredOrdonnee= [ this.state.ordonneeJoueur-1, this.state.ordonneeJoueur, this.state.ordonneeJoueur+1 ];

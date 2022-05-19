@@ -1,5 +1,10 @@
-import {NavLink} from "react-router-dom";
+import {NavLink, Route, Switch} from "react-router-dom";
 import React from "react";
+import PrivateRoute from "../../components/PrivateRoute";
+import MapMakerPage from "./MapMakerPage";
+import PnjMakerPage from "./PnjMakerPage";
+import MonsterMakerPage from "./MonsterMakerPage";
+
 
 
 const AdministrationPage = (props) => {
@@ -25,6 +30,13 @@ const AdministrationPage = (props) => {
 
                     </li>
                 </ul>
+            </div>
+            <div className="layout-administration">
+                <Switch>
+                    <PrivateRoute path="/administration/mapmaker"  isAdmin={true} component={MapMakerPage}/>
+                    <PrivateRoute path="/administration/pnj"  isAdmin={true} component={PnjMakerPage}/>
+                    <PrivateRoute path="/administration/monstres"  isAdmin={true} component={MonsterMakerPage}/>
+                </Switch>
             </div>
             <div className="footer-block">
 
