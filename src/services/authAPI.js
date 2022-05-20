@@ -7,8 +7,8 @@ function logout(){
     delete axios.defaults.headers["Authorization"]
 }
 
-function authenticate(credentials){
-    return axios.post(LOGIN_API, credentials)
+async function  authenticate(credentials){
+    return await axios.post(LOGIN_API, credentials)
          .then(response => response.data.token)
          .then(token => {
              window.localStorage.setItem("authToken", token)

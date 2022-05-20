@@ -9,6 +9,7 @@ const Pnj = (props) => {
 
     const { isShowing: isDialogShowed, toggle: toggleDialogPnj } = useModal();
     const [sequence, setSequence] = useState();
+    const [clicked, setClicked] = useState(false);
 
     useEffect(() => {
         getSequence()
@@ -33,7 +34,7 @@ const Pnj = (props) => {
             </div>
         </div>
 
-        {sequence !== [] &&
+        {clicked && sequence !== [] &&
         <Modal
             isShowing={isDialogShowed}
             hide={toggleDialogPnj}

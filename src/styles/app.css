@@ -114,19 +114,31 @@ main{
 .title-map-font{
     font-family: 'MedievalSharp', cursive;
     margin: 0;
+    font-size: 1.8em;
 }
 
 .banner-map{
-    background: url("../img/map/Panel.png");
-    background-size: cover;
+    /*background: url("../img/map/Panel.png");*/
+    /*background-size: cover;*/
+    /*color: white;*/
+    /*text-shadow: 1px 1px 2px black;*/
+    /*text-transform: uppercase;*/
+    /*width: 340px;*/
+    /*height: 100px;*/
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*justify-content: center;*/
     color: white;
     text-shadow: 1px 1px 2px black;
     text-transform: uppercase;
-    width: 340px;
-    height: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
+    background: rgba(0,0,0,0.6);
+    border-radius: 7px;
+    padding: 20px;
+    margin: 15px;
+
 }
 
 .cases{
@@ -423,6 +435,7 @@ main{
     width: 48px;
     height: 48px;
     position: relative;
+    background-size: cover;
 }
 
 .pnj:hover .pnj-hover{
@@ -1791,7 +1804,12 @@ section #text span{
 
 /*** MAP MAKER **/
 
-
+.form-add-map{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -50px;
+}
 .map-maker-container{
     display: flex;
     align-items: self-start;

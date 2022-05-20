@@ -76,6 +76,10 @@ class MapMakerPage extends React.Component{
 
     render(){
         return <>
+            <form className="form-add-map" action="">
+                <Field name="name" label="Nom de la carte" type="text" value={this.state.name} onChange={(event) => this.handleChangeMapName(event)} />
+                <div className="map-maker-btn-validation" onClick={() => this.handleSubmitMapName()}>Creer une carte</div>
+            </form>
             <h1>Editer une carte</h1>
             <div className="map-maker-container">
                 <div className="map-maker-block-map">
@@ -100,10 +104,6 @@ class MapMakerPage extends React.Component{
                         <button className="map-maker-btn-outils btn-desactive" onClick={() => this.handleSubmit()} > Sauvegarder les changements </button>
                     </div>
                 </div>
-                <form action="">
-                    <Field name="name" label="Nom de la carte" type="text" value={this.state.name} onChange={(event) => this.handleChangeMapName(event)} />
-                    <div className="map-maker-btn-validation" onClick={() => this.handleSubmitMapName()}>Creer une carte</div>
-                </form>
             </div>
         </>
     };
