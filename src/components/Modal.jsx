@@ -32,16 +32,17 @@ const Modal = ({ isShowing, hide, title, ...props }) =>
            
             .modal-custom {
                 height: 500px;
-                width: 500px;
+                width: 1000px;
                 background: rgba(0,0,0,0.5);
                 border: rgba(255,255,255,0.4) 1px solid;
-                position: relative;
-                bottom: 548px;
+                position: absolute;
+                top: -150px;
                 left: 48px;
                 backdrop-filter: blur(20px);
                 z-index: 50;
                 color: aliceblue;
                 border-radius: 10px;
+                overflow: scroll;
             }
 
             .modal-header {

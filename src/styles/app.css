@@ -2,6 +2,26 @@
 @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
 /*@import url(../../public/fonts/BerryRotunda.ttf);*/
 
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #90e0ef #333;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #333;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #90e0ef;
+    border-radius: 20px;
+    border: 1px solid black;
+}
+
 body {
     background-color: azure!important;
     background-size: cover!important;
@@ -1228,7 +1248,7 @@ section #text span{
     font-size: 14px;
 }
 
-.inventaire-item-hover {
+.inventaire-item-hover, .shop-item {
     background: rgba(255,255,255, 0.4);
     min-width: 184px;
     width: 360px;
@@ -1246,7 +1266,7 @@ section #text span{
     border: solid black 1px;
 }
 
-.inventaire-item-hover::before {
+.inventaire-item-hover::before, .shop-item::before {
     content: "";
     width: 102%;
     height: 101%;
@@ -1258,7 +1278,7 @@ section #text span{
     animation: spin 2.5s linear infinite;
 }
 
-.inventaire-item-hover::after {
+.inventaire-item-hover::after, .shop-item::after {
     content: "";
     z-index: -1;
     height: 100%;
@@ -1271,11 +1291,11 @@ section #text span{
     animation: spin 3.5s linear infinite;
 }
 
-.inventaire-item-hover-header{
+.inventaire-item-hover-header, .shop-item-header{
     font-size: 1.15em;
 }
 
-.inventaire-item-hover-header, .inventaire-item-hover-footer, .inventaire-item-hover-body{
+.inventaire-item-hover-header, .inventaire-item-hover-footer, .inventaire-item-hover-body, .shop-item-header, .shop-item-body, .shop-item-footer{
     backdrop-filter: blur(20px);
     background: rgba(0,0,0,0.9);
 }
@@ -1288,37 +1308,39 @@ section #text span{
 }
 
 
-.inventaire-item-hover.commun:before, .inventaire-item-hover.commun:after{
+
+
+.inventaire-item-hover.commun:before, .shop-item.commun:before, .inventaire-item-hover.commun:after, .shop-item.commun:after{
     background-image: linear-gradient(
             var(--rotate)
             , #adb5bd, #6c757d 43%, #495057);
 }
 
-.inventaire-item-hover.peu-commun:before, .inventaire-item-hover.peu-commun:after{
+.inventaire-item-hover.peu-commun:before, .shop-item.peu-commun:before, .inventaire-item-hover.peu-commun:after, .shop-item.peu-commun:after{
     background-image: linear-gradient(
             var(--rotate)
             , #9ef01a, #70e000 43%, #008000);
 }
 
-.inventaire-item-hover.rare:before, .inventaire-item-hover.rare:after{
+.inventaire-item-hover.rare:before, .shop-item.rare:before, .inventaire-item-hover.rare:after{
     background-image: linear-gradient(
             var(--rotate)
             , #5ddcff, #3c67e3 43%, #4e00c2);
 }
 
-.inventaire-item-hover.epique:before, .inventaire-item-hover.epuique:after{
+.inventaire-item-hover.epique:before, .shop-item.epique:before, .inventaire-item-hover.epuique:after{
     background-image: linear-gradient(
             var(--rotate)
             , #ada7ff, #a06cd5 43%, #4e00c2);
 }
 
-.inventaire-item-hover.legendaire:before, .inventaire-item-hover.legendaire:after{
+.inventaire-item-hover.legendaire:before, .shop-item.legendaire:before, .inventaire-item-hover.legendaire:after{
     background-image: linear-gradient(
             var(--rotate)
             , #fee440, #ffd60a 43%, #ffc300);
 }
 
-.inventaire-item-hover.heroique::before, .inventaire-item-hover.heroique::after {
+.inventaire-item-hover.heroique::before, .shop-item.heroique:before, .inventaire-item-hover.heroique::after {
     background-image: linear-gradient(
             var(--rotate), #d00000, #e85d04, #ffb703, #43aa8b, #3d5a80, #5a189a);
 }
@@ -1339,6 +1361,31 @@ section #text span{
 
 .inventaire-item-hover. .inventaire-item-hover-footer{
     border-radius: 0 0 7px 7px;
+}
+
+.shop-items{
+    display: flex;
+    justify-content: space-around;
+}
+
+.shop-item{
+    background: rgba(255,255,255, 0.4);
+    min-width: 184px;
+    width: 360px;
+    padding: 3px;
+    position: relative;
+    border-radius: 6px;
+    text-align: center;
+    color: aliceblue;
+    cursor: pointer;
+    font-family: cursive;
+    top: 25px;
+    left: 25px;
+    z-index: -1;
+    display: flex;
+    border: solid black 1px;
+    flex-direction: column;
+    height: max-content;
 }
 
 

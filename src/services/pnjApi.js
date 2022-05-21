@@ -10,9 +10,13 @@ function create(pnj){
     return axios.post(API_URL + "pnj/create", {pnj: pnj}).then(response => response.data)
 }
 
+function getPnjInfos(pnjId){
+    return axios.post(API_URL + "pnj", {pnjId: pnjId}).then(response => response.data)
+}
 
 
 export default {
     getSequence,
-    create
+    create,
+    getPnjInfos
 }
