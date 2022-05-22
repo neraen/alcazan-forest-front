@@ -1372,7 +1372,8 @@ section #text span{
     background: rgba(255,255,255, 0.4);
     min-width: 184px;
     width: 360px;
-    padding: 3px;
+    min-height: 180px;
+    padding: 1px;
     position: relative;
     border-radius: 6px;
     text-align: center;
@@ -1388,6 +1389,22 @@ section #text span{
     height: max-content;
 }
 
+.shop-item .shop-item-body{
+    min-height: 180px;
+}
+
+.shop-item img{
+    width: 65px;
+    height: 65px;
+    border-radius: 5px;
+}
+
+.block-carac-img-item{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    min-height: 120px;
+}
 
 /** Test **/
 @property --rotate {

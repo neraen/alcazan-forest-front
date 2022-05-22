@@ -16,17 +16,17 @@ const ShopView = (props) => {
                         {item.nomEquipement}
                     </div>
                     <div className="shop-item-body">
-                        <div className="shop-item-title">- Caractéritiques -</div>
-                        {item.caracteristiques.map((caracteristique) =>
-                            <div key={'caracteristique'+caracteristique.id}>
-                                {caracteristique.nom[0].toUpperCase()+caracteristique.nom.slice(1)} : + {caracteristique.valeur}
+                        <div className="block-carac-img-item">
+                            <img className="inventaire-item-img" src={'../img/equipement/'+item.position+'/'+item.icone}/>
+                            <div className="shop-item-carac">
+                                {item.caracteristiques.map((caracteristique) =>
+                                    <div key={'caracteristique'+caracteristique.id}>
+                                        {caracteristique.nom[0].toUpperCase()+caracteristique.nom.slice(1)} : + {caracteristique.valeur}
+                                    </div>
+                                )}
                             </div>
-                        )}
-                        <hr />
-                        <div className="inventaire-item-element">
-                            <div className="inventaire-item-element-strong">Description : </div>
-                            <div className="inventaire-item-element-italic"> {item.descriptionEquipement} </div>
                         </div>
+                        <hr />
                         <div className="inventaire-item-element">
                             <div className="inventaire-item-element-strong">Prix : {item.prixAchat} Pièces d'or </div>
 
