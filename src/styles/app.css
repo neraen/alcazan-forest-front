@@ -1978,6 +1978,10 @@ section #text span{
 }
 
 
+.create-equipement-form{
+    display: flex;
+}
+
 @media screen and (min-width:1400px) and (max-width:1700px){
 
     .main-auth-bg{

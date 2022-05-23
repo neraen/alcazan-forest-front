@@ -41,7 +41,7 @@ class MonstreAddForm extends React.Component{
     render(){
         return (
             <form>
-                <Select name="map" label="map visée : " value={this.state.monstreId} onChange={(event) => this.handleChangeMonstre(event)}>
+                <Select name="monstreId" label="Monstre : " value={this.state.monstreId} onChange={(event) => this.handleChangeMonstre(event)}>
                     {this.state.monstreInfos && this.state.monstreInfos.map(monstre =>
                         <option key={monstre.id} value={monstre.id}>{monstre.name}</option>
                     )}

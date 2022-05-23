@@ -44,7 +44,7 @@ import {updateJoueurState} from "../store/actions";
                             <Target />
                             <UserStatsBlock user={this.state.user}/>
                             <SideMenu />
-                            {this.props.joueurState !== undefined &&  (
+                            {(this.props.joueurState !== undefined && (this.props.joueurState.damage > 0 || this.props.joueurState.damageReturns > 0 || this.props.joueurState.droppedItems !== "" ))&&  (
                                 <div className="block-notification">
                                     {(this.props.joueurState.damage > 0) && "Vous infligez "+ this.props.joueurState.damage +" points de dommages et vous gagnez "+this.props.joueurState.experience+" points d'expériences"} <br />
                                     {(this.props.joueurState.damageReturns > 0) && "Le monstre riposte et vous inflige "+ this.props.joueurState.damageReturns +" points de dommage"} <br />
