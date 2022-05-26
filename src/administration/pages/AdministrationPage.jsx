@@ -5,6 +5,7 @@ import MapMakerPage from "./MapMakerPage";
 import PnjMakerPage from "./PnjMakerPage";
 import MonsterMakerPage from "./MonsterMakerPage";
 import EquipementPage from "./EquipementPage";
+import ShopMakerPage from "./ShopMakerPage";
 
 
 
@@ -32,6 +33,9 @@ const AdministrationPage = (props) => {
                     <li className="administration-nav-link">
                         <NavLink className="" to="/administration/equipements">Equipements</NavLink>
                     </li>
+                    <li className="administration-nav-link">
+                        <NavLink className="" to="/administration/shopmaker">ShopMaker</NavLink>
+                    </li>
                 </ul>
             </div>
             <div className="layout-administration">
@@ -40,6 +44,7 @@ const AdministrationPage = (props) => {
                     <PrivateRoute path="/administration/pnj"  isAdmin={true} component={PnjMakerPage}/>
                     <PrivateRoute path="/administration/monstres"  isAdmin={true} component={MonsterMakerPage}/>
                     <PrivateRoute path="/administration/equipements"  isAdmin={true} component={EquipementPage}/>
+                    <PrivateRoute path="/administration/shopmaker"  isAdmin={true} component={ShopMakerPage}/>
                 </Switch>
             </div>
             <div className="footer-block">

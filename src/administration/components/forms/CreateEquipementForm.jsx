@@ -15,10 +15,10 @@ class CreateEquipementForm extends React.Component{
             prixAchat: 0,
             levelMin: 0,
             description: "",
-            positionEquipement: 0,
-            rarity: 0,
-            caracteristiques: [],
-            classe: 0,
+            positionEquipement: 1,
+            rarity: 1,
+            caracteristiques: {},
+            classe: 1,
             positions: [],
             rarities: [],
             classes: [],
@@ -37,7 +37,7 @@ class CreateEquipementForm extends React.Component{
 
     handleChangeCaracteristiques({ currentTarget }){
         const { name, value } = currentTarget;
-        const caracteristiques = [...this.state.caracteristiques];
+        const caracteristiques = {...this.state.caracteristiques, [name]: value};
         caracteristiques[name] = value;
         this.setState({caracteristiques});
     };
@@ -56,7 +56,6 @@ class CreateEquipementForm extends React.Component{
 
     async handleSubmit(event){
         event.preventDefault();
-        console.log(this.state)
         const equipement = {
             name: this.state.name,
             icone:this.state.icone,

@@ -586,6 +586,7 @@ main{
 
 .spell-container{
     position: relative;
+    cursor: pointer;
 }
 
 .spell{
@@ -2169,6 +2170,7 @@ section #text span{
         height: 58px;
         min-height: 58px;
         min-width: 58px;
+
     }
 
     .img-spell{

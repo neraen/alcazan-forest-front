@@ -100,7 +100,7 @@ const Spell = (props) => {
         <div className={"spell-container"} onClick={handleAttack}>
             <div className={"spell-filter spell-filter-" + props.spell.id}>{time > 0 && (time/1000).toLocaleString('fr-FR', {maximumFractionDigits: 1})}</div>
             <div title={props.spell.name} className="spell">
-                <img src={"../../../img/gui/spells/spell-icon/2/" + props.spell.icone} className="img-spell"/>
+                <img src={"../../../img/spell/archer/" + props.spell.icone} className="img-spell"/>
             </div>
         </div>
     </>

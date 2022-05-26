@@ -1,10 +1,20 @@
 import React  from "react"
+import {connect} from "react-redux";
+import {updateJoueurState} from "../../../store/actions";
+import UserActionApi from "../../../services/UserActionApi";
 
 
 const ShopView = (props) => {
 
-    const handleAchat = () => {
-
+    const handleAchat = async (item) => {
+        const playerMoneyAfterBuy = +props.joueurState.money - +item.prixAchat;
+        console.log(playerMoneyAfterBuy)
+        console.log(props.joueurState.money)
+        console.log(item.prixAchat)
+        if(playerMoneyAfterBuy >= 0){
+            const playerMoney = await UserActionApi.buyItem(item.idEquipement)
+            props.updateJoueurState({money: playerMoney.money})
+        }
     }
 
     return(
@@ -36,11 +46,13 @@ const ShopView = (props) => {
                         Niveau requis : {item.levelMinEquipement}
                     </div>
 
-                    <button onClick={handleAchat}>Acheter</button>
+                    <button onClick={() => handleAchat(item)}>Acheter</button>
                 </div>
             )}
         </div>
     )
 }
 
-export default ShopView;
+export default connect((state, ownProperties) =>{
+    return {joueurState: {...state.data.joueurState}, ownProperties}
+}, {updateJoueurState})(ShopView)

@@ -19,7 +19,9 @@ export const playerStatsReducer = (state = {
             damageReturns: 0,
             droppedItems: "",
             lifeJoueur: 0,
-            pa: 0
+            pa: 0,
+            pm: 0,
+            money: 0
         },
         mapMaker:{
             mode: {
@@ -83,7 +85,7 @@ export const playerStatsReducer = (state = {
         case actions.UPDATE_JOUEUR_STATE: {
             return {
                 ...state,
-                data: {...state.data, joueurState: {...state.joueurState, ...action.joueurState}}
+                data: {...state.data, joueurState: {...state.data.joueurState, ...action.joueurState}}
             }
         }
         case actions.SET_CASES: {

@@ -31,6 +31,9 @@ import {updateJoueurState} from "../store/actions";
                  damage: 0,
                  damageReturns: 0,
                  droppedItems: "",
+                 money: this.state.user.money,
+                 pa: this.state.user.actionPoint,
+                 pm: this.state.user.mouvementPoint,
              })
          })
      }
@@ -42,7 +45,7 @@ import {updateJoueurState} from "../store/actions";
                         <div className="side-block px-5">
                             <UsernameBlock user={this.state.user}/>
                             <Target />
-                            <UserStatsBlock user={this.state.user}/>
+                            <UserStatsBlock />
                             <SideMenu />
                             {(this.props.joueurState !== undefined && (this.props.joueurState.damage > 0 || this.props.joueurState.damageReturns > 0 || this.props.joueurState.droppedItems !== "" ))&&  (
                                 <div className="block-notification">

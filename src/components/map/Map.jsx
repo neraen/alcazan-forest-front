@@ -20,7 +20,8 @@ class Map extends React.Component {
             ordonneeJoueur: this.props.user.caseOrdonnee,
             users: [],
             unabledCases: [],
-            mapId: this.props.user.mapId
+            mapId: this.props.user.mapId,
+            isInstance: false
         };
         this.props.updatePositionJoueur({abscisse: this.props.user.caseAbscisse, ordonnee: this.props.user.caseOrdonnee})
     }
@@ -28,7 +29,7 @@ class Map extends React.Component {
     async componentDidMount () {
         try {
             const data = await MapApi.find(this.state.mapId);
-            this.setState({cases: data.cases, name: data.mapInfo.nom});
+            this.setState({cases: data.cases, name: data.mapInfo.nom, isInstance: data.mapInfo.isInstance});
             this.setState({unabledCases: this.getUnabledMove()});
         }catch(error){
 
@@ -86,7 +87,8 @@ class Map extends React.Component {
             name: mapData.mapInfo.nom,
             mapId: mapData.mapId,
             ordonneeJoueur: mapPosition.ordonnee,
-            abscisseJoueur: mapPosition.abscisse
+            abscisseJoueur: mapPosition.abscisse,
+            isInstance: mapData.mapInfo.isInstance
         });
         this.setState({unabledCases: this.getUnabledMove()});
     }
@@ -115,6 +117,19 @@ class Map extends React.Component {
         }
     }
 
+    getJoueur(uniqueCase){
+        if(this.state.abscisseJoueur == uniqueCase.abscisse && this.state.ordonneeJoueur == uniqueCase.ordonnee){
+         return this.props.user
+        }else{
+            if(!this.state.isInstance){
+                if(uniqueCase.userId){
+                    return {pseudo: uniqueCase.pseudo, nomClasse: uniqueCase.nomClasse, idJoueur: uniqueCase.userId, niveau: uniqueCase.niveau, alignement: uniqueCase.nomAlignement, sexe: uniqueCase.sexe}
+                }
+            }
+        }
+        return false
+    }
+
     render()
     {
         return (<>
@@ -122,15 +137,15 @@ class Map extends React.Component {
                 <h1 className="text-center title-map-font">{this.state.name}</h1>
             </div>
             <div className="cases" style={{backgroundImage: "url("+require("../../img/map/"+this.state.mapId+".png").default+")", backgroundSize: 'contain'}}>
-                {this.state.cases.map(uniquecase => (
-                    <div  onClick={() =>this.handleClick(uniquecase)}>
-                        <Case key={uniquecase.carteCarreauId}
-                              abscisse={uniquecase.abscisse}
-                              ordonnee={uniquecase.ordonnee}
-                              haveJoueur={(this.state.abscisseJoueur == uniquecase.abscisse && this.state.ordonneeJoueur == uniquecase.ordonnee) ?  this.props.user : uniquecase.userId ? {pseudo: uniquecase.pseudo, nomClasse: uniquecase.nomClasse, idJoueur: uniquecase.userId, niveau: uniquecase.niveau, alignement: uniquecase.nomAlignement, sexe: uniquecase.sexe} : false}
-                              hasMonstre={uniquecase.hasMonstre ? uniquecase.hasMonstre : false}
-                              hasPnj={uniquecase.pnjName ? {pnjId: uniquecase.pnjId, pnjName: uniquecase.pnjName, pnjSkin: uniquecase.pnjSkin, pnjAvatar: uniquecase.pnjAvatar, pnjDescription: uniquecase.pnjDescription} : false}
-                              isUnabled={this.state.unabledCases.includes(uniquecase.carteCarreauId)}
+                {this.state.cases.map(uniqueCase => (
+                    <div  onClick={() =>this.handleClick(uniqueCase)}>
+                        <Case key={uniqueCase.carteCarreauId}
+                              abscisse={uniqueCase.abscisse}
+                              ordonnee={uniqueCase.ordonnee}
+                              haveJoueur={this.getJoueur(uniqueCase)}
+                              hasMonstre={uniqueCase.hasMonstre ? uniqueCase.hasMonstre : false}
+                              hasPnj={uniqueCase.pnjName ? {pnjId: uniqueCase.pnjId, pnjName: uniqueCase.pnjName, pnjSkin: uniqueCase.pnjSkin, pnjAvatar: uniqueCase.pnjAvatar, pnjDescription: uniqueCase.pnjDescription} : false}
+                              isUnabled={this.state.unabledCases.includes(uniqueCase.carteCarreauId)}
                         />
                     </div>
                 ))}
