@@ -21,7 +21,8 @@ export const playerStatsReducer = (state = {
             lifeJoueur: 0,
             pa: 0,
             pm: 0,
-            money: 0
+            money: 0,
+            level : 0
         },
         mapMaker:{
             mode: {

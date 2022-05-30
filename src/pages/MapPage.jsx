@@ -6,6 +6,7 @@ import SpellBar from "../components/UserInterface/SpellBar";
 import UserStatsBlock from "../components/UserInterface/UserStatsBlock";
 import UsersApi from "../services/UsersApi";
 import Loader from "../components/Loader";
+import ChatBox from "../components/ChatBox";
 import Target from "../components/Target";
 import { connect } from "react-redux";
 import {updateJoueurState} from "../store/actions";
@@ -54,6 +55,8 @@ import {updateJoueurState} from "../store/actions";
                                     {(this.props.joueurState.droppedItems !== "") && (<span>En mourrant le monstre laisse tomber ceci : <strong>{this.props.joueurState.droppedItems}</strong></span>)}
                                 </div>
                             )}
+
+                            {/*<ChatBox user={this.state.user} />*/}
                         </div>
 
                         <div className="map-container mr-5" >
