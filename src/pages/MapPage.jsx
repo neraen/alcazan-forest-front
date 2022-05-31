@@ -28,13 +28,15 @@ import {updateJoueurState} from "../store/actions";
              this.props.updateJoueurState({
                  lifeJoueur: this.state.user.currentLife,
                  experience: 0,
-                 newExperience: 0,
+                 newExperience: this.state.user.experienceActuelle,
+                 maxExperience: this.state.user.experienceMax,
                  damage: 0,
                  damageReturns: 0,
                  droppedItems: "",
                  money: this.state.user.money,
                  pa: this.state.user.actionPoint,
                  pm: this.state.user.mouvementPoint,
+                 level: this.state.user.niveau
              })
          })
      }

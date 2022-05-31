@@ -15,10 +15,12 @@ export const playerStatsReducer = (state = {
         joueurState: {
             experience: 0,
             newExperience: 0,
+            maxExperience: 0,
             damage: 0,
             damageReturns: 0,
             droppedItems: "",
             lifeJoueur: 0,
+            manaJoueur: 0,
             pa: 0,
             pm: 0,
             money: 0,
