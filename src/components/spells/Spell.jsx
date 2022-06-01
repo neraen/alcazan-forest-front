@@ -83,7 +83,13 @@ const Spell = (props) => {
     }
 
     const launchAttack = async () => {
-        const attackStats = await UsersApi.applyAttaqueToPlayer(props.target.targetId, props.target.type, props.spell.id)
+        let attackStats = {};
+        if(props.target.type === "player"){
+            attackStats = await UsersApi.applyAttaqueToPlayer(props.target.targetId, props.spell.id)
+        }else{
+            attackStats = await UsersApi.applyAttaqueToMonster(props.target.targetId, props.spell.id)
+        }
+
         await props.fetchTargetInfo(props.target.targetId, props.target.type);
         props.updateJoueurState({
             experience: attackStats.experience,
@@ -92,16 +98,18 @@ const Spell = (props) => {
             lifeJoueur: attackStats.lifeJoueur,
             damageReturns: attackStats.damageReturns,
             droppedItems: (attackStats.droppedItems[0] !== undefined) ? attackStats.droppedItems[0] : "",
-            level: attackStats.level
+            level: attackStats.level,
+            killMessage: attackStats.killMessage,
+            needRefresh: attackStats.needRefresh
         })
     }
 
     return <>
         {/*{disable && <div>La cible est trop loin</div>}*/}
-        <div className={"spell-container"} onClick={handleAttack}>
+        <div title={props.spell.nom} className={"spell-container"} onClick={handleAttack}>
             <div className={"spell-filter spell-filter-" + props.spell.id}>{time > 0 && (time/1000).toLocaleString('fr-FR', {maximumFractionDigits: 1})}</div>
-            <div title={props.spell.name} className="spell">
-                <img src={"../../../img/spell/archer/" + props.spell.icone} className="img-spell"/>
+            <div  className="spell">
+                <img src={"../../../img/spell/" + props.spell.icone} className="img-spell"/>
             </div>
         </div>
     </>

@@ -55,6 +55,7 @@ import {updateJoueurState} from "../store/actions";
                                     {(this.props.joueurState.damage > 0) && "Vous infligez "+ this.props.joueurState.damage +" points de dommages et vous gagnez "+this.props.joueurState.experience+" points d'expériences"} <br />
                                     {(this.props.joueurState.damageReturns > 0) && "Le monstre riposte et vous inflige "+ this.props.joueurState.damageReturns +" points de dommage"} <br />
                                     {(this.props.joueurState.droppedItems !== "") && (<span>En mourrant le monstre laisse tomber ceci : <strong>{this.props.joueurState.droppedItems}</strong></span>)}
+                                    {(this.props.joueurState.killMessage !== "") && (<strong>{this.props.joueurState.killMessage}</strong>)}
                                 </div>
                             )}
 
@@ -62,7 +63,7 @@ import {updateJoueurState} from "../store/actions";
                         </div>
 
                         <div className="map-container mr-5" >
-                            {this.state.display && <Map user={this.state.user}/> || <Loader />}
+                            {this.state.display && <Map user={this.state.user} needRefresh={this.props.joueurState.needRefresh}/> || <Loader />}
                         </div>
 
                     </div>

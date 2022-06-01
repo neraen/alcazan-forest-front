@@ -4,6 +4,7 @@ import Case from "./Case";
 import UsersApi from "../../services/UsersApi";
 import MapContext from "../../contexts/MapContext";
 import {connect} from "react-redux";
+import { toast } from "react-toastify";
 import {updatePositionJoueur, removePlayerTarget, updateJoueurState} from "../../store/actions";
 
 
@@ -26,15 +27,28 @@ class Map extends React.Component {
         this.props.updatePositionJoueur({abscisse: this.props.user.caseAbscisse, ordonnee: this.props.user.caseOrdonnee})
     }
 
-    async componentDidMount () {
+    componentDidMount() {
         try {
-            const data = await MapApi.find(this.state.mapId);
-            this.setState({cases: data.cases, name: data.mapInfo.nom, isInstance: data.mapInfo.isInstance});
-            this.setState({unabledCases: this.getUnabledMove()});
+            this.fetchMapData();
         }catch(error){
 
         }
         this.listenKeyboard();
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(prevProps.joueurState.needRefresh !== this.props.joueurState.needRefresh){
+            this.fetchMapData();
+            this.props.updateJoueurState({
+                needRefresh: false
+            })
+        }
+    }
+
+    async fetchMapData(){
+        const data = await MapApi.find(this.state.mapId);
+        this.setState({cases: data.cases, name: data.mapInfo.nom, isInstance: data.mapInfo.isInstance});
+        this.setState({unabledCases: this.getUnabledMove()});
     }
 
     listenKeyboard() {
@@ -71,12 +85,24 @@ class Map extends React.Component {
         if(this.props.target.type === "monstre"){
             this.props.removePlayerTarget();
         }
-        this.setState({abscisseJoueur: abscisse, ordonneeJoueur: ordonnee, cases: data.cases},
+
+        this.setState({abscisseJoueur: data.abscisseJoueur, ordonneeJoueur: data.ordonneeJoueur, cases: data.cases, mapId: data.mapId},
             () => {
-                this.setState({unabledCases: this.getUnabledMove()})
-                this.props.updatePositionJoueur({abscisse: abscisse, ordonnee: ordonnee})
+                this.setState({ unabledCases: this.getUnabledMove() })
+                this.props.updatePositionJoueur({abscisse: data.abscisseJoueur, ordonnee: data.ordonneeJoueur})
                 this.props.updateJoueurState({lifeJoueur: data.life, manaJoueur: data.mana})
             });
+
+        console.log(data.ordonneeJoueur, ordonnee, data.abscisseJoueur, abscisse)
+        if(data.ordonneeJoueur != ordonnee || data.abscisseJoueur != abscisse){
+            toast.error("Un obstacle vous empeche d'aller à cet endroit", {
+                className: 'black-background',
+                bodyClassName: "grow-font-size",
+                progressClassName: 'fancy-progress-bar',
+                position: "top-right",
+                autoClose: 4000
+            })
+        }
 
     }
 
@@ -92,6 +118,7 @@ class Map extends React.Component {
             isInstance: mapData.mapInfo.isInstance
         });
         this.setState({unabledCases: this.getUnabledMove()});
+        this.props.removePlayerTarget();
     }
 
     verifiyMove(abscisse, ordonnee){
@@ -156,5 +183,5 @@ class Map extends React.Component {
 }
 
 export default connect((state, ownProps) => {
-    return {target: state.data.target, ownProps};
+    return {target: state.data.target, joueurState: state.data.joueurState, ownProps};
 }, {updatePositionJoueur, removePlayerTarget, updateJoueurState})(Map);

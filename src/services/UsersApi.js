@@ -25,8 +25,12 @@ function updateCaracteristiques(data){
     return axios.post(API_URL + "joueur/caracteristiques/update", data)
 }
 
-function applyAttaqueToPlayer(targetId, targetType , spellId){
-    return axios.post(API_URL + "joueur/attack", {targetId: targetId, spellId: spellId, type: targetType}).then(response => response.data)
+function applyAttaqueToPlayer(targetId, spellId){
+    return axios.post(API_URL + "joueur/attack/joueur", {targetId: targetId, spellId: spellId}).then(response => response.data)
+}
+
+function applyAttaqueToMonster(targetId, spellId){
+    return axios.post(API_URL + "joueur/attack/monster", {targetId: targetId, spellId: spellId}).then(response => response.data)
 }
 
 function updatePosition(mapId, abscisse, ordonnee){
@@ -51,5 +55,6 @@ export default {
     getLevelAndExperience,
     getPlayerSpells,
     applyAttaqueToPlayer,
+    applyAttaqueToMonster,
     getExpJoueur
 }

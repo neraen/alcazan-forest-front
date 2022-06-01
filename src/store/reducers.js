@@ -24,7 +24,9 @@ export const playerStatsReducer = (state = {
             pa: 0,
             pm: 0,
             money: 0,
-            level : 0
+            level : 0,
+            killMessage: '',
+            needRefresh: false
         },
         mapMaker:{
             mode: {

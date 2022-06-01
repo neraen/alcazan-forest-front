@@ -3,6 +3,7 @@ import React from 'react'
 const Bar = (props) => {
 
     const getWithValueBar = () => {
+        if(props.value < 0) return 0
         return props.value / props.max * props.maxWidth;
     }
 
