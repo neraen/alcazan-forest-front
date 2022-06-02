@@ -10,6 +10,7 @@ import ChatBox from "../components/ChatBox";
 import Target from "../components/Target";
 import { connect } from "react-redux";
 import {updateJoueurState} from "../store/actions";
+import {toast, ToastContainer} from "react-toastify";
 
 
  class MapPage extends React.Component{
@@ -43,6 +44,10 @@ import {updateJoueurState} from "../store/actions";
 
     render(){
         return (<>
+            <ToastContainer
+                position="top-right"
+                theme="dark"
+                autoClose={4000} />
                 <main className="map-page">
                     <div className="top-container raw">
                         <div className="side-block px-5">
@@ -51,14 +56,20 @@ import {updateJoueurState} from "../store/actions";
                             <UserStatsBlock />
                             <SideMenu />
                             {(this.props.joueurState !== undefined && (this.props.joueurState.damage > 0 || this.props.joueurState.damageReturns > 0 || this.props.joueurState.droppedItems !== "" ))&&  (
+                                // toast.info(<div>
+                                //     {(this.props.joueurState.damage > 0) && "Vous infligez "+ this.props.joueurState.damage +" points de dommages et vous gagnez "+this.props.joueurState.experience+" points d'expériences"} <br />
+                                //     {(this.props.joueurState.damageReturns > 0) && "Le monstre riposte et vous inflige "+ this.props.joueurState.damageReturns +" points de dommage"} <br />
+                                //     {(this.props.joueurState.droppedItems !== "") && (<span>En mourrant le monstre laisse tomber ceci : <strong>{this.props.joueurState.droppedItems}</strong></span>)}
+                                //     {(this.props.joueurState.killMessage !== "") && (<strong>{this.props.joueurState.killMessage}</strong>)}
+                                // </div>)
                                 <div className="block-notification">
                                     {(this.props.joueurState.damage > 0) && "Vous infligez "+ this.props.joueurState.damage +" points de dommages et vous gagnez "+this.props.joueurState.experience+" points d'expériences"} <br />
                                     {(this.props.joueurState.damageReturns > 0) && "Le monstre riposte et vous inflige "+ this.props.joueurState.damageReturns +" points de dommage"} <br />
                                     {(this.props.joueurState.droppedItems !== "") && (<span>En mourrant le monstre laisse tomber ceci : <strong>{this.props.joueurState.droppedItems}</strong></span>)}
                                     {(this.props.joueurState.killMessage !== "") && (<strong>{this.props.joueurState.killMessage}</strong>)}
                                 </div>
-                            )}
 
+                            )}
                             {/*<ChatBox user={this.state.user} />*/}
                         </div>
 

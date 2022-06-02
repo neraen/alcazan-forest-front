@@ -4,7 +4,8 @@ import Case from "./Case";
 import UsersApi from "../../services/UsersApi";
 import MapContext from "../../contexts/MapContext";
 import {connect} from "react-redux";
-import { toast } from "react-toastify";
+import {toast, ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import {updatePositionJoueur, removePlayerTarget, updateJoueurState} from "../../store/actions";
 
 
@@ -46,8 +47,9 @@ class Map extends React.Component {
     }
 
     async fetchMapData(){
-        const data = await MapApi.find(this.state.mapId);
-        this.setState({cases: data.cases, name: data.mapInfo.nom, isInstance: data.mapInfo.isInstance});
+        const mapId = this.props.joueurState.mapId ? this.props.joueurState.mapId : this.state.mapId
+        const data = await MapApi.find(mapId);
+        this.setState({cases: data.cases, name: data.mapInfo.nom, isInstance: data.mapInfo.isInstance, mapId: mapId});
         this.setState({unabledCases: this.getUnabledMove()});
     }
 
@@ -60,21 +62,29 @@ class Map extends React.Component {
             case "z":
                 if(this.verifiyMove(this.state.abscisseJoueur, this.state.ordonneeJoueur - 1)){
                     this.updatePosition( this.state.abscisseJoueur, this.state.ordonneeJoueur - 1);
+                }else{
+                    toast.error("Un obstacle vous empeche d'aller à cet endroit")
                 }
                 break;
             case "s":
                 if(this.verifiyMove(this.state.abscisseJoueur, this.state.ordonneeJoueur + 1)) {
                     this.updatePosition(this.state.abscisseJoueur, this.state.ordonneeJoueur + 1);
+                }else{
+                    toast.error("Un obstacle vous empeche d'aller à cet endroit")
                 }
                 break;
             case "q":
                 if(this.verifiyMove(this.state.abscisseJoueur - 1, this.state.ordonneeJoueur)) {
                     this.updatePosition(this.state.abscisseJoueur - 1, this.state.ordonneeJoueur);
+                }else{
+                    toast.error("Un obstacle vous empeche d'aller à cet endroit")
                 }
                 break;
             case "d":
                 if(this.verifiyMove(this.state.abscisseJoueur + 1, this.state.ordonneeJoueur)) {
                     this.updatePosition(this.state.abscisseJoueur + 1, this.state.ordonneeJoueur);
+                }else{
+                    toast.error("Un obstacle vous empeche d'aller à cet endroit")
                 }
                 break;
         }
@@ -93,15 +103,8 @@ class Map extends React.Component {
                 this.props.updateJoueurState({lifeJoueur: data.life, manaJoueur: data.mana})
             });
 
-        console.log(data.ordonneeJoueur, ordonnee, data.abscisseJoueur, abscisse)
         if(data.ordonneeJoueur != ordonnee || data.abscisseJoueur != abscisse){
-            toast.error("Un obstacle vous empeche d'aller à cet endroit", {
-                className: 'black-background',
-                bodyClassName: "grow-font-size",
-                progressClassName: 'fancy-progress-bar',
-                position: "top-right",
-                autoClose: 4000
-            })
+            toast.error("Un obstacle vous empeche d'aller à cet endroit");
         }
 
     }
@@ -117,6 +120,8 @@ class Map extends React.Component {
             abscisseJoueur: mapPosition.abscisse,
             isInstance: mapData.mapInfo.isInstance
         });
+        this.props.updateJoueurState({mapId: mapData.mapId})
+        this.props.updatePositionJoueur({abscisse: mapPosition.abscisse, ordonnee:  mapPosition.ordonnee })
         this.setState({unabledCases: this.getUnabledMove()});
         this.props.removePlayerTarget();
     }
@@ -161,6 +166,10 @@ class Map extends React.Component {
     render()
     {
         return (<>
+            <ToastContainer
+                position="top-right"
+                theme="dark"
+                autoClose={4000} />
             <div className="banner-map">
                 <h1 className="text-center title-map-font">{this.state.name}</h1>
             </div>

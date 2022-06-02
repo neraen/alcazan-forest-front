@@ -32,6 +32,14 @@ main{
     min-height: 90vh!important;
 }
 
+.toast-black-background{
+    background: #333;
+}
+
+.toast-progress-bar{
+    background: #90e0ef;
+}
+
 .main-auth-bg{
     background: url(../img/Scene-12.jpg);
     background-size: cover!important;
