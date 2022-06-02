@@ -41,16 +41,18 @@ main{
 }
 
 .main-auth-bg{
-    background: url(../img/Scene-12.jpg);
+    background: url(../img/background/2_game_background.png);
     background-size: cover!important;
 }
 
 .login-page-main{
-    background: url(../img/moon2.png);
+    background: url(../img/background/BG_03.png);
     background-size: cover!important;
     background-position-y: center;
     content: "";
     height: 100vh;
+    display: flex;
+    align-items: center;
 }
 
 .main-profil-page{
@@ -67,6 +69,16 @@ main{
     background-position-y: center;
     content: "";
     height: 100vh;
+}
+
+.main-register-page{
+    background: url(../img/background/BG_04.png);
+    background-size: cover!important;
+    background-position-y: center;
+    content: "";
+    height: 100vh;
+    display: flex;
+    align-items: center;
 }
 
 /*@font-face {*/
@@ -119,19 +131,19 @@ main{
 
 /** connexion **/
 
-.form-login{
-    position: absolute;
-    /* margin: auto; */
-    top: 33vh;
-    left: 37vw;
-    background: rgba(255,255,255,0.65);
-    padding: 100px;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+/*.form-login{*/
+/*    position: absolute;*/
+/*    !* margin: auto; *!*/
+/*    top: 33vh;*/
+/*    left: 37vw;*/
+/*    background: rgba(255,255,255,0.65);*/
+/*    padding: 100px;*/
+/*    border-radius: 10px;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*}*/
 
 
 
@@ -166,7 +178,8 @@ main{
     border-radius: 7px;
     padding: 20px;
     margin: 15px;
-
+    backdrop-filter: blur(20px);
+    border: solid aliceblue 1px;
 }
 
 .cases{
@@ -197,12 +210,16 @@ main{
 }
 
 .user-stats-block{
-    background: url("../img/gui/Panel2.png");
-    background-size: 355px 131px;
+    /*background: url("../img/gui/Panel2.png");*/
+    /*background-size: 355px 131px;*/
     color: white;
     min-width: 350px;
     max-width: 350px;
     height: 131px;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(20px);
+    border-radius: 7px;
+    border: solid aliceblue 1px;
 }
 
 .user-stats-container{
@@ -226,6 +243,13 @@ main{
     height: 130px;
     position: relative;
     z-index: 10000;
+    /*background: rgba(0,0,0,0.7);*/
+    /*backdrop-filter: blur(20px);*/
+    /*border-radius: 7px;*/
+    /*border: solid aliceblue 1px;*/
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
 }
 
 .player-pseudo{
@@ -527,12 +551,15 @@ main{
 }
 
 .side-menu{
-    background: url("../img/gui/Panel3.png");
+    /*background: url("../img/gui/Panel3.png");*/
     background-size: 391px 203px;
-    border-radius: 10px;
     color: white;
     min-width: 350px;
     max-width: 350px;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(20px);
+    border-radius: 7px;
+    border: solid aliceblue 1px;
 }
 
 .side-menu-link span{
@@ -1872,6 +1899,53 @@ section #text span{
     list-style: none;
     text-decoration: none;
     color: aliceblue;
+}
+
+/*** REGISTER PAGE **/
+
+.register-form, .form-login{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(20px);
+    color: aliceblue;
+    width: 30vw;
+    margin: auto;
+    padding: 50px;
+    border-radius: 7px;
+    border: solid aliceblue 1px;
+}
+
+.form-register-radio-sexe{
+    margin: 5px;
+}
+
+.form-register-input-sexe input{
+    margin-right: 5px;
+}
+
+.form-register-input-sexe input:nth-child(2){
+    margin-left: 15px;
+}
+
+.btn-valider-inscription, .btn-valider-login{
+    padding: 5px 7px;
+    background: transparent;
+    border: solid greenyellow 1px;
+    margin-top: 15px;
+    color: aliceblue;
+}
+
+.btn-valider-inscription:hover{
+    background: #b7e4c7;
+    color: #333
+}
+
+.btn-link-have-account{
+    color: greenyellow;
+    margin-left: 12px;
 }
 
 

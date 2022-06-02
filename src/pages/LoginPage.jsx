@@ -38,7 +38,7 @@ const LoginPage = ({history }) =>{
         <>
             <div className="login-page-main">
                 <form className="form-login" onSubmit={handleSubmit}>
-                    <h1 style={{color: '#222'}}>Connexion</h1>
+                    <h1 style={{color: 'aliceblue'}}>Connexion</h1>
                     <div className="form-group">
                         <label htmlFor="username">Adresse email</label>
                         <input type="email" name="username" id="username" className={"form-control" + (error ? " is-invalid": "")} value={credentials.username} onChange={handleChange}/>
@@ -49,7 +49,7 @@ const LoginPage = ({history }) =>{
                         <input type="password" name="password" id="password" className="form-control" value={credentials.password} onChange={handleChange}/>
                     </div>
                     <div className="form-group">
-                        <button type="submit" className="btn btn-success">Je me connecte</button>
+                        <button type="submit" className="btn-valider-login">Je me connecte</button>
                     </div>
                 </form>
             </div>

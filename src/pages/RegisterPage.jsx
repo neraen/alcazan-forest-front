@@ -7,6 +7,7 @@ const RegisterPage = ({history}) => {
 
     const [user, setUser] = useState({
         pseudo: '',
+        sexe: 'feminin',
         email: '',
         password: '',
         passwordConfirm: '',
@@ -48,20 +49,30 @@ const RegisterPage = ({history}) => {
         }
     }
 
-    return <>
-        <h1>Inscription</h1>
-        <form onSubmit={handleSubmit}>
-            <Field name="pseudo" label="Pseudo" placeholder="Votre pseudo" onChange={handleChange} value={user.pseudo} error={errors.pseudo}/>
-            <Field name="email" label="Email" placeholder="Votre email" onChange={handleChange} value={user.email} error={errors.email} type="email"/>
-            <Field name="password" label="Mot de passe" placeholder="Votre mot de passe" onChange={handleChange} value={user.password} error={errors.password} type="password"/>
-            <Field name="passwordConfirm" label="Confirmation du mot de passe" placeholder="Repetez le mot de passe" onChange={handleChange} value={user.passwordConfirm} error={errors.passwordConfirm} type="password"/>
+    return <div className="main-register-page">
 
-            <div className="form-group">
-                <button type="submit" className="btn btn-success">Je m'inscrit</button>
-                <Link to='/connexion' className="btn btn-link">J'ai déjà un compte</Link>
-            </div>
-        </form>
-    </>
+        <div className="register-form">
+            <h1>Inscription</h1>
+            <form onSubmit={handleSubmit}>
+                <Field name="pseudo" label="Pseudo" placeholder="Votre pseudo" onChange={handleChange} value={user.pseudo} error={errors.pseudo}/>
+                <div className="form-register-radio-sexe">
+                    <label>Sexe du personnage</label><br />
+                    <div className="form-register-input-sexe">
+                        <input type="radio" name="sexe" value="feminin" checked={user.sexe === "feminin"} onChange={handleChange}/>Femme
+                        <input type="radio" name="sexe" value="masculin" checked={user.sexe === "masculin"} onChange={handleChange}/>Homme
+                    </div>
+                </div>
+                <Field name="email" label="Email" placeholder="Votre email" onChange={handleChange} value={user.email} error={errors.email} type="email"/>
+                <Field name="password" label="Mot de passe" placeholder="Votre mot de passe" onChange={handleChange} value={user.password} error={errors.password} type="password"/>
+                <Field name="passwordConfirm" label="Confirmation du mot de passe" placeholder="Repetez le mot de passe" onChange={handleChange} value={user.passwordConfirm} error={errors.passwordConfirm} type="password"/>
+
+                <div className="form-group">
+                    <button type="submit" className="btn-valider-inscription">Je m'inscrit</button>
+                    <Link to='/connexion' className="btn-link-have-account">J'ai déjà un compte</Link>
+                </div>
+            </form>
+        </div>
+    </div>
 }
 
 export default RegisterPage
