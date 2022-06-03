@@ -36,8 +36,8 @@ const Modal = ({ isShowing, hide, title, ...props }) =>
                 background: rgba(0,0,0,0.5);
                 border: rgba(255,255,255,0.4) 1px solid;
                 position: absolute;
-               top: -290px;
-                left: -113px;
+                top: 0px;
+                left: 71px;
                 backdrop-filter: blur(20px);
                 z-index: 50;
                 color: aliceblue;

@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react'
 import UsersApi from "../../services/UsersApi";
 import {connect} from "react-redux";
-import {fetchTargetInfo, updateJoueurState} from "../../store/actions";
+import {fetchTargetInfo, updateJoueurState, removePlayerTarget} from "../../store/actions";
 import distanceCalculator from "../../services/distanceCalculator";
+import {toast} from "react-toastify";
 
 const Spell = (props) => {
 
@@ -21,6 +22,7 @@ const Spell = (props) => {
         }else{
             document.querySelector(".spell-filter-" + props.spell.id).style.background = 'conic-gradient(rgba(0, 0, 0, 0.6) '+ passedTime +'% ,rgba(0, 0, 0, 0.1)  '+ passedTime +'%)';
         }
+
 
         if(props.target.type === "player"){
             const distance = distanceCalculator.computeDistance(props.target.abscisseTarget, props.target.ordonneeTarget, props.positionJoueur.abscisse, props.positionJoueur.ordonnee);
@@ -65,7 +67,6 @@ const Spell = (props) => {
     }
 
     const handleAttack = async event => {
-
         if(props.target.type === "player"){
             const distance = distanceCalculator.computeDistance(props.target.abscisseTarget, props.target.ordonneeTarget, props.positionJoueur.abscisse, props.positionJoueur.ordonnee);
             if(props.spell.portee < distance){
@@ -77,13 +78,17 @@ const Spell = (props) => {
                     await launchAttack();
                 }
             }
-        }else{
+        }else if(props.target.type === "monstre"){
             await launchAttack();
+        }else{
+            console.log(props.target.type)
+            toast("Vous n'avez pas de cible.")
         }
     }
 
     const launchAttack = async () => {
         let attackStats = {};
+
         if(props.target.type === "player"){
             attackStats = await UsersApi.applyAttaqueToPlayer(props.target.targetId, props.spell.id)
         }else{
@@ -102,6 +107,10 @@ const Spell = (props) => {
             killMessage: attackStats.killMessage,
             needRefresh: true
         })
+
+        if(attackStats.killMessage){
+            props.removePlayerTarget();
+        }
     }
 
     return <>
@@ -119,4 +128,4 @@ export default connect((state, ownProps) => {
     let target = state.data.target;
     let positionJoueur = state.data.positionJoueur;
     return {target, positionJoueur, ownProps};
-}, {fetchTargetInfo, updateJoueurState})(Spell);
+}, {fetchTargetInfo, updateJoueurState, removePlayerTarget})(Spell);

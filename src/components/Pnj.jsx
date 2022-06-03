@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import useModal from "../hooks/useModal";
 import pnjApi from "../services/pnjApi";
 import UserActionApi from "../services/UserActionApi";
-import PnjModal from "../administration/components/pnj/PnjModal";
+import PnjModal from "./pnj/PnjModal";
 
 
 const Pnj = (props) => {
@@ -45,7 +45,7 @@ const Pnj = (props) => {
             </div>
         </div>
 
-        <PnjModal toggleDialogPnj={toggleDialogPnj} isDialogShowed={isDialogShowed} title={pnjInfo.title} typePnj={pnjInfo.typePnj} typeShop={pnjInfo.typeShop} data={pnjInfo.items}/>
+        <PnjModal toggleDialogPnj={toggleDialogPnj} isDialogShowed={isDialogShowed} pnjId={props.pnj.pnjId} title={pnjInfo.title} typePnj={pnjInfo.typePnj} typeShop={pnjInfo.typeShop} data={pnjInfo.items}/>
 
         {/*{clicked && sequence !== [] &&*/}
         {/*<Modal*/}

@@ -1,16 +1,13 @@
 import React  from "react"
 import {connect} from "react-redux";
-import {updateJoueurState} from "../../../store/actions";
-import UserActionApi from "../../../services/UserActionApi";
+import {updateJoueurState} from "../../store/actions";
+import UserActionApi from "../../services/UserActionApi";
 
 
 const ShopView = (props) => {
 
     const handleAchat = async (item) => {
         const playerMoneyAfterBuy = +props.joueurState.money - +item.prixAchat;
-        console.log(playerMoneyAfterBuy)
-        console.log(props.joueurState.money)
-        console.log(item.prixAchat)
         if(playerMoneyAfterBuy >= 0){
             const playerMoney = await UserActionApi.buyItem(item.idEquipement)
             props.updateJoueurState({money: playerMoney.money})
