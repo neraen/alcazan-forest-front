@@ -623,6 +623,11 @@ main{
     cursor: pointer;
 }
 
+.spell-bar-separator{
+    content: "";
+    margin-left: 25px;
+}
+
 .spell{
     min-width: 71px;
     min-height: 71px;
@@ -638,7 +643,7 @@ main{
     cursor: pointer;
 }
 
-.spell-filter{
+.spell-filter, .consommable-filter{
     background: none;
     position: absolute;
     top: 0;
@@ -1825,7 +1830,7 @@ section #text span{
         font-size: 11px;
     }
 
-    .spell, .spell-filter{
+    .spell, .spell-filter, .consommable-filter{
         width: 58px;
         height: 58px;
         min-height: 58px;
@@ -2246,7 +2251,7 @@ section #text span{
         font-size: 11px;
     }
 
-    .spell, .spell-filter{
+    .spell, .spell-filter, .consommable-filter{
         width: 58px;
         height: 58px;
         min-height: 58px;
@@ -2383,7 +2388,7 @@ section #text span{
         z-index: 0;
     }
 
-    .spell, .spell-filter {
+    .spell, .spell-filter, .consommable-filter {
         width: 40px;
         height: 40px;
         min-height: 40px;

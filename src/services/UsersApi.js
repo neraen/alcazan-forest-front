@@ -17,6 +17,10 @@ function getPlayerSpells(){
     return axios.post(API_URL + "joueur/spells" ).then(response => response.data)
 }
 
+function getPlayerConsommables(){
+    return axios.post(API_URL + "joueur/consommables" ).then(response => response.data)
+}
+
 function getCaracteristiques(id){
     return axios.get(API_URL + "joueur/caracteristiques").then(response => response.data)
 }
@@ -54,6 +58,7 @@ export default {
     updateCaracteristiques,
     getLevelAndExperience,
     getPlayerSpells,
+    getPlayerConsommables,
     applyAttaqueToPlayer,
     applyAttaqueToMonster,
     getExpJoueur

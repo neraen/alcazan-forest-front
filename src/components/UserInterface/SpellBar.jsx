@@ -2,11 +2,13 @@ import React, {useEffect, useState} from 'react'
 import Spell from "../spells/Spell";
 import Bar from "./Bar";
 import UsersApi from "../../services/UsersApi";
+import Consommable from "../Consommable";
 
 const SpellBar = (props) => {
 
     const [experienceData, setExperienceData] = useState({experienceActuelle : 0, experienceMax: 0});
     const [spells, setSpells] = useState();
+    const [consommables, setConsommables] = useState();
 
     useEffect(() => {
         if(experienceData.experienceMax === 0){
@@ -23,7 +25,9 @@ const SpellBar = (props) => {
 
     const getPlayerSpells = async () => {
         const spells = await UsersApi.getPlayerSpells();
+        const consommables = await UsersApi.getPlayerConsommables();
         setSpells(spells);
+        setConsommables(consommables);
     }
 
 
@@ -38,12 +42,26 @@ const SpellBar = (props) => {
                 <Bar value={0} max={99999} maxWidth={1000} classN="expBar"/>
                 }
             </div>
+
             <div className="spells row align-items-center">
                 <div className="col-6 d-flex">
                     {spells && spells.map(spell => (
                         <Spell key={spell.id} spell={spell} />
                     ))}
-                    {spells && [...Array(10 - spells.length)].map((x, i) =>
+                    {spells && [...Array(8 - spells.length)].map((x, i) =>
+                        <div  className="spell" key={i}>
+
+                        </div>
+                    )}
+
+                    <div className="spell-bar-separator">
+
+                    </div>
+
+                    {consommables && consommables.map(consommable => (
+                        <Consommable key={consommable.id} consommable={consommable} />
+                    ))}
+                    {consommables && [...Array(2 - consommables.length)].map((x, i) =>
                         <div  className="spell" key={i}>
 
                         </div>
