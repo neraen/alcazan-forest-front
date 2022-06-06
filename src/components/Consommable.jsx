@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {connect} from "react-redux";
 import {fetchTargetInfo, updateJoueurState, removePlayerTarget} from "../store/actions";
 import {toast} from "react-toastify";
+import UserActionApi from "../services/UserActionApi";
 
 const Consommable = (props) => {
 
@@ -61,7 +62,11 @@ const Consommable = (props) => {
     }
 
     const takeConsommable = async () => {
-
+        const statsAfterUseConsommable = await UserActionApi.takeConsommable(props.consommable.id);
+        props.updateJoueurState({
+            lifeJoueur: statsAfterUseConsommable.life,
+            manaJoueur: statsAfterUseConsommable.mana,
+        })
     }
 
     return <>

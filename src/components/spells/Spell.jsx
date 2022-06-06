@@ -108,6 +108,7 @@ const Spell = (props) => {
             needRefresh: true
         })
 
+        /** todo verifier si target.mapId !== joueur.MapId */
         if(attackStats.killMessage){
             props.removePlayerTarget();
         }

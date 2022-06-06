@@ -9,13 +9,17 @@ function applyUserAction(link, params, actionId){
     return axios.post(API_URL + link, {...JSON.parse(params), actionId: actionId}).then(response => response.data)
 }
 
+function takeConsommable(consommableId){
+    return axios.post(API_URL + 'joueur/use/consommable', {consommableId: consommableId}).then(response => response.data)
+}
+
 function buyItem(itemId){
-    console.log(itemId)
     return axios.post(API_URL + 'joueur/buy/shop', {item: itemId}).then(response => response.data)
 }
 
 
 export default {
     applyUserAction,
-    buyItem
+    buyItem,
+    takeConsommable
 }
