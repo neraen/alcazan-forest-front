@@ -643,6 +643,10 @@ main{
     cursor: pointer;
 }
 
+.spell-inventaire{
+    width: 71px;
+}
+
 .spell-filter, .consommable-filter{
     background: none;
     position: absolute;

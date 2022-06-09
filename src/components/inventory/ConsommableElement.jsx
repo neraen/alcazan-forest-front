@@ -2,7 +2,7 @@ import React from 'react'
 
 
  const ConsommableElement = (props) => {
-
+    
     return (
         <div className="inventaire-item" key={props.consommable.idConsommable}>
             <img className="inventaire-item-img" src={'../img/consommables/'+props.consommable.imageConsommable}/>
