@@ -4,7 +4,7 @@ import React from 'react'
  const ConsommableElement = (props) => {
     
     return (
-        <div className="inventaire-item" key={props.consommable.idConsommable}>
+        <div className="inventaire-item" ref={props.innerRef} key={props.consommable.idConsommable}>
             <img className="inventaire-item-img" src={'../img/consommables/'+props.consommable.imageConsommable}/>
             <div className="inventaire-item-hover">
                 <div className="inventaire-item-hover-header">

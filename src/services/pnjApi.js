@@ -14,9 +14,14 @@ function getPnjInfos(pnjId){
     return axios.post(API_URL + "pnj", {pnjId: pnjId}).then(response => response.data)
 }
 
+function getPnjAction(pnjId){
+    return axios.post(API_URL + "pnj/action", {pnjId: pnjId}).then(response => response.data)
+}
+
 
 export default {
     getSequence,
     create,
-    getPnjInfos
+    getPnjInfos,
+    getPnjAction
 }

@@ -3,6 +3,7 @@ import React from "react";
 import Modal from "../Modal";
 import ShopView from "./ShopView";
 import QuestView from "./QuestView";
+import ActionView from "./ActionView";
 
 class PnjModal extends React.Component{
 
@@ -18,9 +19,14 @@ class PnjModal extends React.Component{
             title={this.props.title}>
             {this.props.typePnj === "shop" && (
                 <ShopView typeShop={this.props.typeShop} items={this.props.data}/>
-            ) || (
+            )}
+            {this.props.typePnj === "quest" &&(
                 <QuestView pnjId={this.props.pnjId} />
             )}
+            {this.props.typePnj === "action" &&(
+                <ActionView pnjId={this.props.pnjId} />
+            )}
+
         </Modal>
     }
 }

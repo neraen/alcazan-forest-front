@@ -25,12 +25,19 @@ const move = (source, destination, droppableSource, droppableDestination) => {
 
 // a little function to help us with reordering the result
 const reorder = (list, startIndex, endIndex) => {
+    console.log(list)
     const result = Array.from(list);
     const [removed] = result.splice(startIndex, 1);
     result.splice(endIndex, 0, removed);
 
     return result;
 }
+
+const getListStyle = isDraggingOver => ({
+   // background: isDraggingOver ? 'lightblue' : 'lightgrey',
+    padding: 8,
+    width: 250
+});
 
 class Objets extends React.Component {
 
@@ -105,17 +112,18 @@ class Objets extends React.Component {
                         <Droppable droppableId="droppable">
                             {(provided, snapshot) => (
                                 <div className="inventaire-consommables">
-                                    <div className="inventaire-items">
+                                    <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)} className="inventaire-items">
                                         { this.props.consommables && this.props.consommables.map((consommable, index) =>
                                             <Draggable
-                                                key={consommable.id}
-                                                draggableId={consommable.id}
+                                                key={consommable.idConsommable.toString()}
+                                                draggableId={consommable.idConsommable.toString()}
                                                 index={index}>
                                                 {(provided, snapshot) => (
-                                                    <ConsommableElement ref={provided.innerRef}
-                                                                        {...provided.draggableProps}
-                                                                        {...provided.dragHandleProps}
-                                                                        consommable={consommable} />
+                                                    <div  ref={provided.innerRef}
+                                                          {...provided.draggableProps}
+                                                          {...provided.dragHandleProps}>
+                                                        <ConsommableElement consommable={consommable}/>
+                                                    </div>
                                                 )}
                                             </Draggable>
                                         )}
@@ -138,26 +146,18 @@ class Objets extends React.Component {
 
                 <Droppable droppableId="droppable2">
                     {(provided, snapshot) => (
-                        <div ref={provided.innerRef} className="spells row align-items-center">
-
-                            <Draggable key={'1'} draggableId={'1'} index={1}>
-                                {(provided, snapshot) => (
-                                    <div  ref={provided.innerRef}
-                                          {...provided.draggableProps}
-                                          {...provided.dragHandleProps} className="spell spell-inventaire" >
-
-                                    </div>
-                                )}
-                            </Draggable>
-                            <Draggable key={'2'} draggableId={'2'} index={2}>
-                                {(provided, snapshot) => (
-                                    <div   ref={provided.innerRef}
-                                           {...provided.draggableProps}
-                                           {...provided.dragHandleProps} className="spell spell-inventaire">
-
-                                    </div>
-                                )}
-                            </Draggable>
+                        <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)} className="spells row align-items-center">
+                            {['1','2'].map((key, index) => (
+                                <Draggable key={'equiped'+key} draggableId={'equiped'+key} index={index}>
+                                    {(provided, snapshot) => (
+                                        <div>
+                                            <div ref={provided.innerRef}
+                                                    {...provided.draggableProps}
+                                                    {...provided.dragHandleProps} className="spell spell-inventaire">toto</div>
+                                        </div>
+                                    )}
+                                </Draggable>
+                            ) )}
                         </div>
                     )}
                 </Droppable>
