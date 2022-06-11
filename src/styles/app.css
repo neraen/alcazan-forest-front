@@ -479,6 +479,12 @@ main{
     padding-left: 10px;
 }
 
+.icone-alignement{
+    position: absolute;
+    right: 20px;
+    top: 26px;
+}
+
 /* PNJ */
 
 .pnj{

@@ -7,6 +7,7 @@ import {connect} from "react-redux";
 import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import {updatePositionJoueur, removePlayerTarget, updateJoueurState} from "../../store/actions";
+import distanceCalculator from "../../services/distanceCalculator";
 
 
 class Map extends React.Component {
@@ -127,8 +128,12 @@ class Map extends React.Component {
     }
 
     verifiyMove(abscisse, ordonnee){
-        const newCaseId = this.state.cases.filter(oneCase => oneCase.abscisse === abscisse && oneCase.ordonnee === ordonnee)[0].carteCarreauId;
-        return this.state.unabledCases.filter(oneCase => oneCase === newCaseId).length
+        const newCase = this.state.cases.filter(oneCase => oneCase.abscisse === abscisse && oneCase.ordonnee === ordonnee)[0];
+        if(newCase !== undefined){
+            const newCaseId = this.state.cases.filter(oneCase => oneCase.abscisse === abscisse && oneCase.ordonnee === ordonnee)[0].carteCarreauId;
+            return this.state.unabledCases.filter(oneCase => oneCase === newCaseId).length
+        }
+       return false;
     }
 
     getUnabledMove(){
@@ -143,7 +148,10 @@ class Map extends React.Component {
 
     handleClick(clickedCase){
         if(clickedCase.isWrap){
-            this.changeMap(clickedCase.targetMapId, clickedCase.targetWrap)
+            const distance = distanceCalculator.computeDistance(clickedCase.abscisse, clickedCase.ordonnee, this.state.abscisseJoueur, this.state.ordonneeJoueur)
+            if(distance <= 1){
+                this.changeMap(clickedCase.targetMapId, clickedCase.targetWrap)
+            }
         }
         else if(this.state.unabledCases.includes(clickedCase.carteCarreauId)){
             this.updatePosition(clickedCase.abscisse, clickedCase.ordonnee);
