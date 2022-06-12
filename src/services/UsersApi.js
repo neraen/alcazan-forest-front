@@ -26,7 +26,7 @@ function getCaracteristiques(id){
 }
 
 function updateCaracteristiques(data){
-    return axios.post(API_URL + "joueur/caracteristiques/update", data)
+    return axios.post(API_URL + "joueur/caracteristiques/update", data).then(response => response.data)
 }
 
 function applyAttaqueToPlayer(targetId, spellId){

@@ -81,7 +81,6 @@ const Spell = (props) => {
         }else if(props.target.type === "monstre"){
             await launchAttack();
         }else{
-            console.log(props.target.type)
             toast("Vous n'avez pas de cible.")
         }
     }
@@ -92,7 +91,12 @@ const Spell = (props) => {
         if(props.target.type === "player"){
             attackStats = await UsersApi.applyAttaqueToPlayer(props.target.targetId, props.spell.id)
         }else{
-            attackStats = await UsersApi.applyAttaqueToMonster(props.target.targetId, props.spell.id)
+            if(props.spell.type !== "soin"){
+                attackStats = await UsersApi.applyAttaqueToMonster(props.target.targetId, props.spell.id)
+            }else{
+                toast("Vous ne pouvez pas soigner cette cible")
+                return;
+            }
         }
 
         await props.fetchTargetInfo(props.target.targetId, props.target.type);

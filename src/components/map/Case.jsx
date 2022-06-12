@@ -10,7 +10,7 @@ const Case = (props) => {
 
 
     return <>
-        <div className={"case "+ (props.isUnabled && "unabled-move" || 'disabled-move') } style={{border: "rgba(255, 255, 255, .5) 1px solid"}} >
+        <div className={"case "+ (props.isUnabled && "unabled-move" || 'disabled-move') } >
             { props.hasPnj && <Pnj pnj={props.hasPnj}/>}
             { props.haveJoueur && <Player player={props.haveJoueur} hasMonstre={props.hasMonstre}/>}
         </div>

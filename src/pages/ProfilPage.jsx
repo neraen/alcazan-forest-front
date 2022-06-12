@@ -8,6 +8,7 @@ import UserStatsBlock from "../components/UserInterface/UserStatsBlock";
 import Map from "../components/map/Map";
 import UsersApi from "../services/UsersApi";
 import authAPI from "../services/authAPI";
+import {ToastContainer} from "react-toastify";
 
 const ProfilPage = (props) => {
 
@@ -24,6 +25,10 @@ const ProfilPage = (props) => {
 
     return <>
         <main className="main-profil-page ">
+            <ToastContainer
+                position="top-right"
+                theme="dark"
+                autoClose={4000} />
             <div className="banner-map m-auto">
                 <h1 className="text-center title-map-font a">Profil</h1>
             </div>

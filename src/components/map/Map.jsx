@@ -111,7 +111,9 @@ class Map extends React.Component {
     }
 
     async changeMap(targetMapId, targetWrap){
+        console.log(targetMapId, targetWrap)
         const mapPosition = await UsersApi.changeMap(targetMapId, targetWrap);
+        console.log(mapPosition);
         const mapData = await MapApi.find(mapPosition.mapId);
         this.setState({
             cases: mapData.cases,
@@ -174,10 +176,7 @@ class Map extends React.Component {
     render()
     {
         return (<>
-            <ToastContainer
-                position="top-right"
-                theme="dark"
-                autoClose={4000} />
+
             <div className="banner-map">
                 <h1 className="text-center title-map-font">{this.state.name}</h1>
             </div>

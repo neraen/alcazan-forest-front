@@ -47,42 +47,14 @@ class ShopAddForm extends React.Component{
         return(
             <div>
                 <h1>Shop</h1>
-                <Formik
-                    initialValues={{ items: this.state.items }}
-                    onSubmit={values =>
-                        setTimeout(() => {
-                            alert(JSON.stringify(values, null, 2));
-                        }, 500)
-                    }
-                    render={({ values }) => (
-                        <Form>
-                            <FieldArray
-                                name="friends"
-                                render={arrayHelpers => (
-                                    <div>
-                                        {values.items.map((item, index) => (
-                                            <div key={index}>
-                                                {/** both these conventions do the same */}
-                                                <Field name={`items[${index}].name`} />
-                                                <Field name={`items.${index}.age`} />
 
-                                                <button type="button" onClick={() => arrayHelpers.remove(index)}>
-                                                    -
-                                                </button>
-                                            </div>
-                                        ))}
-                                        <button
-                                            type="button"
-                                            onClick={() => arrayHelpers.push({ name: '', age: '' })}
-                                        >
-                                            +
-                                        </button>
-                                    </div>
-                                )}
-                            />
-                        </Form>
-                    )}
-                />
+            <Formik >
+                {() => (
+                    <form>
+                        <label></label>
+                    </form>
+                )}
+            </Formik>
             </div>
         );
     }
