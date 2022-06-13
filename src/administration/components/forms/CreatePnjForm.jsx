@@ -10,6 +10,7 @@ const CreatePnjForm = (props) => {
         avatar : "",
         skin : "",
         description : "",
+        type : "",
     });
 
     const handleChange = ({ currentTarget }) => {
@@ -28,6 +29,7 @@ const CreatePnjForm = (props) => {
             <Field  name="avatar" label="Nom fichier avatar" value={pnj.avatar} onChange={(event) => handleChange(event)}/>
             <Field  name="skin" label="Nom fichier skin" value={pnj.skin} onChange={(event) => handleChange(event)}/>
             <Field  name="description" label="Description" value={pnj.description} onChange={(event) => handleChange(event)}/>
+            <Field  name="type" label="type" value={pnj.type} onChange={(event) => handleChange(event)}/>
             <button type="submit">Creer le pnj</button>
         </form>
 

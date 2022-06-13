@@ -18,7 +18,6 @@ class Target extends Component{
             }else{
                 this.props.removePlayerTarget();
             }
-
         }
     }
 
