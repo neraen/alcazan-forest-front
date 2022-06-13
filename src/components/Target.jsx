@@ -2,7 +2,7 @@ import React, {Component, useEffect, useState} from 'react'
 import {ProgressBar} from "react-bootstrap";
 import StatBar from "./UserInterface/StatBar";
 import {connect} from "react-redux";
-import { fetchTargetInfo } from "../store/actions";
+import { fetchTargetInfo, removePlayerTarget } from "../store/actions";
 
 
 class Target extends Component{
@@ -13,7 +13,12 @@ class Target extends Component{
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if ((prevProps.target.type !== this.props.target.type) || (prevProps.target.targetId !== this.props.target.targetId)) {
-            this.props.fetchTargetInfo(this.props.target.targetId, this.props.target.type);
+            if(this.props.target.type !== undefined){
+                this.props.fetchTargetInfo(this.props.target.targetId, this.props.target.type);
+            }else{
+                this.props.removePlayerTarget();
+            }
+
         }
     }
 
@@ -54,4 +59,4 @@ class Target extends Component{
 export default connect(state => {
     let target = state.data.target;
     return {target};
-}, {fetchTargetInfo})(Target);
+}, {fetchTargetInfo, removePlayerTarget})(Target);
