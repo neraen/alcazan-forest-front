@@ -26,6 +26,9 @@ class PnjModal extends React.Component{
             {this.props.typePnj === "action" &&(
                 <ActionView pnjId={this.props.pnjId} />
             )}
+            {this.props.typePnj === "guilde" &&(
+                <ActionView pnjId={this.props.pnjId} />
+            )}
 
         </Modal>
     }
