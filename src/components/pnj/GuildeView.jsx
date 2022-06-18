@@ -79,21 +79,24 @@ class GuildeView extends React.Component {
         return(
             <div className="quest-modal-body">
                 <div className="guilde-body-transition dungeons-font">{this.state.writtedDialogue && this.state.writtedDialogue}</div><br />
-                <table>
+                <h2 className="title-guilde-list">Liste des guildes</h2>
+                <table className="table-guilde-list">
                     <tr className="tr-guilde-list">
                         <th className="th-guilde-list">Nom</th>
+                        <th className="th-guilde-list">Description</th>
                         <th className="th-guilde-list">Niveau</th>
                         <th className="th-guilde-list">Icone</th>
                         <th className="th-guilde-list">Actions</th>
                     </tr>
                     {this.state.guildes && this.state.guildes.length > 0 && this.state.guildes.map(guilde => (
-                        <tr key={guilde.id} className="pnj-liste-guilde">
-                            <td>{guilde.nom}</td>
-                            <td>{guilde.niveau}</td>
-                            <td>{guilde.icone}</td>
-                            <td>
+                        <tr key={guilde.id} className="tr-guilde-list">
+                            <td className="th-guilde-list">{guilde.nom}</td>
+                            <td className="th-guilde-list">{guilde.description}</td>
+                            <td className="th-guilde-list">{guilde.niveau}</td>
+                            <td className="th-guilde-list">{guilde.icone}</td>
+                            <td className="th-guilde-list flex-row">
                                 <button>Rejoindre</button>
-                                <button>Voir</button>
+                                <button>Détails</button>
                             </td>
                         </tr>
 

@@ -28,6 +28,7 @@ const Modal = ({ isShowing, hide, title, ...props }) =>
                 text-align: center;
                 display: flex;
                 align-items: center;
+                font-family: 'Modern Antiqua', cursive;
             }
            
             .modal-custom {

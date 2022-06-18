@@ -1872,11 +1872,54 @@ section #text span{
     }
 }
 
+/***** GUILDE ***/
 
+@import url('https://fonts.googleapis.com/css2?family=Modern+Antiqua&display=swap');
 .guilde-body-transition{
     transition: all 0.5s ease-out;
-    font-family: 'Press Start 2P', cursive;
+    /*font-family: 'Press Start 2P', cursive;*/
+    font-family: 'Modern Antiqua', cursive;
+
     /*font-family: Dungeon sans-serif;*/
+}
+
+.title-guilde-list{
+    font-family: 'Modern Antiqua', cursive;
+    text-align: center;
+}
+
+.table-guilde-list{
+    margin: auto;
+    margin-top: 20px;
+
+}
+
+.th-guilde-list{
+    padding: 4px;
+    border: 1px solid #b7e4c7;
+    text-align: center;
+    font-family: 'Modern Antiqua', cursive;
+}
+
+
+
+
+.th-guilde-list button{
+    background: none;
+    border: solid 1px #b7e4c7;
+    color: aliceblue;
+    padding: 5px;
+    border-radius: 5px;
+
+}
+
+.th-guilde-list button:nth-child(1){
+    margin-right: 10px;
+}
+
+.th-guilde-list button:hover{
+    background: #b7e4c7;
+    color: #212529;
 }
 
 
