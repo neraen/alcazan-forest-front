@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Akaya+Telivigala&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 /*@import url(../../public/fonts/BerryRotunda.ttf);*/
 
 * {
@@ -1869,6 +1871,15 @@ section #text span{
         height: 39px;
     }
 }
+
+
+.guilde-body-transition{
+    transition: all 0.5s ease-out;
+    font-family: 'Press Start 2P', cursive;
+    /*font-family: Dungeon sans-serif;*/
+}
+
+
 
 
 /********************************** ADMINISTRATION ***********************************/

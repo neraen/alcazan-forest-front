@@ -18,10 +18,15 @@ function getPnjAction(pnjId){
     return axios.post(API_URL + "pnj/action", {pnjId: pnjId}).then(response => response.data)
 }
 
+function getPnjGuilde(pnjId){
+    return axios.post(API_URL + "pnj/guildes", {pnjId: pnjId}).then(response => response.data)
+}
+
 
 export default {
     getSequence,
     create,
     getPnjInfos,
-    getPnjAction
+    getPnjAction,
+    getPnjGuilde
 }

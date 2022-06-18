@@ -4,6 +4,7 @@ import Modal from "../Modal";
 import ShopView from "./ShopView";
 import QuestView from "./QuestView";
 import ActionView from "./ActionView";
+import GuildeView from "./GuildeView";
 
 class PnjModal extends React.Component{
 
@@ -27,7 +28,7 @@ class PnjModal extends React.Component{
                 <ActionView pnjId={this.props.pnjId} />
             )}
             {this.props.typePnj === "guilde" &&(
-                <ActionView pnjId={this.props.pnjId} />
+                <GuildeView pnjId={this.props.pnjId} />
             )}
 
         </Modal>
