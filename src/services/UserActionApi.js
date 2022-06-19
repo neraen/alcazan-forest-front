@@ -17,9 +17,14 @@ function buyItem(itemId){
     return axios.post(API_URL + 'joueur/buy/shop', {item: itemId}).then(response => response.data)
 }
 
+function joinGuilde(guildeId){
+    return axios.post(API_URL + 'joueur/guilde/join', {guildeId: guildeId}).then(response => response.data)
+}
+
 
 export default {
     applyUserAction,
     buyItem,
-    takeConsommable
+    takeConsommable,
+    joinGuilde
 }
