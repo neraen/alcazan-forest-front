@@ -10,6 +10,7 @@ import ProfilPage from "./pages/ProfilPage";
 import AuthContext from "./contexts/AuthContext";
 import PrivateRoute from "./components/PrivateRoute";
 import MapPage from "./pages/MapPage";
+import GuildePage from "./pages/GuildePage";
 import InventoryPage from "./pages/InventoryPage";
 import {Provider} from "react-redux";
 // import MercureSubscriber from "@cerati/react-mercure";
@@ -45,6 +46,7 @@ const Index =  () => {
                         <PrivateRoute path="/profil" component={ProfilPage}/>
                         <PrivateRoute path="/carte" component={MapPage}/>
                         <PrivateRoute path="/inventaire" redirectTo="/inventaire/equipement" component={InventoryPage}/>
+                        <PrivateRoute path="/guilde"  isAdmin={true} component={GuildePage}/>
                         <PrivateRoute path="/administration"  isAdmin={true} component={AdministrationPage}/>
                         <Route path="/" component={HomePage}/>
                     </Switch>
