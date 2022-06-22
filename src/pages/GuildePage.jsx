@@ -11,6 +11,7 @@ import Target from "../components/Target";
 import { connect } from "react-redux";
 import {updateJoueurState} from "../store/actions";
 import {toast, ToastContainer} from "react-toastify";
+import Guilde from "../components/Guilde";
 
 
  class GuildePage extends React.Component{
@@ -34,7 +35,7 @@ import {toast, ToastContainer} from "react-toastify";
                 autoClose={4000} />
                 <main className="guilde-page">
                     <h1 className="text-center title-map-font banner-map banner-map-inventory">Guilde</h1>
-
+                    <Guilde />
                 </main>
         </>  )
     }

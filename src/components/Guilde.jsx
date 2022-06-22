@@ -1,12 +1,31 @@
 import React, {useState} from "react"
+import GuildeApi from "../services/GuildeApi";
 
-const Guilde = (props) => {
+class Guilde extends React.Component {
 
-    const [joueurs, setJoueurs] = useState([])
+    constructor(props) {
+        super(props);
 
-    return(
-        <>
-            Guilde
-        </>
-    )
+        this.state = {
+            joueurs: []
+        }
+    }
+
+    componentDidMount() {
+        this.fetchGuildeData()
+    }
+
+    async fetchGuildeData(){
+        await GuildeApi.fetchGuildeData();
+    }
+
+    render() {
+        return(
+            <>
+                Guilde
+            </>
+        )
+    }
 }
+
+export default Guilde
