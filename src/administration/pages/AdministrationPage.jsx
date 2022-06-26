@@ -12,6 +12,7 @@ import ShopMakerPage from "./ShopMakerPage";
 const AdministrationPage = (props) => {
 
     return <>
+
         <main className="main-administration-page">
             <div className="administration-side-menu">
                 <ul className="administration-nav-links">
