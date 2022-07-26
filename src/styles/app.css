@@ -274,6 +274,11 @@ main{
     -webkit-border-image: url("../img/gui/CharacterPlayer/AvatarCircle.png");
 }
 
+.avatar-monster{
+    backdrop-filter: blur(20px);
+    background: rgba(255,255,255,0.5);
+}
+
 .username-block .avatar-player{
     position: absolute;
     top: 32px;
@@ -1244,7 +1249,17 @@ section #text span{
 }
 
 .inventaire-active{
-    color: aliceblue!important;
+    color: aliceblue;
+    text-decoration: none;
+    font-size: 30px;
+    padding-top: 5px;
+}
+
+.inventaire-inactive{
+    color: lightgrey;
+    text-decoration: none;
+    font-size: 30px;
+    padding-top: 5px;
 }
 
 .inventaire-layout{
@@ -1922,6 +1937,19 @@ section #text span{
     color: #212529;
 }
 
+.table-guilde{
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(20px);
+    margin: auto;
+    padding: 20px;
+    border: solid aliceblue 1px;
+}
+
+.td-table-guilde{
+    padding: 20px;
+    color: aliceblue;
+    border-top: 1px solid #ccc;
+}
 
 
 

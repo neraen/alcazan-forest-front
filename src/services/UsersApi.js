@@ -37,6 +37,10 @@ function applyAttaqueToMonster(targetId, spellId){
     return axios.post(API_URL + "joueur/attack/monster", {targetId: targetId, spellId: spellId}).then(response => response.data)
 }
 
+function applyAttaqueToBoss(targetId, spellId){
+    return axios.post(API_URL + "joueur/attack/boss", {targetId: targetId, spellId: spellId}).then(response => response.data)
+}
+
 function updatePosition(mapId, abscisse, ordonnee){
     return axios.post(API_URL + "joueur/case/update_position", {mapId: mapId, caseAbscisse: abscisse, caseOrdonnee: ordonnee}).then(response => response.data)
 }
@@ -61,5 +65,6 @@ export default {
     getPlayerConsommables,
     applyAttaqueToPlayer,
     applyAttaqueToMonster,
+    applyAttaqueToBoss,
     getExpJoueur
 }

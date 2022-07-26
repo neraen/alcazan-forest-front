@@ -48,9 +48,9 @@ class Inventory extends React.Component {
 
                         <div className="inventaire-container">
                         <div className="inventaire-header">
-                        <h3 className="inventaire-title"><Link activeClassName="inventaire-active" className="title-map-font no-style-link " to='/inventaire/equipement' >Equipements</Link></h3>
-                        <h3 className="inventaire-title"><Link activeClassName="inventaire-active" className="title-map-font no-style-link" to='/inventaire/objet' >Objets</Link></h3>
-                        <h3 className="inventaire-title"><Link activeClassName="inventaire-active" className="title-map-font no-style-link" to='/inventaire/objet' >Objets de quêtes</Link></h3>
+                        <h3 className="inventaire-title"><Link activeClassName="inventaire-active" className="title-map-font inventaire-active" to='/inventaire/equipement' >Equipements</Link></h3>
+                        <h3 className="inventaire-title"><Link activeClassName="inventaire-active" className="title-map-font inventaire-active" to='/inventaire/objet' >Objets</Link></h3>
+                        <h3 className="inventaire-title"><Link activeClassName="inventaire-active" className="title-map-font inventaire-active" to='/inventaire/objet' >Objets de quêtes</Link></h3>
 
                         </div>
                         <Switch>

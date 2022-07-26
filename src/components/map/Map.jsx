@@ -189,6 +189,7 @@ class Map extends React.Component {
                               haveJoueur={this.getJoueur(uniqueCase)}
                               hasMonstre={uniqueCase.hasMonstre ? uniqueCase.hasMonstre : false}
                               hasPnj={uniqueCase.pnjName ? {pnjId: uniqueCase.pnjId, pnjName: uniqueCase.pnjName, pnjSkin: uniqueCase.pnjSkin, pnjAvatar: uniqueCase.pnjAvatar, pnjDescription: uniqueCase.pnjDescription} : false}
+                              hasBoss={uniqueCase.bossName ? {bossId: uniqueCase.bossId, bossName: uniqueCase.bossName, bossSkin: uniqueCase.bossSkin} : false}
                               isUnabled={this.state.unabledCases.includes(uniqueCase.carteCarreauId)}
                         />
                     </div>
