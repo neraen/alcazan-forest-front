@@ -111,6 +111,7 @@ const Spell = (props) => {
             droppedItems: (attackStats.droppedItems[0] !== undefined) ? attackStats.droppedItems[0] : "",
             level: attackStats.level,
             killMessage: attackStats.killMessage,
+            message: attackStats.message,
             needRefresh: true
         })
 

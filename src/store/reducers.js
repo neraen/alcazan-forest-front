@@ -26,6 +26,7 @@ export const playerStatsReducer = (state = {
             money: 0,
             level : 0,
             killMessage: '',
+            message: '',
             needRefresh: false
         },
         mapMaker:{
