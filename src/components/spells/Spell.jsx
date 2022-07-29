@@ -90,7 +90,7 @@ const Spell = (props) => {
 
         if(props.target.type === "player"){
             attackStats = await UsersApi.applyAttaqueToPlayer(props.target.targetId, props.spell.id)
-        }else if(props.target.type === "monster"){
+        }else if(props.target.type === "monstre"){
             if(props.spell.type !== "soin"){
                 attackStats = await UsersApi.applyAttaqueToMonster(props.target.targetId, props.spell.id)
             }else{

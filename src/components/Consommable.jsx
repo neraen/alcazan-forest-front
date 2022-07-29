@@ -67,6 +67,10 @@ const Consommable = (props) => {
             lifeJoueur: statsAfterUseConsommable.life,
             manaJoueur: statsAfterUseConsommable.mana,
         })
+
+        if(statsAfterUseConsommable.message !== ""){
+            toast(statsAfterUseConsommable.message);
+        }
     }
 
     return <>

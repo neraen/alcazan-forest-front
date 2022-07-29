@@ -45,8 +45,8 @@ function updatePosition(mapId, abscisse, ordonnee){
     return axios.post(API_URL + "joueur/case/update_position", {mapId: mapId, caseAbscisse: abscisse, caseOrdonnee: ordonnee}).then(response => response.data)
 }
 
-function changeMap(targetMapId, targetWrap){
-    return axios.post(API_URL + "joueur/map/update_position", {targetMapId: targetMapId, targetWrap: targetWrap}).then(response => response.data)
+function changeMap(targetMapId, targetWrap, clickedWrap){
+    return axios.post(API_URL + "joueur/map/update_position", {targetMapId: targetMapId, targetWrap: targetWrap, wrapId: clickedWrap}).then(response => response.data)
 }
 
 function getExpJoueur(){

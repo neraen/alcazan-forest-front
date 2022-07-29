@@ -63,13 +63,8 @@ import {toast, ToastContainer} from "react-toastify";
                                 //     {(this.props.joueurState.killMessage !== "") && (<strong>{this.props.joueurState.killMessage}</strong>)}
                                 // </div>)
                                 <div className="block-notification">
-                                    {this.props.joueurState.message && (
-                                        this.props.joueurState.message
-                                    ) || (
-                                        {(this.props.joueurState.damage > 0) && "Vous infligez "+ this.props.joueurState.damage +" points de dommages et vous gagnez "+this.props.joueurState.experience+" points d'expériences"} <br />
-                                    {(this.props.joueurState.damageReturns > 0) && "Le monstre riposte et vous inflige "+ this.props.joueurState.damageReturns +" points de dommage"} <br />
-                                    {(this.props.joueurState.droppedItems !== "") && (<span>En mourrant le monstre laisse tomber ceci : <strong>{this.props.joueurState.droppedItems}</strong></span>)}
-                                    {(this.props.joueurState.killMessage !== "") && (<strong>{this.props.joueurState.killMessage}</strong>)}
+                                    {(this.props.joueurState.message !== '') && (
+                                        <div dangerouslySetInnerHTML={{__html: this.props.joueurState.message}}></div>
                                     )}
                                 </div>
 

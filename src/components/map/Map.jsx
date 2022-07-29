@@ -110,23 +110,29 @@ class Map extends React.Component {
 
     }
 
-    async changeMap(targetMapId, targetWrap){
-        console.log(targetMapId, targetWrap)
-        const mapPosition = await UsersApi.changeMap(targetMapId, targetWrap);
-        console.log(mapPosition);
-        const mapData = await MapApi.find(mapPosition.mapId);
-        this.setState({
-            cases: mapData.cases,
-            name: mapData.mapInfo.nom,
-            mapId: mapData.mapId,
-            ordonneeJoueur: mapPosition.ordonnee,
-            abscisseJoueur: mapPosition.abscisse,
-            isInstance: mapData.mapInfo.isInstance
-        });
-        this.props.updateJoueurState({mapId: mapData.mapId})
-        this.props.updatePositionJoueur({abscisse: mapPosition.abscisse, ordonnee:  mapPosition.ordonnee })
-        this.setState({unabledCases: this.getUnabledMove()});
-        this.props.removePlayerTarget();
+    async changeMap(targetMapId, targetWrap, clickedWrap){
+        const mapPosition = await UsersApi.changeMap(targetMapId, targetWrap, clickedWrap);
+        if(mapPosition.message !== undefined && mapPosition.mapId === undefined){
+            toast(mapPosition.message);
+        }else{
+            const mapData = await MapApi.find(mapPosition.mapId);
+            this.setState({
+                cases: mapData.cases,
+                name: mapData.mapInfo.nom,
+                mapId: mapData.mapId,
+                ordonneeJoueur: mapPosition.ordonnee,
+                abscisseJoueur: mapPosition.abscisse,
+                isInstance: mapData.mapInfo.isInstance
+            });
+            this.props.updateJoueurState({mapId: mapData.mapId})
+            this.props.updatePositionJoueur({abscisse: mapPosition.abscisse, ordonnee:  mapPosition.ordonnee })
+            this.setState({unabledCases: this.getUnabledMove()});
+            this.props.removePlayerTarget();
+        }
+
+
+
+
     }
 
     verifiyMove(abscisse, ordonnee){
@@ -152,7 +158,7 @@ class Map extends React.Component {
         if(clickedCase.isWrap){
             const distance = distanceCalculator.computeDistance(clickedCase.abscisse, clickedCase.ordonnee, this.state.abscisseJoueur, this.state.ordonneeJoueur)
             if(distance <= 1){
-                this.changeMap(clickedCase.targetMapId, clickedCase.targetWrap)
+                this.changeMap(clickedCase.targetMapId, clickedCase.targetWrap, clickedCase.carteCarreauId)
             }
         }
         else if(this.state.unabledCases.includes(clickedCase.carteCarreauId)){
@@ -190,6 +196,7 @@ class Map extends React.Component {
                               hasMonstre={uniqueCase.hasMonstre ? uniqueCase.hasMonstre : false}
                               hasPnj={uniqueCase.pnjName ? {pnjId: uniqueCase.pnjId, pnjName: uniqueCase.pnjName, pnjSkin: uniqueCase.pnjSkin, pnjAvatar: uniqueCase.pnjAvatar, pnjDescription: uniqueCase.pnjDescription} : false}
                               hasBoss={uniqueCase.bossName ? {bossId: uniqueCase.bossId, bossName: uniqueCase.bossName, bossSkin: uniqueCase.bossSkin} : false}
+                              hasAction={uniqueCase.actionName ? {actionName: uniqueCase.actionName, actionLink: uniqueCase.actionLink, actionParams: uniqueCase.actionParams} : false}
                               isUnabled={this.state.unabledCases.includes(uniqueCase.carteCarreauId)}
                         />
                     </div>

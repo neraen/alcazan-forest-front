@@ -3,6 +3,8 @@ import '../../styles/app.css'
 import Player from "../Player";
 import Pnj from "../Pnj";
 import Boss from "../Boss";
+import ActionView from "../pnj/ActionView";
+import ActionMap from "../ActionMap";
 
 const Case = (props) => {
 
@@ -15,6 +17,7 @@ const Case = (props) => {
             { props.hasPnj && <Pnj pnj={props.hasPnj}/>}
             { props.haveJoueur && <Player player={props.haveJoueur} hasMonstre={props.hasMonstre}/>}
             { props.hasBoss && <Boss boss={props.hasBoss} />}
+            { props.hasAction && <ActionMap action={props.hasAction} />}
         </div>
     </>
 }
