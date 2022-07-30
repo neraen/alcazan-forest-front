@@ -101,7 +101,7 @@ class Map extends React.Component {
             () => {
                 this.setState({ unabledCases: this.getUnabledMove() })
                 this.props.updatePositionJoueur({abscisse: data.abscisseJoueur, ordonnee: data.ordonneeJoueur})
-                this.props.updateJoueurState({lifeJoueur: data.life, manaJoueur: data.mana})
+                this.props.updateJoueurState({lifeJoueur: data.life, manaJoueur: data.mana, pm: data.pm})
             });
 
         if(data.ordonneeJoueur != ordonnee || data.abscisseJoueur != abscisse){

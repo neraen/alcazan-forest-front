@@ -14,7 +14,7 @@ const SideMenu = (props) => {
             </Link>
             <Link to="/profil" className="side-menu-link d-flex flex-column align-items-center mr-3 col-4 text-decoration-none">
                 <img className="side-menu-icon" src="/img/icons/profile.svg" alt=""/>
-                <span>Profile</span>
+                <span>Profil</span>
             </Link>
             <Link to="/guilde" className="side-menu-link d-flex flex-column align-items-center mr-3 col-4 text-decoration-none">
                 <img className="side-menu-icon" src="/img/icons/guilde.svg" alt=""/>
@@ -24,7 +24,7 @@ const SideMenu = (props) => {
                 <img className="side-menu-icon" src="/img/icons/crown.svg" alt=""/>
                 <span>Classement</span>
             </Link>
-            <Link className="side-menu-link d-flex flex-column align-items-center mr-3 col-4 text-decoration-none">
+            <Link to="/historique" className="side-menu-link d-flex flex-column align-items-center mr-3 col-4 text-decoration-none">
                 <img className="side-menu-icon" src="/img/icons/historique.svg" alt=""/>
                 <span>Historique</span>
             </Link>

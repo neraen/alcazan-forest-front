@@ -1126,8 +1126,8 @@ section #text span{
     left: 170px;
 }
 
-.bottes{
-    top: 385px;
+.pieds{
+    top: 338px;
     left: 170px;
 }
 
@@ -1951,6 +1951,24 @@ section #text span{
     border-top: 1px solid #ccc;
 }
 
+
+/************************ HISTORY ****************************/
+
+.history-rows{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 50vw;
+}
+
+.history-row{
+    background: rgba(0,0,0, 0.4);
+    backdrop-filter: blur(20px);
+    color: aliceblue;
+    border: solid aliceblue 1px;
+    border-radius:  7px;
+    padding: 15px;
+}
 
 
 /********************************** ADMINISTRATION ***********************************/

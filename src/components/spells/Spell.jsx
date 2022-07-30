@@ -112,6 +112,7 @@ const Spell = (props) => {
             level: attackStats.level,
             killMessage: attackStats.killMessage,
             message: attackStats.message,
+            pa: attackStats.pa,
             needRefresh: true
         })
 

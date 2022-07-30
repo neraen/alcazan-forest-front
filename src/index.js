@@ -16,6 +16,7 @@ import {Provider} from "react-redux";
 // import MercureSubscriber from "@cerati/react-mercure";
 import store from "./store/index"
 import AdministrationPage from "./administration/pages/AdministrationPage";
+import HistoryPage from "./pages/HistoryPage";
 
 authAPI.setup();
 
@@ -46,7 +47,8 @@ const Index =  () => {
                         <PrivateRoute path="/profil" component={ProfilPage}/>
                         <PrivateRoute path="/carte" component={MapPage}/>
                         <PrivateRoute path="/inventaire" redirectTo="/inventaire/equipement" component={InventoryPage}/>
-                        <PrivateRoute path="/guilde"  isAdmin={true} component={GuildePage}/>
+                        <PrivateRoute path="/guilde" component={GuildePage}/>
+                        <PrivateRoute path="/historique"  component={HistoryPage}/>
                         <PrivateRoute path="/administration"  isAdmin={true} component={AdministrationPage}/>
                         <Route path="/" component={HomePage}/>
                     </Switch>
