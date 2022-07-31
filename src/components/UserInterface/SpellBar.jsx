@@ -43,8 +43,8 @@ const SpellBar = (props) => {
                 }
             </div>
 
-            <div className="spells row align-items-center">
-                <div className="col-6 d-flex">
+            <div className="spells align-items-center">
+                <div className="d-flex">
                     {spells && spells.map(spell => (
                         <Spell key={spell.id} spell={spell} />
                     ))}
@@ -66,10 +66,27 @@ const SpellBar = (props) => {
 
                         </div>
                     )}
-                </div>
-                <div className="col-5 offset-1">
 
+                    <div className="spell-bar-separator">
+
+                    </div>
+
+                    <div className="buffs">
+                        {consommables && [...Array(6)].map((x, i) =>
+                            <>
+                                <div  className="buff" key={i} style={{backgroundImage: "url(../img/icons/archer/tir-rapide.png)"}}>
+
+                                    <div className="buff-hover">
+                                        <strong>Bénédiction de la nature</strong><br />
+                                        <em>+50 pt chance</em>
+                                    </div>
+                                </div>
+
+                            </>
+                        )}
+                    </div>
                 </div>
+
 
             </div>
         </div>
