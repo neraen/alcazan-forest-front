@@ -29,7 +29,7 @@ class Historique extends React.Component {
         return(
             <div className="history-rows">
                     {this.state.historyRows && this.state.historyRows.map(historyRow => {
-                        return <div className="history-row">
+                        return <div className={"history-row "+ (historyRow.isExternal && "history-row-right")}>
                             <div className="history-row-header"> {historyRow.date.date}</div>
                             <div className="history-row-content"> {historyRow.message} </div>
                         </div>

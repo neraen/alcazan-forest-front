@@ -10,8 +10,8 @@ const UsernameBlock = (props) => {
             <div className="username-block mb-3 row">
                 <h3 className="player-pseudo">{props.user.pseudo}</h3>
                 <img className="avatar-player" src="/img/gui/CharacterPlayer/Avatar.png" alt=""/>
-                <StatBar value={props.joueurState.lifeJoueur} max={props.user.maxLife} maxWidth={200} classN="lifeBar"/>
-                <StatBar value={props.user.currentMana} max={props.user.maxMana} maxWidth={200} classN="manaBar"/>
+                <StatBar value={props.joueurState.lifeJoueur} max={props.user.maxLife} maxWidth={230} classN="lifeBar"/>
+                <StatBar value={props.user.currentMana} max={props.user.maxMana} maxWidth={230} classN="manaBar"/>
                 <div className="player-level">{props.joueurState.level}</div>
                 {/*<NavLink className="nav-link text-center" to="/">Messagerie</NavLink>*/}
             </div>

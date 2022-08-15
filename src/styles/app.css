@@ -2018,6 +2018,11 @@ section #text span{
     flex-direction: column;
     margin: auto;
     width: 50vw;
+    max-height: 82vh;
+    overflow: scroll;
+    background: rgba(0,0,0,0.4);
+    border: aliceblue solid 1px;
+    padding: 10px;
 }
 
 .history-row{
@@ -2027,6 +2032,11 @@ section #text span{
     border: solid aliceblue 1px;
     border-radius:  7px;
     padding: 15px;
+    max-width: 50%;
+}
+
+.history-row-right{
+    margin-left: 50%;
 }
 
 

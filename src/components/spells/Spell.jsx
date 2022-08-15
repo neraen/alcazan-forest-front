@@ -26,7 +26,7 @@ const Spell = (props) => {
 
         if(props.target.type === "player"){
             const distance = distanceCalculator.computeDistance(props.target.abscisseTarget, props.target.ordonneeTarget, props.positionJoueur.abscisse, props.positionJoueur.ordonnee);
-            if(props.spell.portee < distance){
+            if(props.spell.portee < distance && props.spell.portee !== 0){
                 setDisable(true);
             }else{
                 setDisable(false);
@@ -67,7 +67,10 @@ const Spell = (props) => {
     }
 
     const handleAttack = async event => {
-        if(props.target.type === "player"){
+        if(props.spell.portee === 0){
+            await launchAutoFocusedSpell();
+        }
+        else if(props.target.type === "player"){
             const distance = distanceCalculator.computeDistance(props.target.abscisseTarget, props.target.ordonneeTarget, props.positionJoueur.abscisse, props.positionJoueur.ordonnee);
             if(props.spell.portee < distance){
                 setDisable(true)
@@ -83,6 +86,16 @@ const Spell = (props) => {
         }else{
             toast("Vous n'avez pas de cible.")
         }
+    }
+
+    const launchAutoFocusedSpell = async () => {
+        let spellStats = {};
+        spellStats = await UsersApi.applySpellAutoFocused(props.spell.id);
+        props.updateJoueurState({
+            message: spellStats.message,
+            lifeJoueur: spellStats.life,
+            needRefresh: true
+        })
     }
 
     const launchAttack = async () => {

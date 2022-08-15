@@ -30,10 +30,10 @@ class Target extends Component{
                 <h4 className="joueur-cible-name">{this.props.target.pseudo}</h4>
                 <div className="target-stats">
                     <StatBar displayText={false} value={this.props.target.currentLife} max={this.props.target.maxLife}
-                             maxWidth={200}
+                             maxWidth={230}
                              classN="lifeBar"/>
                     <StatBar displayText={false} value={this.props.target.currentMana} max={this.props.target.maxMana}
-                             maxWidth={200}
+                             maxWidth={230}
                              classN="manaBar"/>
                     <img src="/img/gui/CharacterEnemy/AvatarEnemy.png" alt="avatar" className="avatar-player"/>
                     <div className="joueur-cible-level">{this.props.target.niveau}</div>

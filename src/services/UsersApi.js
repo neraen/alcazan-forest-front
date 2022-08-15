@@ -41,6 +41,10 @@ function applyAttaqueToBoss(targetId, spellId){
     return axios.post(API_URL + "joueur/attack/boss", {targetId: targetId, spellId: spellId}).then(response => response.data)
 }
 
+function applySpellAutoFocused(spellId){
+    return axios.post(API_URL + "joueur/spell/self", {spellId: spellId}).then(response => response.data)
+}
+
 function updatePosition(mapId, abscisse, ordonnee){
     return axios.post(API_URL + "joueur/case/update_position", {mapId: mapId, caseAbscisse: abscisse, caseOrdonnee: ordonnee}).then(response => response.data)
 }
@@ -66,5 +70,6 @@ export default {
     applyAttaqueToPlayer,
     applyAttaqueToMonster,
     applyAttaqueToBoss,
+    applySpellAutoFocused,
     getExpJoueur
 }

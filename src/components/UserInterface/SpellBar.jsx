@@ -3,6 +3,7 @@ import Spell from "../spells/Spell";
 import Bar from "./Bar";
 import UsersApi from "../../services/UsersApi";
 import Consommable from "../Consommable";
+import Buff from "../spells/Buff";
 
 const SpellBar = (props) => {
 
@@ -71,20 +72,7 @@ const SpellBar = (props) => {
 
                     </div>
 
-                    <div className="buffs">
-                        {consommables && [...Array(6)].map((x, i) =>
-                            <>
-                                <div  className="buff" key={i} style={{backgroundImage: "url(../img/icons/archer/tir-rapide.png)"}}>
-
-                                    <div className="buff-hover">
-                                        <strong>Bénédiction de la nature</strong><br />
-                                        <em>+50 pt chance</em>
-                                    </div>
-                                </div>
-
-                            </>
-                        )}
-                    </div>
+                    <Buff />
                 </div>
 
 
