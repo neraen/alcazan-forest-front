@@ -35,7 +35,9 @@ class Target extends Component{
                     <StatBar displayText={false} value={this.props.target.currentMana} max={this.props.target.maxMana}
                              maxWidth={230}
                              classN="manaBar"/>
+                    <div className="avatar-cible-hover">Voir profil</div>
                     <img src="/img/gui/CharacterEnemy/AvatarEnemy.png" alt="avatar" className="avatar-player"/>
+                    <div className="joueur-cible-profil-btn"></div>
                     <div className="joueur-cible-level">{this.props.target.niveau}</div>
                 </div>
             </div>
