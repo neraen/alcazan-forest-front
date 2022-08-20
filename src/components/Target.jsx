@@ -3,6 +3,7 @@ import {ProgressBar} from "react-bootstrap";
 import StatBar from "./UserInterface/StatBar";
 import {connect} from "react-redux";
 import { fetchTargetInfo, removePlayerTarget } from "../store/actions";
+import {Link} from "react-router-dom";
 
 
 class Target extends Component{
@@ -35,10 +36,11 @@ class Target extends Component{
                     <StatBar displayText={false} value={this.props.target.currentMana} max={this.props.target.maxMana}
                              maxWidth={230}
                              classN="manaBar"/>
-                    <div className="avatar-cible-hover">Voir profil</div>
+                    <div className="avatar-cible-hover"><Link to={"profil/" + this.props.target.pseudo}>Voir profil</Link></div>
                     <img src="/img/gui/CharacterEnemy/AvatarEnemy.png" alt="avatar" className="avatar-player"/>
-                    <div className="joueur-cible-profil-btn"></div>
-                    <div className="joueur-cible-level">{this.props.target.niveau}</div>
+                    <div className="joueur-cible-profil-btn-close" title="decibler" onClick={this.props.removePlayerTarget}></div>
+                    <div className="joueur-cible-profil-btn" title="Voir le profil"></div>
+                    <div className="joueur-cible-level" title="Niveau">{this.props.target.niveau}</div>
                 </div>
             </div>
             }

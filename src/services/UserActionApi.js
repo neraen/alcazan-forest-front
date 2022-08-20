@@ -21,10 +21,16 @@ function joinGuilde(guildeId){
     return axios.post(API_URL + 'joueur/guilde/join', {guildeId: guildeId}).then(response => response.data)
 }
 
+function addFriend(userId){
+    console.log(userId)
+    return axios.post(API_URL + 'joueur/add/friend', {userId: userId}).then(response => response.data)
+}
+
 
 export default {
     applyUserAction,
     buyItem,
     takeConsommable,
-    joinGuilde
+    joinGuilde,
+    addFriend
 }

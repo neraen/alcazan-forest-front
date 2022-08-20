@@ -9,6 +9,10 @@ function find(){
     return axios.post(API_URL + "joueur/data/minimal").then(response => response.data)
 }
 
+function findUserByPseudo(pseudo){
+    return axios.post(API_URL + "joueur/data/profil", {pseudo: pseudo}).then(response => response.data)
+}
+
 function getLevelAndExperience(){
     return axios.get(API_URL + "joueur/niveau" ).then(response => response.data['hydra:member'])
 }
@@ -57,9 +61,14 @@ function getExpJoueur(){
     return axios.post(API_URL + "joueur/experience").then(response => response.data)
 }
 
+function joueurGetIdFriend(userId){
+    return axios.post(API_URL + "joueur/isfriend", {userId: userId}).then(response => response.data)
+}
+
 export default {
     register,
     find,
+    findUserByPseudo,
     updatePosition,
     changeMap,
     getCaracteristiques,
@@ -71,5 +80,6 @@ export default {
     applyAttaqueToMonster,
     applyAttaqueToBoss,
     applySpellAutoFocused,
-    getExpJoueur
+    getExpJoueur,
+    joueurGetIdFriend
 }

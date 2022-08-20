@@ -475,6 +475,27 @@ main{
     background-size: 50px 50px;
 }
 
+.joueur-cible-profil-btn-close{
+    background: url(../img/gui/buttonClose.png);
+    background-size: 50px 50px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    position: absolute;
+    top: 16px;
+    left: 313px;
+    z-index: -2;
+    content: " ";
+}
+
+.joueur-cible-profil-btn-close:hover{
+    background: url(../img/gui/buttonCloseHover.png);
+    background-size: 50px 50px;
+}
+
 .avatar-cible-hover{
     display: none;
     position: absolute;
@@ -1055,6 +1076,50 @@ section #text span{
 
 
 /** Profil **/
+
+.profil-banniere-joueur{
+    content: " ";
+    background: url(../img/banner/banner.jpg);
+    background-size: cover;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+.profil-joueur{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: url(../img/gui/MainWindowCharacter/Panel.png);
+    background-size: 100% 100%;
+    padding: 25px 100px;
+    color: aliceblue;
+}
+
+.btns-actions-profil {
+    display: flex;
+    flex-direction: column;
+}
+
+.profil-btn-white{
+    background: none;
+    color: aliceblue;
+    border: azure solid 1px;
+    border-radius: 7px;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.profil-btn-white-image {
+    width: 30px;
+}
 
 .profil-container{
     width: 80%;
