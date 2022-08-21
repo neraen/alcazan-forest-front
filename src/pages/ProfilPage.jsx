@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from 'react'
 import UsernameBlock from "../components/UserInterface/UsernameBlock";
 import SideMenu from "../components/UserInterface/SideMenu";
 import SpellBar from "../components/UserInterface/SpellBar";
-import Profil from "../components/profil";
+import Profil from "../components/profil/profil";
 import AuthContext from "../contexts/AuthContext";
 import UserStatsBlock from "../components/UserInterface/UserStatsBlock";
 import Map from "../components/map/Map";
@@ -12,7 +12,7 @@ import {ToastContainer} from "react-toastify";
 import {useParams} from "react-router";
 import ProfilJoueur from "../components/ProfilJoueur";
 
-const ProfilPage = ({match}) => {
+const ProfilPage = ({match, history}) => {
 
     const [user, setUser] = useState({})
 
@@ -44,7 +44,7 @@ const ProfilPage = ({match}) => {
                 {/*    /!*<SideMenu />*!/*/}
                 {/*</div>*/}
                 <div className="profil-container">
-                    {pseudo === undefined && ( <Profil user={user}/>) || (<ProfilJoueur pseudo={pseudo}/>)}
+                    {pseudo === undefined && ( <Profil user={user}/>) || (<ProfilJoueur history={history} pseudo={pseudo}/>)}
                 </div>
             </div>
         </main>

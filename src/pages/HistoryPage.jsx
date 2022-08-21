@@ -11,7 +11,7 @@ import Target from "../components/Target";
 import { connect } from "react-redux";
 import {updateJoueurState} from "../store/actions";
 import {toast, ToastContainer} from "react-toastify";
-import Guilde from "../components/Guilde";
+import Guilde from "../components/social/Guilde";
 import Historique from "../components/Historique";
 
 

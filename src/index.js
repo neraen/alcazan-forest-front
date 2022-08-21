@@ -17,6 +17,7 @@ import {Provider} from "react-redux";
 import store from "./store/index"
 import AdministrationPage from "./administration/pages/AdministrationPage";
 import HistoryPage from "./pages/HistoryPage";
+import MessageriePage from "./pages/MessageriePage";
 
 authAPI.setup();
 
@@ -50,6 +51,7 @@ const Index =  () => {
                         <PrivateRoute path="/inventaire" redirectTo="/inventaire/equipement" component={InventoryPage}/>
                         <PrivateRoute path="/guilde" component={GuildePage}/>
                         <PrivateRoute path="/historique"  component={HistoryPage}/>
+                        <PrivateRoute path="/messagerie"  component={MessageriePage}/>
                         <PrivateRoute path="/administration"  isAdmin={true} component={AdministrationPage}/>
                         <Route path="/" component={HomePage}/>
                     </Switch>

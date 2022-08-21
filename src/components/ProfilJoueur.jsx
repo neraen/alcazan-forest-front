@@ -12,6 +12,7 @@ const ProfilJoueur = (props) => {
     const [equipementEquipe, setEquipementEquipe] = useState([])
     const [joueur, setJoueur] = useState([])
     const [isFriend, setIsFriend] = useState(false);
+    const [idFriend, setIdFriend] = useState(0);
 
     useEffect(() => {
         fetchEquipementEquipe();
@@ -20,20 +21,31 @@ const ProfilJoueur = (props) => {
     const fetchEquipementEquipe = async () => {
         const joueurData = await UsersApi.findUserByPseudo(props.pseudo);
         setJoueur(joueurData);
+
         const friendData = await UsersApi.joueurGetIdFriend(joueurData.idJoueur);
-        setIsFriend(friendData);
+        setIdFriend(friendData.friendId);
+        setIsFriend(!!friendData.friendId);
+
         const dataEquipementEquipe = await ProfilAPI.getEquipementEquipeJoueur(joueurData.idJoueur);
         setEquipementEquipe(dataEquipementEquipe);
     }
 
-    const addPlayerOnFriendList = async () => {
-        console.log(joueur)
-        const message = await UserActionApi.addFriend(joueur.idJoueur)
-        toast(message)
+    const addOrRemovePlayerOnFriendList = async () => {
+        let data = [];
+        if(isFriend){
+            data = await UserActionApi.removeFriend(idFriend)
+            setIsFriend(false);
+        }else{
+            data = await UserActionApi.addFriend(joueur.idJoueur)
+            setIsFriend(true);
+            setIdFriend(data.friendId);
+        }
+        toast(data.message)
     }
 
     const sendMessage = () => {
-
+        console.log(props)
+        props.history.replace("/messagerie");
     }
 
 
@@ -56,8 +68,8 @@ const ProfilJoueur = (props) => {
             <div className="actions-profil-joueur">
                 <h2 className="text-center ">Actions</h2>
                 <div className="btns-actions-profil">
-                    <button className="profil-btn-white" onClick={addPlayerOnFriendList}>
-                        {isFriend.friendId && (
+                    <button className="profil-btn-white" onClick={addOrRemovePlayerOnFriendList}>
+                        {isFriend && (
                            <span>Retirer de ma liste d'amis</span>
                         ) || (
                             <><img className="profil-btn-white-image" src="../img/gui/amis.png"/>Ajouter à ma liste d'amis</>

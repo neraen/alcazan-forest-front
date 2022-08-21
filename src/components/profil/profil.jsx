@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react'
-import Field from "./forms/Field";
-import UsersApi from "../services/UsersApi";
-import InventaireApi from "../services/InventaireApi";
-import carateristiqueService from "../services/carateristiqueService";
+import Field from "../forms/Field";
+import UsersApi from "../../services/UsersApi";
+import InventaireApi from "../../services/InventaireApi";
+import carateristiqueService from "../../services/carateristiqueService";
 import {toast, ToastContainer} from "react-toastify";
 
 const Profil = (props) => {
@@ -158,7 +158,7 @@ const Profil = (props) => {
                          </div>
                      </div>
                  )}
-                 <img className="" src="../img/gui/MainWindowCharacter/inventaire_masculin.png"/>
+                 <img className="" src="../../img/gui/MainWindowCharacter/inventaire_masculin.png"/>
              </div>
 
             <div className="caracteristiques">

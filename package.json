@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@cerati/react-mercure": "0.0.1",
+    "@ckeditor/ckeditor5-build-classic": "^35.0.1",
+    "@ckeditor/ckeditor5-react": "^5.0.2",
     "@reduxjs/toolkit": "^1.5.0",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",

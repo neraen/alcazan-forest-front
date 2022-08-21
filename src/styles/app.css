@@ -2367,6 +2367,42 @@ section #text span{
     display: flex;
 }
 
+
+/**** MESSAGERIE **/
+
+.messagerie-main{
+    display: flex;
+}
+
+.messenger-component{
+    padding: 70px
+}
+
+.message-area{
+    width: 100%;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(20px);
+    min-height: 400px;
+    max-height: 400px;
+    overflow: scroll;
+    border: aliceblue solid 1px;
+}
+
+.contacts{
+    padding: 20px;
+}
+
+.contact-area{
+    width: 100%;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(20px);
+    min-height: 700px;
+    max-height: 700px;
+    overflow: scroll;
+    padding: 50px;
+    border: aliceblue solid 1px;
+}
+
 @media screen and (min-width:1400px) and (max-width:1700px){
 
     .main-auth-bg{
