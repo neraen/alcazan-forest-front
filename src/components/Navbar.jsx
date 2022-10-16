@@ -25,7 +25,7 @@ const Navbar = ({history}) => {
                             <NavLink className="nav-link link-dark" to="/carte">Carte</NavLink>
                         </li>
                         <li className="nav-item">
-                        <NavLink className="nav-link link-dark" to="/profil">Profil</NavLink>
+                        <NavLink className="nav-link link-dark" to="/personnage">Profil</NavLink>
                         </li>
                         <li className="nav-item">
                         <NavLink className="nav-link link-dark" to="/inventaire">Inventaire</NavLink>

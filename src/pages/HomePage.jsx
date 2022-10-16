@@ -27,7 +27,7 @@ const HomePage = (props) => {
             rocks.style.top = value * -0.12 + 'px';
             forest.style.top = value * 0.25 + 'px';
             // header.style.top = value * -0.5 + 'px';
-            war.style.top = 375 + value * -0.12 + 'px';
+            // war.style.top = 375 + value * -0.12 + 'px';
         });
     }
 
@@ -45,7 +45,7 @@ const HomePage = (props) => {
                 <img src={require('../img/waterfall.png').default} alt="" id="forest" />
                 <a href="/inscription" id="btn"><span>S'inscrire</span></a>
                 <img src={require('../img/rocks1.png').default} alt="" id="rocks" />
-                <img src={require('../img/war.png').default} alt="" id="war" />
+                {/*<img src={require('../img/war.png').default} alt="" id="war" />*/}
 
             </section>
             <div className="main-content">
@@ -66,7 +66,11 @@ const HomePage = (props) => {
                         </ul>
                     </div>
                 </div>
-                <hr />
+
+
+            </div>
+
+            <div className="main-content bg-green">
                 <div className="presentation">
                     <h2>Screenshot</h2>
                     <div className="presentation-screenshots">
@@ -79,7 +83,6 @@ const HomePage = (props) => {
                     </div>
                 </div>
             </div>
-
         </>
     )
 }

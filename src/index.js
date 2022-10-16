@@ -18,6 +18,8 @@ import store from "./store/index"
 import AdministrationPage from "./administration/pages/AdministrationPage";
 import HistoryPage from "./pages/HistoryPage";
 import MessageriePage from "./pages/MessageriePage";
+import './styles/app.scss'
+import ProfilJoueur from "./components/ProfilJoueur";
 
 authAPI.setup();
 
@@ -45,8 +47,8 @@ const Index =  () => {
                         <Route path="/inscription" component={RegisterPage}/>
                         <Route path="/preview" component={RegisterPage}/>
                         <Route path="/about" component={RegisterPage}/>
-                        <PrivateRoute path="/profil/:pseudo" component={ProfilPage}/>
-                        <PrivateRoute path="/profil" component={ProfilPage}/>
+                        <PrivateRoute path="/profil/:pseudo" component={ProfilJoueur}/>
+                        <PrivateRoute path="/personnage" redirectTo="personnage/profil" component={ProfilPage}/>
                         <PrivateRoute path="/carte" component={MapPage}/>
                         <PrivateRoute path="/inventaire" redirectTo="/inventaire/equipement" component={InventoryPage}/>
                         <PrivateRoute path="/guilde" component={GuildePage}/>

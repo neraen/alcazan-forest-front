@@ -30,7 +30,7 @@ const Buff = () => {
                     </div>
                 </div>
             ))}
-            {buffs && [...Array(6 - buffs.length)].map((x, i) =>
+            {(buffs && buffs.length < 6) && [...Array(6 - buffs.length)].map((x, i) =>
                 <>
                     <div  className="buff" key={i}>
 

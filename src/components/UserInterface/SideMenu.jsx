@@ -12,7 +12,7 @@ const SideMenu = (props) => {
                 <img className="side-menu-icon" src="/img/icons/money-bag.svg" alt=""/>
                 <span>Inventaire</span>
             </Link>
-            <Link to="/profil" className="side-menu-link d-flex flex-column align-items-center mr-3 col-4 text-decoration-none">
+            <Link to="/personnage/profil" className="side-menu-link d-flex flex-column align-items-center mr-3 col-4 text-decoration-none">
                 <img className="side-menu-icon" src="/img/icons/profile.svg" alt=""/>
                 <span>Profil</span>
             </Link>

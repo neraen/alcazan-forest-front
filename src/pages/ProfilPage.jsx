@@ -1,16 +1,13 @@
-import React, {useContext, useEffect, useState} from 'react'
-import UsernameBlock from "../components/UserInterface/UsernameBlock";
-import SideMenu from "../components/UserInterface/SideMenu";
-import SpellBar from "../components/UserInterface/SpellBar";
+import React, { useEffect, useState} from 'react'
 import Profil from "../components/profil/profil";
-import AuthContext from "../contexts/AuthContext";
-import UserStatsBlock from "../components/UserInterface/UserStatsBlock";
-import Map from "../components/map/Map";
 import UsersApi from "../services/UsersApi";
 import authAPI from "../services/authAPI";
 import {ToastContainer} from "react-toastify";
-import {useParams} from "react-router";
-import ProfilJoueur from "../components/ProfilJoueur";
+import {Link, Redirect} from "react-router-dom";
+import Switch from "react-bootstrap/Switch";
+import PrivateRoute from "../components/PrivateRoute";
+import ProfilSpells from "../components/profil/ProfilSpells";
+import Options from "../components/profil/Options";
 
 const ProfilPage = ({match, history}) => {
 
@@ -23,7 +20,6 @@ const ProfilPage = ({match, history}) => {
     }, [])
 
     const fetchUser = async () => {
-        console.log(pseudo)
         const user = await UsersApi.find(await authAPI.getUserInfo().id)
         setUser(user)
     }
@@ -34,19 +30,19 @@ const ProfilPage = ({match, history}) => {
                 position="top-right"
                 theme="dark"
                 autoClose={4000} />
-            <div className="banner-map m-auto">
-                <h1 className="text-center title-map-font a">Profil {pseudo !== undefined && (" de "+ pseudo)}</h1>
+            <div className="profil-header">
+                <h3 className="inventaire-title"><Link activeClassName="inventaire-active" to='/personnage/profil' >Profil</Link></h3>
+                <h3 className="inventaire-title"><Link activeClassName="inventaire-active" to='/personnage/sorts' >Sorts</Link></h3>
+                <h3 className="inventaire-title"><Link activeClassName="inventaire-active" to='/personnage/options' >Options</Link></h3>
             </div>
-            <div className="top-container mt-4">
-                {/*<div className="side-block px-5">*/}
-                {/*    <UsernameBlock user={user}/>*/}
-                {/*    <UserStatsBlock user={user} />*/}
-                {/*    /!*<SideMenu />*!/*/}
-                {/*</div>*/}
-                <div className="profil-container">
-                    {pseudo === undefined && ( <Profil user={user}/>) || (<ProfilJoueur history={history} pseudo={pseudo}/>)}
-                </div>
-            </div>
+
+            <Switch>
+                <PrivateRoute path="/personnage/profil" component={() => <Profil history={history} pseudo={pseudo} user={user} />}/>
+                <PrivateRoute path="/personnage/sorts" component={() => <ProfilSpells />}/>
+                <PrivateRoute path="/personnage/options" component={() => <Options />}/>
+                {history.location.pathname === '/personnage' && <Redirect to="/personnage/profil"></Redirect>}
+            </Switch>
+
         </main>
     </>
 }

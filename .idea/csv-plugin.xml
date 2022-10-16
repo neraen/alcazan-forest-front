@@ -59,6 +59,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\src\pages\ProfilPage.jsx">
+          <value>
+            <Attribute>
+              <option name="separator" value=";" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\src\styles\app.css">
           <value>
             <Attribute>
