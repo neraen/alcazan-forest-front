@@ -11,12 +11,26 @@ const ProfilSpells = (props) => {
     })
 
     const fetchAllPlayerSpell = async() =>{
-        const spellsFromApi = UsersApi.getPlayerSpells()
+        const spellsFromApi = await UsersApi.getPlayerSpells()
         setSpells(spellsFromApi);
     }
 
     return <>
       <h1>Profils spells</h1>
+        <table className="profil-spells-container">
+            <tr className="spell-detail-container">
+                <th>Sortilege</th>
+                <th>Description</th>
+                <th>Ordre d'affichage</th>
+            </tr>
+            {spells && spells.map(spell => (
+                <tr className="spell-detail-container">
+                    <td>{spell.name}</td>
+                    <td>{spell.description} /// {spell.cooldown} /// {spell.portee}</td>
+                    <td>1</td>
+                </tr>
+            ))}
+        </table>
     </>
 }
 
