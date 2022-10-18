@@ -11,6 +11,19 @@
 
 }
 
+.profil-header{
+  display: flex;
+  justify-content: center;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(20px);
+  margin-bottom: 50px;
+
+  a{
+    text-decoration: none;
+    color: aliceblue;
+  }
+}
+
 .profil-joueur{
   display: flex;
   justify-content: center;

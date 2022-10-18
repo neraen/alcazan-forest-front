@@ -1,0 +1,32 @@
+.profil-spells-title{
+  color: aliceblue;
+  text-align: center;
+  margin-bottom: 50px;
+}
+.profil-spells-container{
+  background: rgba(0,0,0,0.4);
+  margin: auto;
+  margin-bottom: 50px;
+  backdrop-filter: blur(20px);
+  color: aliceblue;
+  border-radius: 7px;
+  border: solid 1px aliceblue;
+
+  td, th{
+    padding: 10px;
+  }
+}
+
+.spell-description-cell{
+  display: flex;
+
+  .spell-description-img{
+    margin-right: 20px;
+  }
+}
+
+.spell-order-input{
+  background: #b7e4c7;
+  text-align: center;
+}
+

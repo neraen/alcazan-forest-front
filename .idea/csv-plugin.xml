@@ -52,6 +52,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\src\components\profil\ProfilSpells.jsx">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\src\pages\HomePage.jsx">
           <value>
             <Attribute>
