@@ -4,10 +4,9 @@ import Case from "./Case";
 import UsersApi from "../../services/UsersApi";
 import MapContext from "../../contexts/MapContext";
 import {connect} from "react-redux";
-import {toast, ToastContainer} from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
 import {updatePositionJoueur, removePlayerTarget, updateJoueurState} from "../../store/actions";
 import distanceCalculator from "../../services/distanceCalculator";
+import Toast from "../common/Toast";
 
 
 class Map extends React.Component {
@@ -50,7 +49,9 @@ class Map extends React.Component {
     async fetchMapData(){
         const mapId = this.props.joueurState.mapId ? this.props.joueurState.mapId : this.state.mapId
         const data = await MapApi.find(mapId);
-        this.setState({cases: data.cases, name: data.mapInfo.nom, isInstance: data.mapInfo.isInstance, mapId: mapId});
+        this.setState({cases: data.cases, name: data.mapInfo.nom, isInstance: data.mapInfo.isInstance, mapId: mapId}, () => {
+            this.props.setMapLoaded(true);
+        });
         this.setState({unabledCases: this.getUnabledMove()});
     }
 
@@ -64,28 +65,28 @@ class Map extends React.Component {
                 if(this.verifiyMove(this.state.abscisseJoueur, this.state.ordonneeJoueur - 1)){
                     this.updatePosition( this.state.abscisseJoueur, this.state.ordonneeJoueur - 1);
                 }else{
-                    toast.error("Un obstacle vous empeche d'aller à cet endroit")
+                    //toast.error("Un obstacle vous empeche d'aller à cet endroit")
                 }
                 break;
             case "s":
                 if(this.verifiyMove(this.state.abscisseJoueur, this.state.ordonneeJoueur + 1)) {
                     this.updatePosition(this.state.abscisseJoueur, this.state.ordonneeJoueur + 1);
                 }else{
-                    toast.error("Un obstacle vous empeche d'aller à cet endroit")
+                    //toast.error("Un obstacle vous empeche d'aller à cet endroit")
                 }
                 break;
             case "q":
                 if(this.verifiyMove(this.state.abscisseJoueur - 1, this.state.ordonneeJoueur)) {
                     this.updatePosition(this.state.abscisseJoueur - 1, this.state.ordonneeJoueur);
                 }else{
-                    toast.error("Un obstacle vous empeche d'aller à cet endroit")
+                    //toast.error("Un obstacle vous empeche d'aller à cet endroit")
                 }
                 break;
             case "d":
                 if(this.verifiyMove(this.state.abscisseJoueur + 1, this.state.ordonneeJoueur)) {
                     this.updatePosition(this.state.abscisseJoueur + 1, this.state.ordonneeJoueur);
                 }else{
-                    toast.error("Un obstacle vous empeche d'aller à cet endroit")
+                    //toast.error("Un obstacle vous empeche d'aller à cet endroit")
                 }
                 break;
         }
@@ -105,7 +106,7 @@ class Map extends React.Component {
             });
 
         if(data.ordonneeJoueur != ordonnee || data.abscisseJoueur != abscisse){
-            toast.error("Un obstacle vous empeche d'aller à cet endroit");
+            //toast.error("Un obstacle vous empeche d'aller à cet endroit");
         }
 
     }
@@ -113,7 +114,7 @@ class Map extends React.Component {
     async changeMap(targetMapId, targetWrap, clickedWrap){
         const mapPosition = await UsersApi.changeMap(targetMapId, targetWrap, clickedWrap);
         if(mapPosition.message !== undefined && mapPosition.mapId === undefined){
-            toast(mapPosition.message);
+            //toast(mapPosition.message);
         }else{
             const mapData = await MapApi.find(mapPosition.mapId);
             this.setState({
@@ -148,7 +149,11 @@ class Map extends React.Component {
         const filteredOrdonnee= [ this.state.ordonneeJoueur-1, this.state.ordonneeJoueur, this.state.ordonneeJoueur+1 ];
         const filteredAbscisse= [ this.state.abscisseJoueur-1, this.state.abscisseJoueur, this.state.abscisseJoueur+1 ];
 
-        const filteredCases = this.state.cases.filter(oneCase => filteredAbscisse.includes(oneCase.abscisse) && filteredOrdonnee.includes(oneCase.ordonnee) && oneCase.isUsable && !(oneCase.abscisse === this.state.abscisseJoueur && oneCase.ordonnee === this.state.ordonneeJoueur || oneCase.userId !== null))
+        const filteredCases = this.state.cases.filter(oneCase => {
+            return filteredAbscisse.includes(oneCase.abscisse) && filteredOrdonnee.includes(oneCase.ordonnee) && oneCase.isUsable
+            && !(oneCase.abscisse === this.state.abscisseJoueur && oneCase.ordonnee === this.state.ordonneeJoueur || oneCase.userId !== null || oneCase.pnjId !== null)
+
+        })
 
         return filteredCases.map(oneCase => oneCase = oneCase.carteCarreauId);
     }
@@ -186,10 +191,12 @@ class Map extends React.Component {
             <div className="banner-map">
                 <h1 className="text-center title-map-font">{this.state.name}</h1>
             </div>
+
             <div className="cases" style={{backgroundImage: "url("+require("../../img/map/"+this.state.mapId+".png").default+")", backgroundSize: 'cover'}}>
                 {this.state.cases.map(uniqueCase => (
                     <div  onClick={() =>this.handleClick(uniqueCase)}>
                         <Case key={uniqueCase.carteCarreauId}
+                              debug={uniqueCase.carteCarreauId}
                               abscisse={uniqueCase.abscisse}
                               ordonnee={uniqueCase.ordonnee}
                               haveJoueur={this.getJoueur(uniqueCase)}

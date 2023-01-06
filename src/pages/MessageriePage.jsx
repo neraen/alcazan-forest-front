@@ -1,6 +1,4 @@
 import React from "react";
-import {ToastContainer} from "react-toastify";
-import Guilde from "../components/social/Guilde";
 import Contacts from "../components/social/messagerie/Contacts";
 import Messenger from "../components/social/messagerie/Messenger";
 
@@ -14,10 +12,6 @@ class MessageriePage extends React.Component{
 
     render(){
         return (<>
-            <ToastContainer
-                position="top-right"
-                theme="dark"
-                autoClose={4000} />
             <main className="messagerie-page">
                 <h1 className="text-center title-map-font banner-map banner-map-inventory">Messagerie</h1>
                 <div className="messagerie-main">

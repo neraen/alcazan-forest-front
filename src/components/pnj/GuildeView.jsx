@@ -1,10 +1,9 @@
-import React, {useEffect, useState} from "react"
+import React from "react"
 import {connect} from "react-redux";
 import {updateJoueurState} from "../../store/actions";
 import UserActionApi from "../../services/UserActionApi";
 import pnjApi from "../../services/pnjApi";
-import {toast} from "react-toastify";
-import {render} from "redux-logger/src/diff";
+
 
 
 class GuildeView extends React.Component {
@@ -34,6 +33,7 @@ class GuildeView extends React.Component {
 
     fetchGuildeData = async () => {
         const guildeData = await pnjApi.getPnjGuilde(this.props.pnjId)
+
         this.setState({
             guildes: guildeData.guildes,
             dialogue: guildeData.dialogue
@@ -50,7 +50,7 @@ class GuildeView extends React.Component {
 
     handleChoiseGuilde = async (link, params, actionId) => {
         const messageData = await UserActionApi.applyUserAction(link, params, actionId);
-        toast(messageData.message);
+        //toast(messageData.message);
     }
 
     autoWrite = () => {
@@ -73,7 +73,7 @@ class GuildeView extends React.Component {
 
     handleJoinGuilde = (guildeId) => {
         const message = UserActionApi.joinGuilde(guildeId);
-        toast(message);
+        //toast(message);
     }
 
 

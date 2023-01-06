@@ -65,6 +65,10 @@ function joueurGetIdFriend(userId){
     return axios.post(API_URL + "joueur/isfriend", {userId: userId}).then(response => response.data)
 }
 
+function disableTutorial(){
+    return axios.post(API_URL + "joueur/disable/tutorial").then(response => response.data)
+}
+
 export default {
     register,
     find,
@@ -81,5 +85,6 @@ export default {
     applyAttaqueToBoss,
     applySpellAutoFocused,
     getExpJoueur,
-    joueurGetIdFriend
+    joueurGetIdFriend,
+    disableTutorial
 }

@@ -27,6 +27,13 @@
   border: 1px solid black;
 }
 
+.custom-toastg{
+  position: absolute;
+  top: 50px;
+  right: 100px;
+  z-index: 1000;
+}
+
 body {
   background-color: azure!important;
   background-size: cover!important;
@@ -35,6 +42,18 @@ body {
 
 main{
   min-height: 90vh!important;
+}
+
+.intro-js-tooltip{
+  background-color: rgba(0,0,0,0.4);
+  backdrop-filter: blur(20px);
+  border: solid 1px aliceblue;
+  color: aliceblue;
+  width: max-content;
+}
+
+.intro-js-highlight{
+  border: aliceblue 1px solid;
 }
 
 .toast-black-background{
@@ -94,7 +113,10 @@ main{
 /*    src: url('../../public/fonts/BerryRotunda.ttf') format('ttf');*/
 /*}*/
 
-
+.navbar{
+  padding-top: 0;
+  padding-bottom: 0;
+}
 
 .navbar-padding{
   padding-left: 50px;
@@ -171,8 +193,9 @@ main{
   justify-content: center;
   background: rgba(0,0,0,0.6);
   border-radius: 7px;
+  max-width: max-content;
+  margin: 15px auto;
   padding: 15px;
-  margin: 15px;
   backdrop-filter: blur(20px);
   border: solid aliceblue 1px;
 }
@@ -180,8 +203,8 @@ main{
 .cases{
   display: flex;
   flex-wrap: wrap;
-  width: 84.2vh;
-  height: 56vh;
+  width: 100.8vh;
+  height: 67.2vh;
   position: relative;
   z-index: 2;
   -webkit-border-image: url(../img/map/Border.png);
@@ -193,16 +216,14 @@ main{
 
 .case{
   content: "";
-  width: 3.5vh; /*48*/
-  height: 3.5vh;
+  width: 4.189vh; /*48*/
+  height: 4.2vh;
   border: rgba(0, 0, 0, .25) 1px solid;
   /*background: rgba(255,255,255,0);*/
 }
 
 .top-container{
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
 }
 
 .user-stats-block{
@@ -262,7 +283,8 @@ main{
   z-index: -2;
   background: rgba(0,0,0,0.7);
   backdrop-filter: blur(20px);
-  border: aliceblue 1px solid;
+  border-top: aliceblue 1px solid;
+  border-left: aliceblue 1px solid;
   display: flex;
   justify-content: center;
   align-items: baseline;
@@ -287,7 +309,7 @@ main{
 }
 
 .lifeBar{
-  width: 230px;
+  width: 200px;
   height: 30px;
   padding: 0;
   background: url(../img/gui/CharacterPlayer/ProgressBar/BqBar.png);
@@ -301,7 +323,7 @@ main{
 }
 
 .lifeBar .valueBar{
-  width: 150px;
+  width: 200px;
   height: 30px;
   display: flex;
   align-items: center;
@@ -313,7 +335,7 @@ main{
 }
 
 .manaBar{
-  width: 230px;
+  width: 200px;
   height: 30px;
   padding: 0;
   display: flex;
@@ -398,6 +420,7 @@ main{
   position: relative;
   height: 180px;
   z-index: 10000;
+  width: 14vw;
   /*background: url(../img/gui/CharacterEnemy/OverlayBorder.png);*/
   /*background-size: 380px 180px;*/
 }
@@ -519,8 +542,8 @@ main{
   /*background-image: url("../img/character/mage/guerrier.png")!important;*/
   background-size: contain;
   content: "";
-  width: 3.4vh;
-  height: 3.4vh;
+  width: 4.1vh;
+  height: 4.1vh;
   position: relative;
 }
 
@@ -534,7 +557,7 @@ main{
   border: solid black 1px;
 }
 
-.joueur:hover .joueur-hover{
+.joueur-hoverable:hover .joueur-hover{
   display: flex!important;
   z-index: 2;
   border-radius: 5px;
@@ -561,10 +584,11 @@ main{
 
 .pnj{
   content: "";
-  width: 46px;
-  height: 46px;
+  width: 4.1vh;
+  height: 4.1vh;
   position: relative;
   background-size: cover;
+  cursor: pointer;
 }
 
 .pnj:hover .pnj-hover{
@@ -598,11 +622,8 @@ main{
   /*border-image: url("public/img/sprites/titles2/Medieval.png") 30 / 19px round*/;
   /*border-image: url("public/img/sprites/titles2/Medieval.png") 30 / 19px round*/;
   width: auto;
-  margin-right: 100px;
-  justify-content: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 
@@ -624,12 +645,16 @@ main{
 }
 
 .side-block{
-  margin-right: 15px;
+  min-width: 25vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: auto 0;
 }
 
 .side-menu{
-  /*background: url("../img/gui/Panel3.png");*/
-  background-size: 391px 203px;
+  background-size: 100%;
   color: white;
   min-width: 350px;
   max-width: 350px;
@@ -666,10 +691,9 @@ main{
 .expBar{
   content: "";
   background: url(../img/gui/exp/ProgressBar/Separator.png);
-  height: 9px;
-  width: 1000px;
-  background-size: cover;
-
+  background-size: 97%;
+  background-repeat: no-repeat;
+  width: 850px;
 }
 
 .exp-bar-container .label-bar{
@@ -694,9 +718,8 @@ main{
   /*background: url(../img/gui/spells/spell-bar/Panel.png);*/
   /*background-position: center;*/
   /*background-size: cover;*/
-  width: 1106px;
+  width: auto;
   padding: 10px;
-  margin-left: 503px;
   background: rgba(0,0,0,0.75);
   backdrop-filter: blur(20px);
   border: aliceblue solid 1px;
@@ -1153,6 +1176,7 @@ section #text span{
 
 .unabled-move{
   background-color: rgba(255,255,255,0.6);
+  cursor: pointer;
 }
 
 .unabled-move:hover{
@@ -1179,8 +1203,7 @@ section #text span{
 
 .footer-block{
   display: flex;
-  justify-content: space-evenly;
-  margin-right: 4.2vw;
+  margin: auto;
 }
 
 
@@ -1711,10 +1734,8 @@ section #text span{
   }
 
   .banner-map{
-    width: 152px;
     height: 43px;
     position: relative;
-    top: -15px;
   }
 
   .side-block{
@@ -1862,9 +1883,7 @@ section #text span{
   }
 
   .spell-bar{
-    width: 850px;
     padding: 20px;
-    margin-left: 362px;
   }
 
   .expBar{
@@ -1894,21 +1913,6 @@ section #text span{
     height: 51px;
   }
 
-
-  .cases{
-    width: 962px;
-    height: 642px;
-  }
-
-  .case{
-    width: 40px;
-    height: 40px;
-  }
-
-  .joueur{
-    width: 39px;
-    height: 39px;
-  }
 }
 
 /***** GUILDE ***/
@@ -2018,8 +2022,8 @@ section #text span{
 .layout-administration{
   display: flex;
   justify-content: center;
-  margin: auto;
   flex-direction: column;
+  width: 100%;
 }
 
 .layout-administration h1{
@@ -2137,7 +2141,6 @@ section #text span{
 .map-maker-btn-outils-container{
   display: flex;
   flex-direction: column;
-
 }
 
 .map-maker-btn-outils{
@@ -2216,6 +2219,68 @@ section #text span{
   display: flex;
 }
 
+/*** QUEST MAKER **/
+
+.form-add-quest{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.quest-maker-page-container{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.quest-maker-container{
+  display: flex;
+  margin-top: 50px;
+  border: aliceblue solid 1px;
+  border-radius: 7px;
+  background-color: rgba(0,0,0,0.4);
+  width: 100%;
+  max-height: 55vh;
+  min-height: 55vh;
+}
+
+.quest-maker-left-part{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  flex: 1 1 20%;
+  border: aliceblue solid 1px;
+}
+
+.quest-maker-central-part{
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  flex: 1 1 80%;
+  overflow-y: scroll;
+  max-height: 55vh;
+  min-height: 55vh;
+  border: aliceblue solid 1px;
+}
+
+.quest-maker-actions{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border: aliceblue solid 1px;
+  overflow-y: scroll;
+}
+
+.sequence-container{
+  background-color: rgba(255,255,255,0.4);
+  padding: 20px;
+  margin: 20px;
+}
+
 
 /**** MESSAGERIE **/
 
@@ -2263,10 +2328,9 @@ section #text span{
   }
 
   .banner-map{
-    width: 152px;
     height: 43px;
     position: relative;
-    top: -15px;
+    font-size: 1em;
   }
 
   .side-block{
@@ -2279,10 +2343,11 @@ section #text span{
   }
 
   .player-pseudo{
-    width: 151px;
+    width: 11vw;
     height: 20px;
     font-size: 15px;
     margin-top: 2px;
+    left: 63px;
   }
 
   .avatar-player{
@@ -2413,15 +2478,30 @@ section #text span{
     height: 42px;
   }
 
-  .spell-bar{
-    width: 850px;
-    padding: 20px;
-    margin-left: 362px;
+  .expBar{
+    width: auto;
+    height: 5px;
   }
 
-  .expBar{
-    width: 760px;
-    height: 7px;
+  .exp-icon-container{
+    width: 23px;
+    height: 23px;
+    padding-left: 0;
+    position: absolute;
+    top: 9px;
+    left: -15px;
+  }
+
+  .label-bar{
+    font-size: 0.8rem;
+  }
+
+  .exp-bar-container{
+    width: 100%;
+  }
+
+  .expBar .valueBar{
+    height: 5px;
   }
 
   .valueBar{
@@ -2435,32 +2515,26 @@ section #text span{
   }
 
   .spell, .spell-filter, .consommable-filter{
-    width: 58px;
-    height: 58px;
-    min-height: 58px;
-    min-width: 58px;
+    width: 50px;
+    height: 50px;
+    min-height: 50px;
+    min-width: 50px;
 
   }
 
   .img-spell{
-    width: 51px;
-    height: 51px;
-  }
-
-
-  .cases{
-    width: 1058px;
-    height: 705px;
-  }
-
-  .case{
     width: 44px;
     height: 44px;
   }
 
-  .joueur{
-    width: 43px;
-    height: 43px;
+  .buffs{
+    width: 75px;
+    height: 48px;
+  }
+
+  .buff{
+    width: 23px;
+    height: 23px;
   }
 }
 
@@ -2550,23 +2624,10 @@ section #text span{
     width: 199px;
   }
 
-  .cases{
-    width: 674px;
-    height: 449px;
-  }
-
-  .case{
-    width: 28px;
-    height: 28px;
-  }
-
   .spell-bar {
-    width: 400px;
-    height: 280px;
     transform: rotate(90deg);
     position: absolute;
     top: 79px;
-    left: -535px;
     background: none;
     z-index: 0;
   }
@@ -2589,11 +2650,6 @@ section #text span{
     top: 70px;
     left: -53px;
     display: none;
-  }
-
-  .joueur{
-    width: 27px;
-    height: 27px;
   }
 
   .pnj{

@@ -1,4 +1,4 @@
-import {NavLink, Route, Switch} from "react-router-dom";
+import {NavLink, Switch} from "react-router-dom";
 import React from "react";
 import PrivateRoute from "../../components/PrivateRoute";
 import MapMakerPage from "./MapMakerPage";
@@ -6,6 +6,7 @@ import PnjMakerPage from "./PnjMakerPage";
 import MonsterMakerPage from "./MonsterMakerPage";
 import EquipementPage from "./EquipementPage";
 import ShopMakerPage from "./ShopMakerPage";
+import QuestMakerPage from "./QuestMakerPage";
 
 
 
@@ -42,6 +43,7 @@ const AdministrationPage = (props) => {
             <div className="layout-administration">
                 <Switch>
                     <PrivateRoute path="/administration/mapmaker"  isAdmin={true} component={MapMakerPage}/>
+                    <PrivateRoute path="/administration/questmaker"  isAdmin={true} component={QuestMakerPage}/>
                     <PrivateRoute path="/administration/pnj"  isAdmin={true} component={PnjMakerPage}/>
                     <PrivateRoute path="/administration/monstres"  isAdmin={true} component={MonsterMakerPage}/>
                     <PrivateRoute path="/administration/equipements"  isAdmin={true} component={EquipementPage}/>

@@ -2,7 +2,7 @@ import React from 'react'
 import EditableCase from "./EditableCase";
 import MapApi from "../../services/MapApi";
 import {connect} from "react-redux";
-import {setCases, updateDiffCases} from "../../store/actions";
+import {setCases} from "../../store/actions";
 
 
 

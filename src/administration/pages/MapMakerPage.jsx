@@ -62,6 +62,8 @@ class MapMakerPage extends React.Component{
             case "pnj":
                 this.setState({displayPnjFrom: !this.state.displayPnjFrom})
                 break;
+            default:
+                break;
         }
     }
 

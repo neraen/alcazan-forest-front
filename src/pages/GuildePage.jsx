@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from "react-redux";
 import {updateJoueurState} from "../store/actions";
-import {toast, ToastContainer} from "react-toastify";
 import Guilde from "../components/social/Guilde";
 
 
@@ -20,14 +19,10 @@ import Guilde from "../components/social/Guilde";
 
     render(){
         return (<>
-            <ToastContainer
-                position="top-right"
-                theme="dark"
-                autoClose={4000} />
-                <main className="guilde-page">
-                    <h1 className="text-center title-map-font banner-map banner-map-inventory">Guilde</h1>
-                    <Guilde />
-                </main>
+            <main className="guilde-page">
+                <h1 className="text-center title-map-font banner-map banner-map-inventory">Guilde</h1>
+                <Guilde />
+            </main>
         </>  )
     }
 }

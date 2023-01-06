@@ -1,5 +1,4 @@
 import React from "react";
-import monsterApi from "../../../services/monsterApi";
 import EquipementApi from "../../../services/EquipementApi";
 import Field from "../../../components/forms/Field";
 import Select from "../../../components/forms/Select";

@@ -3,7 +3,7 @@ import UsersApi from "../../services/UsersApi";
 import {connect} from "react-redux";
 import {fetchTargetInfo, updateJoueurState, removePlayerTarget} from "../../store/actions";
 import distanceCalculator from "../../services/distanceCalculator";
-import {toast} from "react-toastify";
+
 
 const Spell = (props) => {
 
@@ -84,7 +84,7 @@ const Spell = (props) => {
         }else if(props.target.type === "monstre" || props.target.type === "boss"){
             await launchAttack();
         }else{
-            toast("Vous n'avez pas de cible.")
+            //toast("Vous n'avez pas de cible.")
         }
     }
 
@@ -107,7 +107,7 @@ const Spell = (props) => {
             if(props.spell.type !== "soin"){
                 attackStats = await UsersApi.applyAttaqueToMonster(props.target.targetId, props.spell.id)
             }else{
-                toast("Vous ne pouvez pas soigner cette cible")
+                //toast("Vous ne pouvez pas soigner cette cible")
                 return;
             }
         }else if(props.target.type === "boss"){

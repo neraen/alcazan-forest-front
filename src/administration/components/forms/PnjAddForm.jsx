@@ -2,7 +2,6 @@ import React from 'react'
 import '../../../styles/app.css'
 import {connect} from "react-redux";
 import {addWrapTool,updateModeMapMaker} from "../../../store/actions";
-import Field from "../../../components/forms/Field";
 import Select from "../../../components/forms/Select";
 import MapMakerApi from "../../services/MapMakerApi";
 

@@ -4,7 +4,7 @@ const Bar = (props) => {
 
     const getWithValueBar = () => {
         if(props.value < 0) return 0
-        return props.value / props.max * props.maxWidth;
+        return props.value / props.max * 100 + '%';
     }
 
     return(

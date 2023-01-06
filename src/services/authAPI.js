@@ -9,10 +9,12 @@ function logout(){
 
 async function  authenticate(credentials){
     return await axios.post(LOGIN_API, credentials)
-         .then(response => response.data.token)
-         .then(token => {
-             window.localStorage.setItem("authToken", token)
-             setAxiosToken(token)
+         .then(response => {
+             const token = response.data.token;
+             if(token !== undefined){
+                 window.localStorage.setItem("authToken", token)
+                 setAxiosToken(token)
+             }
          })
 }
 

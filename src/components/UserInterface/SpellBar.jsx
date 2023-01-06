@@ -29,11 +29,13 @@ const SpellBar = (props) => {
         const consommables = await UsersApi.getPlayerConsommables();
         setSpells(spells);
         setConsommables(consommables);
+
+        props.setSpellsLoaded(true);
     }
 
 
     return <>
-        <div className="spell-bar offset-2 mt-2 d-flex flex-column justify-content-center align-items-center px-4">
+        <div className="spell-bar mt-2 d-flex flex-column justify-content-center align-items-center px-4">
             <div className="exp-bar-container mb-3">
                 <div className="exp-icon-container">
                     <img className="exp-icon" src="/img/gui/Xp.png" />

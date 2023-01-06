@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react'
 import {connect} from "react-redux";
 import {updatePlayerTarget} from "../store/actions";
-import * as url from "url";
 
 const Boss = (props) => {
 

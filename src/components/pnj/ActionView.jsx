@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {updateJoueurState} from "../../store/actions";
 import UserActionApi from "../../services/UserActionApi";
 import pnjApi from "../../services/pnjApi";
-import {toast} from "react-toastify";
+
 
 
 const ActionView = (props) => {
@@ -21,7 +21,7 @@ const ActionView = (props) => {
 
     const handleAction = async (link, params, actionId) => {
         const messageData = await UserActionApi.applyUserAction(link, params, actionId);
-        toast(messageData.message);
+        //toast(messageData.message);
     }
 
     return(

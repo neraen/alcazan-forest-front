@@ -13,6 +13,7 @@ export const playerStatsReducer = (state = {
             ordonneeTarget:0
         },
         joueurState: {
+            idJoueur: 0,
             experience: 0,
             newExperience: 0,
             maxExperience: 0,

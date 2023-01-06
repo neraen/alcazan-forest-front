@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {connect} from "react-redux";
 import {fetchTargetInfo, updateJoueurState, removePlayerTarget} from "../store/actions";
-import {toast} from "react-toastify";
 import UserActionApi from "../services/UserActionApi";
 
 const Consommable = (props) => {
@@ -69,7 +68,7 @@ const Consommable = (props) => {
         })
 
         if(statsAfterUseConsommable.message !== ""){
-            toast(statsAfterUseConsommable.message);
+            //toast(statsAfterUseConsommable.message);
         }
     }
 

@@ -14,7 +14,7 @@ const Case = (props) => {
 
     return <>
         <div className={"case "+ (props.isUnabled && "unabled-move" || 'disabled-move') } >
-            { props.hasPnj && <Pnj pnj={props.hasPnj}/>}
+            { props.hasPnj && <Pnj pnj={props.hasPnj} abscisse={props.abscisse} ordonnee={props.ordonnee}/>}
             { props.haveJoueur && <Player player={props.haveJoueur} hasMonstre={props.hasMonstre}/>}
             { props.hasBoss && <Boss boss={props.hasBoss} />}
             { props.hasAction && <ActionMap action={props.hasAction} />}

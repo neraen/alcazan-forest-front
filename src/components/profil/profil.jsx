@@ -3,7 +3,6 @@ import Field from "../forms/Field";
 import UsersApi from "../../services/UsersApi";
 import InventaireApi from "../../services/InventaireApi";
 import carateristiqueService from "../../services/carateristiqueService";
-import {toast, ToastContainer} from "react-toastify";
 
 const Profil = (props) => {
 
@@ -69,7 +68,7 @@ const Profil = (props) => {
         if(maxCaracsAllowed - getActualCaracacteristiques() >= 0){
             const message = await UsersApi.updateCaracteristiques(caracteristiques);
             console.log(message)
-            toast(message);
+            //toast(message);
         }
     }
 

@@ -8,6 +8,7 @@ const Player = (props) => {
         if(props.hasMonstre){
             props.updatePlayerTarget({targetId: props.hasMonstre, type: "monstre"})
         }
+        console.log(props);
     }, [])
 
     const handleTarget = () =>{
@@ -15,7 +16,7 @@ const Player = (props) => {
     }
 
     return <>
-        <div className="joueur" style={{backgroundImage: "url(../img/classes/"+props.player.nomClasse+"_"+ props.player.sexe +".png)"}} onClick={handleTarget}>
+        <div className={"joueur " + (props.player.idJoueur !== props.joueurState.joueurId && "joueur-hoverable") } style={{backgroundImage: "url(../img/classes/"+props.player.nomClasse+"_"+ props.player.sexe +".png)"}} onClick={handleTarget}>
             <div className="joueur-hover d-none flex-column">
                 <div className="joueur-name">{props.player.pseudo}</div>
                 <div className="joueur-level">Niveau : {props.player.niveau}  {props.player.nomAlignement && <img className="icone-alignement" src={"../img/alignement/"+props.player.iconeAlignement} />}</div>
@@ -26,9 +27,10 @@ const Player = (props) => {
     </>
 }
 
-export default connect(null, (dispatch, ownProps) => {
+export default connect((state, ownProperties) =>{
+    return {joueurState: {...state.data.joueurState}, ownProperties}
+}, (dispatch, ownProps) => {
     return {
-        ownProps,
         updatePlayerTarget: (targetId, type) => dispatch(updatePlayerTarget(targetId, type))
     }
 })(Player)

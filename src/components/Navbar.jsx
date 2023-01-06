@@ -10,7 +10,7 @@ const Navbar = ({history}) => {
     const handleLogout = () => {
         authAPI.logout();
         setIsAuthenticated(false)
-        history.push('/login')
+        history.push('/connexion')
     }
 
 

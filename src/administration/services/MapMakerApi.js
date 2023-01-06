@@ -3,7 +3,7 @@ import {API_URL} from "../../config";
 
 
 function updateMap(mapId, cases){
-    return axios.post(API_URL + "map/update", {mapId: mapId, cases: cases})
+    return axios.post(API_URL + "map/update", {mapId: mapId, cases: cases}).then(response => response.data)
 }
 
 function getCasesInfoForSelect(mapId){
@@ -17,8 +17,6 @@ function getPnjInfoForSelect(){
 function getMonstreInfoForSelect(){
     return axios.post(API_URL + "monstre/infos", {}).then(response => response.data)
 }
-
-
 
 export default {
     updateMap,

@@ -5,13 +5,14 @@ import ShopView from "./ShopView";
 import QuestView from "./QuestView";
 import ActionView from "./ActionView";
 import GuildeView from "./GuildeView";
+import distanceCalculator from "../../services/distanceCalculator";
 
 class PnjModal extends React.Component{
 
     constructor(props) {
         super(props);
+        console.log(props);
     }
-
 
     render() {
         return  <Modal

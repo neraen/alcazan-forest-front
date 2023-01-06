@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import Field from "../../../components/forms/Field";
-import pnjApi from "../../../services/pnjApi";
 import monsterApi from "../../../services/monsterApi";
 
 

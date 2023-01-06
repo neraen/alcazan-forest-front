@@ -27,8 +27,12 @@ const LoginPage = ({history }) =>{
         try {
             await authAPI.authenticate(credentials)
             setError("")
-            setIsAuthenticated(true)
-            history.replace("/carte")
+            if(authAPI.isAuthenticated()){
+                setIsAuthenticated(true)
+                history.replace("/carte")
+            }else{
+                setError("Combinaison email / mot de passe invalid ou email inexistant")
+            }
         }catch(error){
             setError("Combinaison email / mot de passe invalid ou email inexistant")
         }

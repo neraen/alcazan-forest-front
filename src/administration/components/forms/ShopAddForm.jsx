@@ -1,6 +1,5 @@
 import React from 'react';
-import { Formik, Form, Field, FieldArray } from 'formik';
-import EquipementApi from "../../../services/EquipementApi";
+import { Formik} from 'formik';
 
 class ShopAddForm extends React.Component{
 

@@ -3,6 +3,8 @@ import useModal from "../hooks/useModal";
 import pnjApi from "../services/pnjApi";
 import UserActionApi from "../services/UserActionApi";
 import PnjModal from "./pnj/PnjModal";
+import {connect} from "react-redux";
+import distanceCalculator from "../services/distanceCalculator";
 
 
 const Pnj = (props) => {
@@ -36,6 +38,15 @@ const Pnj = (props) => {
         toggleDialogPnj()
     }
 
+    const isDialogAvailable = () => {
+        return isDialogShowed && isPlayerNearPnj();
+    }
+
+    const isPlayerNearPnj = () => {
+        console.log(props);
+        return distanceCalculator.computeDistance(props.abscisse, props.ordonnee, props.positionJoueur.abscisse, props.positionJoueur.ordonnee) < 2;
+    }
+
 
     return <>
         <div className="pnj" style={{backgroundImage: "url(../../../img/pnj/"+props.pnj.pnjSkin+".png)"}} onClick={getPnjInfos}>
@@ -45,7 +56,7 @@ const Pnj = (props) => {
             </div>
         </div>
 
-        <PnjModal toggleDialogPnj={toggleDialogPnj} isDialogShowed={isDialogShowed} pnjId={props.pnj.pnjId} title={pnjInfo.title} typePnj={pnjInfo.typePnj} typeShop={pnjInfo.typeShop} data={pnjInfo.items}/>
+        <PnjModal toggleDialogPnj={toggleDialogPnj} isDialogShowed={isDialogAvailable()} pnjId={props.pnj.pnjId} title={pnjInfo.title} typePnj={pnjInfo.typePnj} typeShop={pnjInfo.typeShop} data={pnjInfo.items}/>
 
         {/*{clicked && sequence !== [] &&*/}
         {/*<Modal*/}
@@ -64,4 +75,6 @@ const Pnj = (props) => {
     </>
 }
 
-export default Pnj;
+export default connect((state, ownProps) => {
+    return {positionJoueur: state.data.positionJoueur, ownProps};
+}, {})(Pnj);

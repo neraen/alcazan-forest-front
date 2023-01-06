@@ -1,9 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import Field from "./forms/Field";
 import UsersApi from "../services/UsersApi";
-import InventaireApi from "../services/InventaireApi";
-import carateristiqueService from "../services/carateristiqueService";
-import {toast, ToastContainer} from "react-toastify";
 import ProfilAPI from "../services/ProfilAPI";
 import UserActionApi from "../services/UserActionApi";
 
@@ -43,7 +39,7 @@ const ProfilJoueur = ({match, history}) => {
             setIsFriend(true);
             setIdFriend(data.friendId);
         }
-        toast(data.message)
+        //toast(data.message)
     }
 
     const sendMessage = () => {
@@ -53,10 +49,6 @@ const ProfilJoueur = ({match, history}) => {
 
     return <>
         <main className="main-profil-page ">
-            <ToastContainer
-                position="top-right"
-                theme="dark"
-                autoClose={4000} />
 
             <div className="profil-container">
                 <h2>Bannière</h2>
