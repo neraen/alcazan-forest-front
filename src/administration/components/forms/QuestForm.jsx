@@ -61,10 +61,6 @@ class QuestForm extends React.Component{
         this.setState({actions: actions})
     }
 
-    setActionsForSequence(actions){
-        this.setState({actions: actions})
-    }
-
     handleSubmit(){
         QuestMakerApi.updateQuest(this.state.questId, this.state.questInfos);
     }
@@ -91,7 +87,7 @@ class QuestForm extends React.Component{
                     <div className="quest-maker-central-part sequences">
                         <div className="map-maker-btn-validation" onClick={() => this.handleAddSequance()}>Ajouter une sequence</div>
                         {this.state.questInfos.sequences && this.state.questInfos.sequences.map((sequence) => {
-                            return <SequenceForm key={sequence.id} sequence={sequence} setActionsForSequence={this.setActionsForSequence}/>
+                            return <SequenceForm key={sequence.id} sequence={sequence} />
                         })}
                     </div>
                 </form>

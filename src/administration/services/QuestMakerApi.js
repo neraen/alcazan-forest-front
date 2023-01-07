@@ -29,9 +29,6 @@ function getAllActionTypes() {
     return axios.post(`${API_URL}action/types`, {}).then(response => response.data);
 }
 
-function getallObjects() {
-    return axios.post(`${API_URL}objects`, {}).then(response => response.data);
-}
 
 export default {
     getAllQuests,
@@ -41,5 +38,4 @@ export default {
     getQuestsInfoForSelect,
     deleteQuest,
     getAllActionTypes,
-    getallObjects
 }

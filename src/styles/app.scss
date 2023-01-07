@@ -2268,17 +2268,56 @@ section #text span{
 
 .quest-maker-actions{
   display: flex;
-  justify-content: center;
-  align-items: center;
   padding: 20px;
   border: aliceblue solid 1px;
   overflow-y: scroll;
+  flex-direction: row;
 }
 
 .sequence-container{
   background-color: rgba(255,255,255,0.4);
   padding: 20px;
   margin: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sequence-form-container{
+  display: flex;
+  flex-direction: row;
+}
+
+.sequence-form-left{
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 50%;
+  padding: 20px;
+}
+
+.sequence-form-right{
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 50%;
+  padding: 20px;
+}
+
+.quest-maker-actions-form{
+  width: 50%;
+  margin: 20px auto;
+}
+
+.action-container{
+  background-color: rgba(255,255,255,0.4);
+  border: #3e4656 solid 1px;
+  border-radius: 7px;
+  padding: 20px;
+  margin: 20px;
+  display: flex;
+  flex: 1 1 50%;
+  flex-direction: column;
+  h6{
+    font-size: 18px;
+  }
 }
 
 
