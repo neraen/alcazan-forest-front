@@ -2272,6 +2272,7 @@ section #text span{
   border: aliceblue solid 1px;
   overflow-y: scroll;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .sequence-container{
@@ -2313,7 +2314,7 @@ section #text span{
   padding: 20px;
   margin: 20px;
   display: flex;
-  flex: 1 1 50%;
+  width: 45%;
   flex-direction: column;
   h6{
     font-size: 18px;

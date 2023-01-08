@@ -9,9 +9,12 @@ function fetchFormElements(){
     return axios.post(API_URL + "equipement/formelements", {}).then(response => response.data)
 }
 
-
+function getAllEquipements() {
+    return axios.post(API_URL + "equipements", {}).then(response => response.data.equipements);
+}
 
 export default {
     create,
-    fetchFormElements
+    fetchFormElements,
+    getAllEquipements
 }

@@ -4,6 +4,12 @@ import actionTypeApi from "../../services/actionTypeApi";
 import Field from "../../../components/forms/Field";
 import Select from "../../../components/forms/Select";
 import objectApi from "../../../services/objectApi";
+import EquipementApi from "../../../services/EquipementApi";
+import MapApi from "../../../services/MapApi";
+import consommableApi from "../../../services/consommableApi";
+import bossApi from "../../../services/bossApi";
+import pnjApi from "../../../services/pnjApi";
+import mapMakerApi from "../../services/MapMakerApi";
 
 
 class ActionForm extends React.Component{
@@ -24,9 +30,32 @@ class ActionForm extends React.Component{
     fetchAllFieldsAndValues = async () =>{
         const fields = await actionTypeApi.getAllFields(this.props.action.actionTypeId);
         this.setState({fields: fields})
-        if(this.props.action.actionTypeName === "donnerObjet"){
-            const objets = await objectApi.getAllObjects();
-            this.setState({fieldContent: objets})
+        console.log(this.props.action.actionTypeName)
+        switch (this.props.action.actionTypeName) {
+            case "donnerObjet":
+                const objets = await objectApi.getAllObjects();
+                this.setState({fieldContent: objets})
+                break;
+            case "donnerEquipement":
+                const equipements = await EquipementApi.getAllEquipements();
+                this.setState({fieldContent: equipements})
+                break;
+            case "donnerConsommable":
+                const consommables = await consommableApi.getAllConsommables();
+                this.setState({fieldContent: consommables})
+                break;
+            case "battreBoss":
+                const bosses = await bossApi.getAllBosses();
+                this.setState({fieldContent: bosses})
+                break;
+            case "visiterCarte":
+                const cartes = await MapApi.getAllMaps();
+                this.setState({fieldContent: cartes})
+                break;
+            case "parlerPnj":
+                const pnjs = await mapMakerApi.getPnjInfoForSelect();
+                this.setState({fieldContent: pnjs})
+                break;
         }
 
         console.log(this.state.fieldContent)
@@ -35,7 +64,7 @@ class ActionForm extends React.Component{
     handleChange = (event) => {
         const value = event.currentTarget.value;
         const name = event.currentTarget.name;
-        this.setState({[name]: value})
+        this.setState({[name]: value}, () =>  this.props.handleActionChange(this.state));
     }
 
     render(){
@@ -51,7 +80,7 @@ class ActionForm extends React.Component{
                             })}
                         </Select>
                     }else{
-                        return <Field name={field.name} type={field.type} label={field.name} value={field.value} onChange={this.handleSequenceChange}/>
+                        return <Field name={field.name} type={field.type} label={field.name} value={field.value} onChange={this.handleChange}/>
                     }
 
                 })}

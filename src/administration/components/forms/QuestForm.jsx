@@ -13,6 +13,7 @@ class QuestForm extends React.Component{
         super(props);
         this.state = {
             questInfos: [],
+            questContent: [],
             selectContent: [],
             questId: 1
         }
@@ -46,25 +47,20 @@ class QuestForm extends React.Component{
         this.setState({questInfos: {...this.state.questInfos, sequences: sequences}})
     };
 
-    handleAddAction(){
-        const actions = this.state.questInfos.sequences;
-        actions.push({
-            id: 0,
-            position: 0,
-            hasAction: 0,
-            isLast: false,
-            dialogueContent:"",
-            dialogueId: 0,
-            pnjName: "",
-            pnjId: 0,
-        });
-        this.setState({actions: actions})
-    }
-
     handleSubmit(){
-        QuestMakerApi.updateQuest(this.state.questId, this.state.questInfos);
+       // QuestMakerApi.updateQuest(this.state.questId, this.state.questInfos);
+        console.log(this.state.questContent)
     }
 
+    handleQuestFormChange(event){
+        const value = event.currentTarget.value;
+        const name = event.currentTarget.name;
+        this.setState({[name]: value})
+    }
+
+    handleAllQuestFormChange = (data) =>{
+        this.setState({questContent: {sequences: data}})
+    }
     render(){
         return (
             <>
@@ -87,7 +83,7 @@ class QuestForm extends React.Component{
                     <div className="quest-maker-central-part sequences">
                         <div className="map-maker-btn-validation" onClick={() => this.handleAddSequance()}>Ajouter une sequence</div>
                         {this.state.questInfos.sequences && this.state.questInfos.sequences.map((sequence) => {
-                            return <SequenceForm key={sequence.id} sequence={sequence} />
+                            return <SequenceForm key={sequence.id} sequence={sequence} handleAllQuestFormChange={this.handleAllQuestFormChange}/>
                         })}
                     </div>
                 </form>

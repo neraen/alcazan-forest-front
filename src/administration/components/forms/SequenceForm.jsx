@@ -2,10 +2,10 @@ import React from 'react'
 import '../../../styles/app.css'
 import Field from "../../../components/forms/Field";
 import Select from "../../../components/forms/Select";
-import ActionGiveObjectForm from "./actions/ActionGiveObjectForm";
 import sequenceApi from "../../../services/sequenceApi";
 import actionTypeApi from "../../services/actionTypeApi";
 import ActionForm from "./ActionForm";
+import mapMakerApi from "../../services/MapMakerApi";
 
 class SequenceForm extends React.Component{
     constructor(props) {
@@ -17,17 +17,20 @@ class SequenceForm extends React.Component{
             position: 0,
             lastSequence: 0,
             nextSequence: 0,
+            pnj: 0,
             currentActionType: 1,
             currentActionName: "",
             sequences: [],
             actionTypes: [],
-            actions: this.props.sequence.actions
+            actions: this.props.sequence.actions,
+            pnjs: []
         }
     }
 
     componentDidMount() {
         this.fetchSequences();
         this.fetchActionTypes();
+        this.fetchPnjs();
     }
 
     fetchSequences = async () =>{
@@ -40,14 +43,21 @@ class SequenceForm extends React.Component{
         this.setState({actionTypes: actionTypes})
     }
 
-    handleSequenceChange(event){
+    fetchPnjs = async () =>{
+        const pnjs = await mapMakerApi.getPnjInfoForSelect();
+        this.setState({pnjs: pnjs})
+    }
+
+    handleSequenceChange = (event) =>{
         const value = event.currentTarget.value;
         const name = event.currentTarget.name;
-        this.setState({[name]: value})
+        console.log(name);
+        this.setState({[name]: value}, () => this.props.handleAllQuestFormChange(this.state))
+
     }
 
     handleActionTypeChange = (event) =>{
-        this.setState({currentActionType: event.target.value, currentActionTypeName: event.currentTarget.name});
+        this.setState({currentActionType: event.target.value, currentActionTypeName: this.state.actionTypes[event.target.value-1].name});
     }
 
     handleAddAction = () =>{
@@ -57,26 +67,48 @@ class SequenceForm extends React.Component{
         })
     }
 
+    handleActionChange = (action) => {
+        const actions = [...this.state.actions];
+        const actionsFiltered = actions.filter(a => a.id === action.id);
+        if(actionsFiltered.length > 0){
+            actions[actions.indexOf(actionsFiltered[0])] = action;
+        }else {
+            actions.push(action);
+        }
+
+        this.setState({actions: actions}, () => this.props.handleAllQuestFormChange(this.state))
+    }
+
+    handleSubmitQuest = async (event) =>{
+
+    }
+
 
     render(){
         return (
             <div className="sequence-container">
+                <button className="map-maker-btn-validation" onChange={this.submitQuest}>Valider la quête</button>
                 <div className="sequence-form-container">
                     <div className="sequence-form-left">
-                        <Field name="name" type="text" label="Nom" value={this.state.name} onChange={this.handleSequenceChange}/>
-                        <Field name="isLast" type="number" label="Dernière sequence" value={false} onChange={this.handleSequenceChange}/>
-                        <Field name="position" type="number" label="Position" value={this.state.position} onChange={this.handleSequenceChange}/>
+                        <Field name={"name-"+ this.props.sequence.id} type="text" label="Nom" value={this.state.name} onChange={this.handleSequenceChange}/>
+                        <Field name={"isLast-"+this.props.sequence.id} type="number" label="Dernière sequence" value={false} onChange={this.handleSequenceChange}/>
+                        <Field name={"position-"+this.props.sequence.id} type="number" label="Position" value={this.state.position} onChange={this.handleSequenceChange}/>
                     </div>
 
                     <div className="sequence-form-right">
-                        <Select name="lastSequence" value={this.state.lastSequence} label="Sequence précédante" value={this.state.lastSequence} onChange={this.handleSequenceChange}>
+                        <Select name={"lastSequence-"+this.props.sequence.id} value={this.state.lastSequence} label="Sequence précédante" onChange={this.handleSequenceChange}>
                             <option value="0">Aucune</option>
                             {this.state.sequences.length > 0 && this.state.sequences.map(sequence => <option key={sequence.id} value={sequence.id}>{sequence.name}</option>)}
                         </Select>
 
-                        <Select name="nextSequence" value={this.state.nextSequence} label="Sequence suivante" value={this.state.nextSequence} onChange={this.handleSequenceChange}>
+                        <Select name={"nextSequence-"+this.props.sequence.id} value={this.state.nextSequence} label="Sequence suivante" onChange={this.handleSequenceChange}>
                             <option value="0">Aucune</option>
                             {this.state.sequences.length > 0 && this.state.sequences.map(sequence => <option key={sequence.id} value={sequence.id}>{sequence.name}</option>)}
+                        </Select>
+
+                        <Select name={"pnj-"+this.props.sequence.id} value={this.state.pnj} label="Pnj" onChange={this.handleSequenceChange}>
+                            <option value="0">Aucune</option>
+                            {this.state.pnjs.length > 0 && this.state.pnjs.map(pnj => <option key={pnj.id} value={pnj.id}>{pnj.name}</option>)}
                         </Select>
                     </div>
                 </div>
@@ -91,7 +123,7 @@ class SequenceForm extends React.Component{
 
                     <div className="quest-maker-actions">
                         {this.state.actions && this.state.actions.map((action) => {
-                            return <ActionForm key={action.id} action={action} typeId={action.actionTypeId}/>
+                            return <ActionForm key={action.id} action={action} typeId={action.actionTypeId} handleActionChange={this.handleActionChange}/>
                         })}
                     </div>
                 </div>

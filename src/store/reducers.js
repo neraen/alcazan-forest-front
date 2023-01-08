@@ -38,7 +38,13 @@ export const playerStatsReducer = (state = {
             cases: [],
             diffCases: [],
         },
+        questMaker: {
+            alignement: 0,
+            objet: 0,
+            level: 0,
+            sequences: [],
 
+        }
     },
     loading: false,
     error: null
