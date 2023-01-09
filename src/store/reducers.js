@@ -188,6 +188,12 @@ export const playerStatsReducer = (state = {
                 data: {...state.data, questMaker: {...state.data.questMaker, sequences: action.sequences}}
             }
         }
+        case actions.SET_QUEST_MAKER_SEQUENCES: {
+            return {
+                ...state,
+                data: {...state.data, questMaker: {...state.data.questMaker, sequences: action.sequences}}
+            }
+        }
         default: {
             return state;
         }
