@@ -6,6 +6,8 @@ import sequenceApi from "../../../services/sequenceApi";
 import actionTypeApi from "../../services/actionTypeApi";
 import ActionForm from "./ActionForm";
 import mapMakerApi from "../../services/MapMakerApi";
+import {connect} from "react-redux";
+import {addSequencesQuestMaker, updateSequencesQuestMaker} from "../../../store/actions";
 
 class SequenceForm extends React.Component{
     constructor(props) {
@@ -51,7 +53,6 @@ class SequenceForm extends React.Component{
     handleSequenceChange = (event) =>{
         const value = event.currentTarget.value;
         const name = event.currentTarget.name;
-        console.log(name);
         this.setState({[name]: value}, () => this.props.handleAllQuestFormChange(this.state))
 
     }
@@ -90,23 +91,23 @@ class SequenceForm extends React.Component{
                 <button className="map-maker-btn-validation" onChange={this.submitQuest}>Valider la quête</button>
                 <div className="sequence-form-container">
                     <div className="sequence-form-left">
-                        <Field name={"name-"+ this.props.sequence.id} type="text" label="Nom" value={this.state.name} onChange={this.handleSequenceChange}/>
-                        <Field name={"isLast-"+this.props.sequence.id} type="number" label="Dernière sequence" value={false} onChange={this.handleSequenceChange}/>
-                        <Field name={"position-"+this.props.sequence.id} type="number" label="Position" value={this.state.position} onChange={this.handleSequenceChange}/>
+                        <Field name="name" type="text" label="Nom" value={this.state.name} onChange={this.handleSequenceChange}/>
+                        <Field name="isLast" type="number" label="Dernière sequence" value={false} onChange={this.handleSequenceChange}/>
+                        <Field name="position" type="number" label="Position" value={this.state.position} onChange={this.handleSequenceChange}/>
                     </div>
 
                     <div className="sequence-form-right">
-                        <Select name={"lastSequence-"+this.props.sequence.id} value={this.state.lastSequence} label="Sequence précédante" onChange={this.handleSequenceChange}>
+                        <Select name="lastSequence"value={this.state.lastSequence} label="Sequence précédante" onChange={this.handleSequenceChange}>
                             <option value="0">Aucune</option>
                             {this.state.sequences.length > 0 && this.state.sequences.map(sequence => <option key={sequence.id} value={sequence.id}>{sequence.name}</option>)}
                         </Select>
 
-                        <Select name={"nextSequence-"+this.props.sequence.id} value={this.state.nextSequence} label="Sequence suivante" onChange={this.handleSequenceChange}>
+                        <Select name="nextSequence" value={this.state.nextSequence} label="Sequence suivante" onChange={this.handleSequenceChange}>
                             <option value="0">Aucune</option>
                             {this.state.sequences.length > 0 && this.state.sequences.map(sequence => <option key={sequence.id} value={sequence.id}>{sequence.name}</option>)}
                         </Select>
 
-                        <Select name={"pnj-"+this.props.sequence.id} value={this.state.pnj} label="Pnj" onChange={this.handleSequenceChange}>
+                        <Select name="pnj" value={this.state.pnj} label="Pnj" onChange={this.handleSequenceChange}>
                             <option value="0">Aucune</option>
                             {this.state.pnjs.length > 0 && this.state.pnjs.map(pnj => <option key={pnj.id} value={pnj.id}>{pnj.name}</option>)}
                         </Select>
@@ -132,4 +133,6 @@ class SequenceForm extends React.Component{
     }
 }
 
-export default SequenceForm;
+export default connect((state, ownProps) => {
+    return {questMaker: state.data.questMaker, ownProps};
+}, {addSequencesQuestMaker, updateSequencesQuestMaker})(SequenceForm);

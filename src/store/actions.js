@@ -17,6 +17,11 @@ export const ADD_WRAP_CASE = "add wrap case"
 export const ADD_PNJ_CASE = "add pnj case"
 export const ADD_MONSTER_CASE = "add monster case"
 
+export const UPDATE_QUEST_MAKER_SEQUENCES = "update quest maker sequences";
+export const UPDATE_QUEST_MAKER = "update quest maker";
+export const ADD_QUEST_MAKER_SEQUENCE = "add quest maker sequence";
+export const UPDATE_QUEST_MAKER_ACTIONS = "update quest maker actions";
+
 
 export const updatePlayerTarget = (payload) => {
     return{
@@ -133,5 +138,26 @@ export const addWrapTool= (wrap) => {
     return{
         type: ADD_WRAP_TOOL,
         wrap
+    }
+}
+
+export const updateSequencesQuestMaker = (sequence) => {
+    return{
+        type: UPDATE_QUEST_MAKER_SEQUENCES,
+        sequence
+    }
+}
+
+export const addSequencesQuestMaker = (sequence) => {
+    return{
+        type: ADD_QUEST_MAKER_SEQUENCE,
+        sequence
+    }
+}
+
+export const updateQuestMaker = (fields) => {
+    return{
+        type: UPDATE_QUEST_MAKER,
+        fields
     }
 }

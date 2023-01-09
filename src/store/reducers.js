@@ -43,7 +43,6 @@ export const playerStatsReducer = (state = {
             objet: 0,
             level: 0,
             sequences: [],
-
         }
     },
     loading: false,
@@ -169,6 +168,24 @@ export const playerStatsReducer = (state = {
             return {
                 ...state,
                 data: {...state.data, mapMaker: {...state.data.mapMaker, mode: action.mode}}
+            }
+        }
+        case actions.UPDATE_QUEST_MAKER: {
+            return {
+                ...state,
+                data: {...state.data, questMaker: {...state.data.questMaker, ...action.fields}}
+            }
+        }
+        case actions.ADD_QUEST_MAKER_SEQUENCE: {
+            return {
+                ...state,
+                data: {...state.data, questMaker: {...state.data.questMaker, sequences: [...state.data.questMaker.sequences, action.sequence]}}
+            }
+        }
+        case actions.UPDATE_QUEST_MAKER_SEQUENCES: {
+            return {
+                ...state,
+                data: {...state.data, questMaker: {...state.data.questMaker, sequences: action.sequences}}
             }
         }
         default: {
