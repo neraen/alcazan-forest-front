@@ -17,11 +17,20 @@ export const ADD_WRAP_CASE = "add wrap case"
 export const ADD_PNJ_CASE = "add pnj case"
 export const ADD_MONSTER_CASE = "add monster case"
 
-export const SET_QUEST_MAKER_SEQUENCES = "set quest maker sequences";
-export const UPDATE_QUEST_MAKER_SEQUENCES = "update quest maker sequences";
+
 export const UPDATE_QUEST_MAKER = "update quest maker";
+export const SET_QUEST_MAKER_SEQUENCES = "set quest maker sequences";
 export const ADD_QUEST_MAKER_SEQUENCE = "add quest maker sequence";
-export const UPDATE_QUEST_MAKER_ACTIONS = "update quest maker actions";
+export const UPDATE_QUEST_MAKER_SEQUENCE = "update quest maker sequences";
+export const REMOVE_QUEST_MAKER_SEQUENCE = "remove quest maker sequence";
+
+
+export const SET_QUEST_MAKER_ACTIONS = "set quest maker actions";
+export const ADD_QUEST_MAKER_ACTION = "add quest maker action";
+export const UPDATE_QUEST_MAKER_ACTION = "update quest maker action";
+export const REMOVE_QUEST_MAKER_ACTION = "remove quest maker action";
+
+
 
 
 export const updatePlayerTarget = (payload) => {
@@ -142,6 +151,7 @@ export const addWrapTool= (wrap) => {
     }
 }
 
+/************ SEQUENCES QUEST MAKER ************/
 export const setQuestMakerSequences = (sequences) => {
     return{
         type: SET_QUEST_MAKER_SEQUENCES,
@@ -149,17 +159,57 @@ export const setQuestMakerSequences = (sequences) => {
     }
 }
 
-export const updateSequencesQuestMaker = (sequence) => {
+export const updateQuestMakerSequence = (index, sequence) => {
     return{
-        type: UPDATE_QUEST_MAKER_SEQUENCES,
+        type: UPDATE_QUEST_MAKER_SEQUENCE,
+        index,
         sequence
     }
 }
 
-export const addSequencesQuestMaker = (sequence) => {
+export const addQuestMakerSequence = (sequence) => {
     return{
         type: ADD_QUEST_MAKER_SEQUENCE,
         sequence
+    }
+}
+
+export const removeQuestMakerSequence = (index) => {
+    return{
+        type: REMOVE_QUEST_MAKER_SEQUENCE,
+        index
+    }
+}
+
+/************ ACTIONS QUEST MAKER ************/
+export const setQuestMakerActions = (actions) => {
+    return{
+        type: SET_QUEST_MAKER_ACTIONS,
+        actions
+    }
+}
+
+export const updateQuestMakerAction = (action, sequenceIndex, actionIndex) => {
+    return{
+        type: UPDATE_QUEST_MAKER_ACTION,
+        action,
+        sequenceIndex,
+        actionIndex
+    }
+}
+
+export const addQuestMakerAction = (action, sequenceIndex) => {
+    return{
+        type: ADD_QUEST_MAKER_ACTION,
+        action,
+        sequenceIndex
+    }
+}
+
+export const removeQuestMakerAction = (index) => {
+    return{
+        type: REMOVE_QUEST_MAKER_ACTION,
+        index
     }
 }
 

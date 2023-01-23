@@ -8,8 +8,9 @@ import EquipementApi from "../../../services/EquipementApi";
 import MapApi from "../../../services/MapApi";
 import consommableApi from "../../../services/consommableApi";
 import bossApi from "../../../services/bossApi";
-import pnjApi from "../../../services/pnjApi";
 import mapMakerApi from "../../services/MapMakerApi";
+import {connect} from "react-redux";
+import {removeQuestMakerAction, updateQuestMakerAction} from "../../../store/actions";
 
 
 class ActionForm extends React.Component{
@@ -19,8 +20,6 @@ class ActionForm extends React.Component{
             fields: [],
             actionName: this.props.action.actionName ? this.props.action.actionName : "",
         }
-
-        console.log(this.props.action)
     }
 
     componentDidMount() {
@@ -30,7 +29,7 @@ class ActionForm extends React.Component{
     fetchAllFieldsAndValues = async () =>{
         const fields = await actionTypeApi.getAllFields(this.props.action.actionTypeId);
         this.setState({fields: fields})
-        console.log(this.props.action.actionTypeName)
+
         switch (this.props.action.actionTypeName) {
             case "donnerObjet":
                 const objets = await objectApi.getAllObjects();
@@ -58,29 +57,31 @@ class ActionForm extends React.Component{
                 break;
         }
 
-        console.log(this.state.fieldContent)
     }
 
     handleChange = (event) => {
         const value = event.currentTarget.value;
         const name = event.currentTarget.name;
-        this.setState({[name]: value}, () =>  this.props.handleActionChange(this.state));
+        const action = Object.assign({...this.props.questMaker.sequences[this.props.sequenceIndex].actions[this.props.actionIndex]}, {[name]: value});
+
+        this.props.updateQuestMakerAction(action, this.props.sequenceIndex, this.props.actionIndex);
     }
 
     render(){
         return (
             <div className="action-container">
                 <h6>{this.state.actionName + " : " + this.props.action.actionTypeName}</h6>
-                <Field name="actionName" value={this.state.actionName} onChange={this.handleChange} label="Nom de l'action"/>
-                {this.state.fields && this.state.fields.length > 0 && this.state.fields.map((field) => {
+                <Field name="actionName" value={this.props.questMaker.sequences[this.props.sequenceIndex].actions[this.props.actionIndex].actionName} onChange={this.handleChange} label="Nom de l'action"/>
+                {this.state.fields && this.state.fields.length > 0 && this.state.fields.map((field, index) => {
                     if(field.type === "select"){
-                        return <Select name={field.name} onChange={this.handleChange} label={field.name}>
+                        return <Select key={index} name={field.name} onChange={this.handleChange} label={field.name}>
+                            <option value={0}>selectionner un {field.name}</option>
                             {this.state.fieldContent && this.state.fieldContent.length > 0 && this.state.fieldContent.map((content, index) => {
                                 return <option key={index} value={content.id}>{content.name}</option>
                             })}
                         </Select>
                     }else{
-                        return <Field name={field.name} type={field.type} label={field.name} value={field.value} onChange={this.handleChange}/>
+                        return <Field key={index} name={"action"+ field.name[0].toUpperCase() + field.name.substring(1)} type={field.type} label={field.name} value={this.props.action["action"+ field.name[0].toUpperCase() + field.name.substring(1)]} onChange={this.handleChange}/>
                     }
 
                 })}
@@ -89,4 +90,6 @@ class ActionForm extends React.Component{
     }
 }
 
-export default ActionForm;
+export default connect((state, ownProps) => {
+    return {questMaker: state.data.questMaker, ownProps};
+}, {removeQuestMakerAction, updateQuestMakerAction})(ActionForm);

@@ -3,9 +3,14 @@ import '../../../styles/app.css'
 import Select from "../../../components/forms/Select";
 import QuestMakerApi from "../../services/QuestMakerApi";
 import SequenceForm from "./SequenceForm";
-import ActionForm from "./ActionForm";
-import ActionGiveObjectForm from "./actions/ActionGiveObjectForm";
 import Field from "../../../components/forms/Field";
+import {connect} from "react-redux";
+import {
+    addQuestMakerSequence,
+    setQuestMakerActions,
+    setQuestMakerSequences,
+    updateQuestMaker
+} from "../../../store/actions";
 
 class QuestForm extends React.Component{
 
@@ -15,6 +20,7 @@ class QuestForm extends React.Component{
             questInfos: [],
             questContent: [],
             selectContent: [],
+            questForm: [],
             questId: 1
         }
     }
@@ -22,6 +28,7 @@ class QuestForm extends React.Component{
     async componentDidMount() {
         const questInfos = await QuestMakerApi.getQuest(this.props.questId);
         this.setState({questInfos: questInfos})
+        this.props.setQuestMakerSequences(questInfos.sequences);
         const selectContent = await QuestMakerApi.getQuestsInfoForSelect();
         this.setState({selectContent: selectContent});
     }
@@ -32,9 +39,7 @@ class QuestForm extends React.Component{
     }
 
     handleAddSequance(){
-        console.log(this.state.questInfos.sequences)
-        const sequences = this.state.questInfos.sequences;
-        sequences.push({
+        const sequence = {
             id: 0,
             position: 0,
             hasAction: 0,
@@ -43,47 +48,47 @@ class QuestForm extends React.Component{
             dialogueId: 0,
             pnjName: "",
             pnjId: 0,
-        });
-        this.setState({questInfos: {...this.state.questInfos, sequences: sequences}})
+        };
+        this.props.addQuestMakerSequence(sequence);
     };
 
     handleSubmit(){
-       // QuestMakerApi.updateQuest(this.state.questId, this.state.questInfos);
-        console.log(this.state.questContent)
+        this.quest
+        console.log(this.props.questMaker)
     }
 
     handleQuestFormChange(event){
         const value = event.currentTarget.value;
         const name = event.currentTarget.name;
-        this.setState({[name]: value})
+        this.setState({questForm: {...this.state.questForm, [name]: value}}, () => {
+            this.props.updateQuestMaker(this.state.questForm);
+        });
     }
 
-    handleAllQuestFormChange = (data) =>{
-        this.setState({questContent: {sequences: data}})
-    }
     render(){
         return (
             <>
                 <form className="quest-maker-container">
                     <div className="quest-maker-left-part">
-                        <Select name="alignement" label="Alignement requis">
-                            <option key={0}>Aucun alignement requis</option>
+                        <h2 className="title-map-font">Prérequis</h2>
+                        <Select name="alignement" label="Alignement requis" value={this.props.questMaker.alignement} onChange={(event) => this.handleQuestFormChange(event)}>
+                            <option>Aucun alignement requis</option>
                             {this.state.selectContent.alignements && this.state.selectContent.alignements.map((alignement) => {
                                 return <option key={alignement.id}>{alignement.name}</option>
                             })}
                         </Select>
-                        <Select name="objet" label="Objet requis">
-                            <option key={0}>Aucun objet requis</option>
+                        <Select name="objet" label="Objet requis" value={this.props.questMaker.objet} onChange={(event) => this.handleQuestFormChange(event)}>
+                            <option>Aucun objet requis</option>
                             {this.state.selectContent.objets && this.state.selectContent.objets.map((objet) => {
                                 return <option key={objet.id}>{objet.name}</option>
                             })}
                         </Select>
-                        <Field name="level" label="Level requis" type="number"/>
+                        <Field name="level" label="Level requis" type="number" value={this.props.questMaker.level} onChange={(event) => this.handleQuestFormChange(event)}/>
                     </div>
                     <div className="quest-maker-central-part sequences">
                         <div className="map-maker-btn-validation" onClick={() => this.handleAddSequance()}>Ajouter une sequence</div>
-                        {this.state.questInfos.sequences && this.state.questInfos.sequences.map((sequence) => {
-                            return <SequenceForm key={sequence.id} sequence={sequence} handleAllQuestFormChange={this.handleAllQuestFormChange}/>
+                        {this.props.questMaker.sequences && this.props.questMaker.sequences.map((sequence, index) => {
+                            return <SequenceForm key={index} index={index} sequence={sequence} />
                         })}
                     </div>
                 </form>
@@ -95,4 +100,6 @@ class QuestForm extends React.Component{
 }
 
 
-export default QuestForm;
+export default connect((state, ownProps) => {
+    return {questMaker: state.data.questMaker, ownProps};
+}, {setQuestMakerSequences, setQuestMakerActions, updateQuestMaker, addQuestMakerSequence})(QuestForm);

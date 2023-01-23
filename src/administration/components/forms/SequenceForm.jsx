@@ -7,19 +7,19 @@ import actionTypeApi from "../../services/actionTypeApi";
 import ActionForm from "./ActionForm";
 import mapMakerApi from "../../services/MapMakerApi";
 import {connect} from "react-redux";
-import {addSequencesQuestMaker, updateSequencesQuestMaker} from "../../../store/actions";
+import {
+    addQuestMakerAction,
+    addQuestMakerSequence,
+    removeQuestMakerSequence,
+    setQuestMakerActions,
+    updateQuestMakerSequence
+} from "../../../store/actions";
 
 class SequenceForm extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            name:  "",
-            hasAction: false,
-            isLast: false,
-            position: 0,
-            lastSequence: 0,
-            nextSequence: 0,
-            pnj: 0,
+            sequence: this.props.sequence,
             currentActionType: 1,
             currentActionName: "",
             sequences: [],
@@ -27,6 +27,7 @@ class SequenceForm extends React.Component{
             actions: this.props.sequence.actions,
             pnjs: []
         }
+
     }
 
     componentDidMount() {
@@ -53,8 +54,8 @@ class SequenceForm extends React.Component{
     handleSequenceChange = (event) =>{
         const value = event.currentTarget.value;
         const name = event.currentTarget.name;
-        this.setState({[name]: value}, () => this.props.handleAllQuestFormChange(this.state))
-
+        const sequence = {...this.props.sequence, [name]: value}
+        this.props.updateQuestMakerSequence(this.props.index, sequence);
     }
 
     handleActionTypeChange = (event) =>{
@@ -63,32 +64,14 @@ class SequenceForm extends React.Component{
 
     handleAddAction = () =>{
         const actionTypeName = this.state.currentActionTypeName ? this.state.currentActionTypeName : this.state.actionTypes[this.state.currentActionType-1].name;
-        this.setState({actions: [...this.state.actions,
-                {id: this.state.actions.length, actionTypeId: this.state.currentActionType, actionTypeName: actionTypeName}]
-        })
-    }
-
-    handleActionChange = (action) => {
-        const actions = [...this.state.actions];
-        const actionsFiltered = actions.filter(a => a.id === action.id);
-        if(actionsFiltered.length > 0){
-            actions[actions.indexOf(actionsFiltered[0])] = action;
-        }else {
-            actions.push(action);
-        }
-
-        this.setState({actions: actions}, () => this.props.handleAllQuestFormChange(this.state))
-    }
-
-    handleSubmitQuest = async (event) =>{
-
+        console.log(this.props.sequence);
+        this.props.addQuestMakerAction({id: this.props.sequence.actions.length, actionTypeId: this.state.currentActionType, actionTypeName: actionTypeName}, this.props.index);
     }
 
 
     render(){
         return (
             <div className="sequence-container">
-                <button className="map-maker-btn-validation" onChange={this.submitQuest}>Valider la quête</button>
                 <div className="sequence-form-container">
                     <div className="sequence-form-left">
                         <Field name="name" type="text" label="Nom" value={this.state.name} onChange={this.handleSequenceChange}/>
@@ -97,7 +80,7 @@ class SequenceForm extends React.Component{
                     </div>
 
                     <div className="sequence-form-right">
-                        <Select name="lastSequence"value={this.state.lastSequence} label="Sequence précédante" onChange={this.handleSequenceChange}>
+                        <Select name="lastSequence" value={this.state.lastSequence} label="Sequence précédante" onChange={this.handleSequenceChange}>
                             <option value="0">Aucune</option>
                             {this.state.sequences.length > 0 && this.state.sequences.map(sequence => <option key={sequence.id} value={sequence.id}>{sequence.name}</option>)}
                         </Select>
@@ -123,8 +106,8 @@ class SequenceForm extends React.Component{
                     </div>
 
                     <div className="quest-maker-actions">
-                        {this.state.actions && this.state.actions.map((action) => {
-                            return <ActionForm key={action.id} action={action} typeId={action.actionTypeId} handleActionChange={this.handleActionChange}/>
+                        {this.props.questMaker.sequences[this.props.index].actions && this.props.questMaker.sequences[this.props.index].actions.map((action, index) => {
+                            return <ActionForm key={index} action={action} sequenceIndex={this.props.index} actionIndex={index} typeId={action.actionTypeId} />
                         })}
                     </div>
                 </div>
@@ -135,4 +118,4 @@ class SequenceForm extends React.Component{
 
 export default connect((state, ownProps) => {
     return {questMaker: state.data.questMaker, ownProps};
-}, {addSequencesQuestMaker, updateSequencesQuestMaker})(SequenceForm);
+}, {addQuestMakerSequence, updateQuestMakerSequence, removeQuestMakerSequence, addQuestMakerAction, setQuestMakerActions})(SequenceForm);
