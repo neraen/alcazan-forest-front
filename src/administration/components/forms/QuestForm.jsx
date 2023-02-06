@@ -31,6 +31,12 @@ class QuestForm extends React.Component{
         this.props.setQuestMakerSequences(questInfos.sequences);
         const selectContent = await QuestMakerApi.getQuestsInfoForSelect();
         this.setState({selectContent: selectContent});
+        this.props.updateQuestMaker({
+            alignement: questInfos.alignement,
+            objet: questInfos.objet,
+            level: questInfos.level,
+            name: questInfos.name
+        });
     }
 
     handleChangePnj(event){
@@ -48,13 +54,14 @@ class QuestForm extends React.Component{
             dialogueId: 0,
             pnjName: "",
             pnjId: 0,
+            actions: [],
+            recompense: []
         };
         this.props.addQuestMakerSequence(sequence);
     };
 
-    handleSubmit(){
-        this.quest
-        console.log(this.props.questMaker)
+   async handleSubmit(){
+        await QuestMakerApi.updateQuest(this.state.questId, this.props.questMaker);
     }
 
     handleQuestFormChange(event){
@@ -74,13 +81,13 @@ class QuestForm extends React.Component{
                         <Select name="alignement" label="Alignement requis" value={this.props.questMaker.alignement} onChange={(event) => this.handleQuestFormChange(event)}>
                             <option>Aucun alignement requis</option>
                             {this.state.selectContent.alignements && this.state.selectContent.alignements.map((alignement) => {
-                                return <option key={alignement.id}>{alignement.name}</option>
+                                return <option key={alignement.id} value={alignement.id}>{alignement.name}</option>
                             })}
                         </Select>
                         <Select name="objet" label="Objet requis" value={this.props.questMaker.objet} onChange={(event) => this.handleQuestFormChange(event)}>
                             <option>Aucun objet requis</option>
                             {this.state.selectContent.objets && this.state.selectContent.objets.map((objet) => {
-                                return <option key={objet.id}>{objet.name}</option>
+                                return <option key={objet.id} value={objet.id}>{objet.name}</option>
                             })}
                         </Select>
                         <Field name="level" label="Level requis" type="number" value={this.props.questMaker.level} onChange={(event) => this.handleQuestFormChange(event)}/>

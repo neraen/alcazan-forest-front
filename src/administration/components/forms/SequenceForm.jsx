@@ -14,6 +14,10 @@ import {
     setQuestMakerActions,
     updateQuestMakerSequence
 } from "../../../store/actions";
+import EquipementApi from "../../../services/EquipementApi";
+import consommableApi from "../../../services/consommableApi";
+import objectApi from "../../../services/objectApi";
+import RecompenseForm from "./RecompenseForm";
 
 class SequenceForm extends React.Component{
     constructor(props) {
@@ -25,7 +29,10 @@ class SequenceForm extends React.Component{
             sequences: [],
             actionTypes: [],
             actions: this.props.sequence.actions,
-            pnjs: []
+            pnjs: [],
+            equipements: [],
+            consommables: [],
+            objets: [],
         }
 
     }
@@ -34,6 +41,14 @@ class SequenceForm extends React.Component{
         this.fetchSequences();
         this.fetchActionTypes();
         this.fetchPnjs();
+        this.fetchSelectElements();
+    }
+
+    fetchSelectElements = async () =>{
+        const equipements = await EquipementApi.getAllEquipements();
+        const consommables = await consommableApi.getAllConsommables();
+        const objets = await objectApi.getAllObjects();
+        this.setState({equipements: equipements, consommables: consommables, objets: objets});
     }
 
     fetchSequences = async () =>{
@@ -68,35 +83,42 @@ class SequenceForm extends React.Component{
         this.props.addQuestMakerAction({id: this.props.sequence.actions.length, actionTypeId: this.state.currentActionType, actionTypeName: actionTypeName}, this.props.index);
     }
 
+    getSequence = () => {
+        return this.props.questMaker.sequences[this.props.index]
+    }
+
 
     render(){
         return (
             <div className="sequence-container">
                 <div className="sequence-form-container">
                     <div className="sequence-form-left">
-                        <Field name="name" type="text" label="Nom" value={this.state.name} onChange={this.handleSequenceChange}/>
+                        <Field name="nomSequence" type="text" label="Nom" value={this.getSequence().nomSequence} onChange={this.handleSequenceChange}/>
                         <Field name="isLast" type="number" label="Dernière sequence" value={false} onChange={this.handleSequenceChange}/>
                         <Field name="position" type="number" label="Position" value={this.state.position} onChange={this.handleSequenceChange}/>
                     </div>
 
                     <div className="sequence-form-right">
-                        <Select name="lastSequence" value={this.state.lastSequence} label="Sequence précédante" onChange={this.handleSequenceChange}>
+                        <Select name="lastSequence" value={this.getSequence().lastSequence} label="Sequence précédante" onChange={this.handleSequenceChange}>
                             <option value="0">Aucune</option>
                             {this.state.sequences.length > 0 && this.state.sequences.map(sequence => <option key={sequence.id} value={sequence.id}>{sequence.name}</option>)}
                         </Select>
 
-                        <Select name="nextSequence" value={this.state.nextSequence} label="Sequence suivante" onChange={this.handleSequenceChange}>
+                        <Select name="nextSequence" value={this.getSequence().nextSequence} label="Sequence suivante" onChange={this.handleSequenceChange}>
                             <option value="0">Aucune</option>
                             {this.state.sequences.length > 0 && this.state.sequences.map(sequence => <option key={sequence.id} value={sequence.id}>{sequence.name}</option>)}
                         </Select>
 
-                        <Select name="pnj" value={this.state.pnj} label="Pnj" onChange={this.handleSequenceChange}>
+                        <Select name="pnj" value={this.getSequence().pnj} label="Pnj" onChange={this.handleSequenceChange}>
                             <option value="0">Aucune</option>
                             {this.state.pnjs.length > 0 && this.state.pnjs.map(pnj => <option key={pnj.id} value={pnj.id}>{pnj.name}</option>)}
                         </Select>
                     </div>
                 </div>
 
+                <div className="sequence-actions-container">
+                    <textarea className="quest-maker-textarea" name="dialogueContent" value={this.getSequence().dialogueContent} onChange={this.handleSequenceChange}/>
+                </div>
                 <div className="quest-maker-actions-container">
                     <div className="quest-maker-actions-form">
                         <div className="map-maker-btn-validation" onClick={() => this.handleAddAction()}>Ajouter une action</div>
@@ -104,11 +126,18 @@ class SequenceForm extends React.Component{
                             {this.state.actionTypes.length > 0 && this.state.actionTypes.map(actionType => <option key={actionType.id} value={actionType.id}>{actionType.name}</option>)}
                         </Select>
                     </div>
-
+                    Actions
                     <div className="quest-maker-actions">
                         {this.props.questMaker.sequences[this.props.index].actions && this.props.questMaker.sequences[this.props.index].actions.map((action, index) => {
                             return <ActionForm key={index} action={action} sequenceIndex={this.props.index} actionIndex={index} typeId={action.actionTypeId} />
                         })}
+                    </div>
+                    recompenses
+                    <div className="quest-maker-actions">
+                        <RecompenseForm recompense={this.getSequence().recompense} sequenceIndex={this.props.index}
+                                        objets={this.state.objets}
+                                        equipements={this.state.equipements}
+                                        consommables={this.state.consommables}/>
                     </div>
                 </div>
             </div>

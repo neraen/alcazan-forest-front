@@ -30,6 +30,8 @@ export const ADD_QUEST_MAKER_ACTION = "add quest maker action";
 export const UPDATE_QUEST_MAKER_ACTION = "update quest maker action";
 export const REMOVE_QUEST_MAKER_ACTION = "remove quest maker action";
 
+export const UPDATE_QUEST_MAKER_RECOMPENSE = "update quest maker recompense";
+
 
 
 
@@ -212,6 +214,22 @@ export const removeQuestMakerAction = (index) => {
         index
     }
 }
+
+export const updateQuestMakerSequenceRecompense = (recompense, sequenceIndex) => {
+    return{
+        type: UPDATE_QUEST_MAKER_RECOMPENSE,
+        recompense,
+        sequenceIndex
+    }
+}
+
+/* export const setQuestMakerSequenceRecompense = (recompense) => {
+    return{
+        type: SET_QUEST_MAKER_RECOMPENSE,
+        recompense
+    }
+} s*/
+
 
 export const updateQuestMaker = (fields) => {
     return{

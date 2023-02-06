@@ -257,6 +257,20 @@ export const playerStatsReducer = (state = {
                 data: {...state.data, questMaker: {...state.data.questMaker, sequences: action.sequences}}
             }
         }
+        case actions.UPDATE_QUEST_MAKER_RECOMPENSE: {
+            const sequences = state.data.questMaker.sequences.map((sequence, index) => {
+                if(index === action.sequenceIndex){
+                    return {...sequence, recompense: action.recompense}
+                }else{
+                    return sequence
+                }
+            });
+
+            return {
+                ...state,
+                data: {...state.data, questMaker: {...state.data.questMaker, sequences: sequences}}
+            }
+        }
 
         default: {
             return state;
