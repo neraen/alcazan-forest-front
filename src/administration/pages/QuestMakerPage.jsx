@@ -1,17 +1,17 @@
 import React from 'react';
 import Select from "../../components/forms/Select";
-import MapApi from "../../services/MapApi";
-import MapMakerApi from "../services/MapMakerApi";
 import Field from "../../components/forms/Field";
 import QuestForm from "../components/forms/QuestForm";
 import QuestMakerApi from "../services/QuestMakerApi";
+import {connect} from "react-redux";
 
 class QuestMakerPage extends React.Component{
 
     constructor(props) {
         super(props);
         this.state = {
-            questId: 1
+            questId: 1,
+            name: ""
         }
     }
 
@@ -22,27 +22,27 @@ class QuestMakerPage extends React.Component{
 
     handleChangeQuest(event){
         const questId = event.target.value;
-        this.setState({questId})
+        this.setState({questId});
     }
 
     handleSubmit(){
-        MapMakerApi.updateMap(this.state.mapId, this.props.data.mapMaker.cases);
+        QuestMakerApi.updateQuest(this.state.questId, this.props.questMaker);
     }
 
-    handleChangeMapName(event){
+    handleChangeQuestName(event){
         const name = event.target.value;
         this.setState({name})
     }
 
-    async handleSubmitMapName(){
-        await MapApi.create(this.state.name);
+    async handleSubmitQuestName(){
+        await QuestMakerApi.createQuest(this.state.name);
     }
 
     render(){
         return <>
             <form className="form-add-quest" action="">
-                <Field name="name" label="Nom de la quête" type="text" value={this.state.name} onChange={(event) => this.handleChangeMapName(event)} />
-                <div className="map-maker-btn-validation" onClick={() => this.handleSubmitMapName()}>Creer une quête</div>
+                <Field name="name" label="Nom de la quête" type="text" value={this.state.name} onChange={(event) => this.handleChangeQuestName(event)} />
+                <div className="map-maker-btn-validation" onClick={() => this.handleSubmitQuestName()}>Creer une quête</div>
             </form>
             <h1>Editer une quête</h1>
             <div className="quest-page-maker-container">
@@ -58,4 +58,6 @@ class QuestMakerPage extends React.Component{
 
 }
 
-export default QuestMakerPage;
+export default connect((state, ownProps) => {
+    return {questMaker: state.data.questMaker, ownProps};
+})(QuestMakerPage);

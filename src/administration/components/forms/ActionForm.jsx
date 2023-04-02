@@ -11,6 +11,7 @@ import bossApi from "../../../services/bossApi";
 import mapMakerApi from "../../services/MapMakerApi";
 import {connect} from "react-redux";
 import {removeQuestMakerAction, updateQuestMakerAction} from "../../../store/actions";
+import monsterApi from "../../../services/monsterApi";
 
 
 class ActionForm extends React.Component{
@@ -24,6 +25,7 @@ class ActionForm extends React.Component{
 
     componentDidMount() {
         this.fetchAllFieldsAndValues();
+        //setActionValues(this.props.action, this);
     }
 
     fetchAllFieldsAndValues = async () =>{
@@ -46,6 +48,10 @@ class ActionForm extends React.Component{
             case "battreBoss":
                 const bosses = await bossApi.getAllBosses();
                 this.setState({fieldContent: bosses})
+                break;
+            case "battreMonstre":
+                const monstres = await monsterApi.getAllMonsters();
+                this.setState({fieldContent: monstres})
                 break;
             case "visiterCarte":
                 const cartes = await MapApi.getAllMaps();
@@ -70,7 +76,7 @@ class ActionForm extends React.Component{
     render(){
         return (
             <div className="action-container">
-                <h6>{this.state.actionName + " : " + this.props.action.actionTypeName}</h6>
+                <h6>{this.props.questMaker.sequences[this.props.sequenceIndex].actions[this.props.actionIndex].actionName + " : " + this.props.action.actionTypeName}</h6>
                 <Field name="actionName" value={this.props.questMaker.sequences[this.props.sequenceIndex].actions[this.props.actionIndex].actionName} onChange={this.handleChange} label="Nom de l'action"/>
                 {this.state.fields && this.state.fields.length > 0 && this.state.fields.map((field, index) => {
                     if(field.type === "select"){
@@ -80,7 +86,8 @@ class ActionForm extends React.Component{
                                 return <option key={index} value={content.id}>{content.name}</option>
                             })}
                         </Select>
-                    }else{
+                    }
+                    else{
                         return <Field key={index} name={"action"+ field.name[0].toUpperCase() + field.name.substring(1)} type={field.type} label={field.name} value={this.props.action["action"+ field.name[0].toUpperCase() + field.name.substring(1)]} onChange={this.handleChange}/>
                     }
 

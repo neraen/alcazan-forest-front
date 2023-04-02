@@ -21,8 +21,8 @@ function updateQuest(questId, quest) {
     return axios.post(`${API_URL}quest/update`, {questId: questId, quest: quest});
 }
 
-function createQuest(quest) {
-    return axios.post(`${API_URL}quest/create`, {quest: quest});
+function createQuest(questName) {
+    return axios.post(`${API_URL}quest/create`, {name: questName});
 }
 
 function getAllActionTypes() {

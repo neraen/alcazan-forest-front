@@ -21,14 +21,27 @@ class QuestForm extends React.Component{
             questContent: [],
             selectContent: [],
             questForm: [],
-            questId: 1
+            questId: this.props.questId
+        }
+    }
+
+    componentWillReceiveProps(nextProps){
+        if(nextProps.questId !== this.props.questId){
+            this.setState({questId: nextProps.questId}, () => {
+                this.componentDidMount();
+            })
         }
     }
 
     async componentDidMount() {
-        const questInfos = await QuestMakerApi.getQuest(this.props.questId);
+        console.log(this.props.questId);
+        const questInfos = await QuestMakerApi.getQuest(this.state.questId);
         this.setState({questInfos: questInfos})
-        this.props.setQuestMakerSequences(questInfos.sequences);
+        if(questInfos.sequences !== undefined){
+            this.props.setQuestMakerSequences(questInfos.sequences);
+        }else{
+            this.props.setQuestMakerSequences([]);
+        }
         const selectContent = await QuestMakerApi.getQuestsInfoForSelect();
         this.setState({selectContent: selectContent});
         this.props.updateQuestMaker({

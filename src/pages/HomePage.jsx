@@ -42,7 +42,7 @@ const HomePage = (props) => {
                 <img src={require('../img/bird2.png').default} alt="" id="bird2" />
                 {/*<img src="img/moondetour2.png" alt="" id="moon" />*/}
                 <img src={require('../img/sun.png').default} alt="" id="sun" />
-                <img src={require('../img/waterfall.png').default} alt="" id="forest" />
+                <img src={require('../img/waterfall2.png').default} alt="" id="forest" />
                 <a href="/inscription" id="btn"><span>S'inscrire</span></a>
                 <img src={require('../img/rocks1.png').default} alt="" id="rocks" />
                 {/*<img src={require('../img/war.png').default} alt="" id="war" />*/}

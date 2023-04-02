@@ -80,7 +80,7 @@ class SequenceForm extends React.Component{
     handleAddAction = () =>{
         const actionTypeName = this.state.currentActionTypeName ? this.state.currentActionTypeName : this.state.actionTypes[this.state.currentActionType-1].name;
         console.log(this.props.sequence);
-        this.props.addQuestMakerAction({id: this.props.sequence.actions.length, actionTypeId: this.state.currentActionType, actionTypeName: actionTypeName}, this.props.index);
+        this.props.addQuestMakerAction({actionId: 0, actionTypeId: this.state.currentActionType, actionTypeName: actionTypeName}, this.props.index);
     }
 
     getSequence = () => {
@@ -117,6 +117,7 @@ class SequenceForm extends React.Component{
                 </div>
 
                 <div className="sequence-actions-container">
+                    <Field name="dialogueTitre" type="text" label="Titre" value={this.getSequence().dialogueTitre} onChange={this.handleSequenceChange}/>
                     <textarea className="quest-maker-textarea" name="dialogueContent" value={this.getSequence().dialogueContent} onChange={this.handleSequenceChange}/>
                 </div>
                 <div className="quest-maker-actions-container">
