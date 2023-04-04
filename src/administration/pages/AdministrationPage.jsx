@@ -7,6 +7,7 @@ import MonsterMakerPage from "./MonsterMakerPage";
 import EquipementPage from "./EquipementPage";
 import ShopMakerPage from "./ShopMakerPage";
 import QuestMakerPage from "./QuestMakerPage";
+import WorldMakerPage from "./WorldMakerPage";
 
 
 
@@ -19,6 +20,9 @@ const AdministrationPage = (props) => {
                 <ul className="administration-nav-links">
                     <li className="administration-nav-link">
                         <NavLink className="" to="/administration/joueurs">Joueurs</NavLink>
+                    </li>
+                    <li className="administration-nav-link">
+                        <NavLink className="" to="/administration/world">Monde</NavLink>
                     </li>
                     <li className="administration-nav-link">
                         <NavLink className="" to="/administration/mapmaker">Map Maker</NavLink>
@@ -42,6 +46,7 @@ const AdministrationPage = (props) => {
             </div>
             <div className="layout-administration">
                 <Switch>
+                    <PrivateRoute path="/administration/world"  isAdmin={true} component={WorldMakerPage}/>
                     <PrivateRoute path="/administration/mapmaker"  isAdmin={true} component={MapMakerPage}/>
                     <PrivateRoute path="/administration/questmaker"  isAdmin={true} component={QuestMakerPage}/>
                     <PrivateRoute path="/administration/pnj"  isAdmin={true} component={PnjMakerPage}/>

@@ -2056,6 +2056,23 @@ section #text span{
   color: aliceblue;
 }
 
+/************************* ADMINISTRATION - WORLD **************************/
+.world-maps{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.world-map{
+  width: 15vw;
+  max-width: 15vw;
+  height: 10vw;
+  margin: 2px;
+  display: inline-block;
+  justify-content: center;
+  border: solid aliceblue 1px;
+}
+
 /*** REGISTER PAGE **/
 
 .register-form, .form-login{
