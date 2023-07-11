@@ -1,8 +1,8 @@
 import React from 'react'
 import '../../../../styles/app.css'
-import Field from "../../../../components/forms/Field";
-import objectApi from "../../../../services/objectApi";
-import Select from "../../../../components/forms/Select";
+import Field from "../../../../../components/forms/Field";
+import objectApi from "../../../../../services/objectApi";
+import Select from "../../../../../components/forms/Select";
 
 class ActionGiveObjectForm extends React.Component{
     constructor(props) {
