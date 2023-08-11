@@ -35,7 +35,7 @@ const HomePage = (props) => {
         <>
             <section>
                 <h2 id="text">
-                    <span> Alcazan Forest </span>
+                    <span> Alcazan Forest - mmorpg medieval </span>
                 </h2>
 
                 <img src={require('../img/bird1.png').default} alt="" id="bird1" />
