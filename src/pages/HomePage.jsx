@@ -29,6 +29,7 @@ const HomePage = (props) => {
             // header.style.top = value * -0.5 + 'px';
             // war.style.top = 375 + value * -0.12 + 'px';
         });
+
     }
 
     return (
