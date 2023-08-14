@@ -1,11 +1,11 @@
 import React from 'react'
-import UsernameBlock from "../components/UserInterface/UsernameBlock";
-import SideMenu from "../components/UserInterface/SideMenu";
-import Map from "../components/map/Map";
-import SpellBar from "../components/UserInterface/SpellBar";
-import UserStatsBlock from "../components/UserInterface/UserStatsBlock";
+import UsernameBlock from "../components/UserInterface/usernameBlock/UsernameBlock";
+import SideMenu from "../components/UserInterface/sideMenu/SideMenu";
+import Map from "../components/map/map/Map";
+import SpellBar from "../components/UserInterface/spellBar/SpellBar";
+import UserStatsBlock from "../components/UserInterface/userStatsBlock/UserStatsBlock";
 import UsersApi from "../services/UsersApi";
-import Loader from "../components/Loader";
+import Loader from "../components/loader/Loader";
 import Target from "../components/Target";
 import { connect } from "react-redux";
 import {updateJoueurState} from "../store/actions";

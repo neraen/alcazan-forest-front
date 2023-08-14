@@ -1,12 +1,12 @@
 import React, { useEffect, useState} from 'react'
-import Profil from "../components/profil/profil";
+import Profil from "../components/profil/profil/profil";
 import UsersApi from "../services/UsersApi";
 import authAPI from "../services/authAPI";
 import {Link, Redirect} from "react-router-dom";
 import Switch from "react-bootstrap/Switch";
 import PrivateRoute from "../components/PrivateRoute";
-import ProfilSpells from "../components/profil/ProfilSpells";
-import Options from "../components/profil/Options";
+import ProfilSpells from "../components/profil/profilSpells/ProfilSpells";
+import Options from "../components/profil/options/Options";
 
 const ProfilPage = ({match, history}) => {
 

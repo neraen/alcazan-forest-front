@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
-import Navbar from './components/Navbar'
+import Navbar from './components/navBar/Navbar'
 import HomePage from "./pages/HomePage";
 import { HashRouter, Switch, Route, withRouter } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
@@ -19,7 +19,7 @@ import AdministrationPage from "./administration/pages/AdministrationPage";
 import HistoryPage from "./pages/HistoryPage";
 import MessageriePage from "./pages/MessageriePage";
 import './styles/app.scss'
-import ProfilJoueur from "./components/ProfilJoueur";
+import ProfilJoueur from "./components/profilJoueur/ProfilJoueur";
 
 authAPI.setup();
 
