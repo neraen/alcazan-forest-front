@@ -1,14 +1,14 @@
 import React from 'react'
-import UsernameBlock from "../components/UserInterface/usernameBlock/UsernameBlock";
-import SideMenu from "../components/UserInterface/sideMenu/SideMenu";
-import Map from "../components/map/map/Map";
-import SpellBar from "../components/UserInterface/spellBar/SpellBar";
-import UserStatsBlock from "../components/UserInterface/userStatsBlock/UserStatsBlock";
-import UsersApi from "../services/UsersApi";
-import Loader from "../components/loader/Loader";
+import UsernameBlock from "../../components/UserInterface/usernameBlock/UsernameBlock";
+import SideMenu from "../../components/UserInterface/sideMenu/SideMenu";
+import Map from "../../components/map/map/Map";
+import SpellBar from "../../components/UserInterface/spellBar/SpellBar";
+import UserStatsBlock from "../../components/UserInterface/userStatsBlock/UserStatsBlock";
+import UsersApi from "../../services/UsersApi";
+import Loader from "../../components/loader/Loader";
 import Target from "../components/Target";
 import { connect } from "react-redux";
-import {updateJoueurState} from "../store/actions";
+import {updateJoueurState} from "../../store/actions";
 
 import 'intro.js/introjs.css';
 import { Steps, Hints } from 'intro.js-react';

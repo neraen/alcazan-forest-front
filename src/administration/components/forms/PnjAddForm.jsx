@@ -2,7 +2,7 @@ import React from 'react'
 import '../../../styles/app.css'
 import {connect} from "react-redux";
 import {addWrapTool,updateModeMapMaker} from "../../../store/actions";
-import Select from "../../../components/forms/Select";
+import Select from "../../../components/forms/select/Select";
 import MapMakerApi from "../../services/MapMakerApi";
 
 class PnjAddForm extends React.Component{

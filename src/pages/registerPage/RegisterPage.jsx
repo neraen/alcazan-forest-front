@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import Field from "../components/forms/Field";
+import Field from "../../components/forms/field/Field";
 import {Link} from "react-router-dom";
-import UsersApi from "../services/UsersApi";
+import UsersApi from "../../services/UsersApi";
 
 const RegisterPage = ({history}) => {
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import Historique from "../components/historique/Historique";
+import Historique from "../../components/historique/Historique";
 
 
  class HistoryPage extends React.Component{

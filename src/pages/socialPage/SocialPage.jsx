@@ -1,9 +1,9 @@
 import React from "react";
 import {Link, Redirect} from "react-router-dom";
 import Switch from "react-bootstrap/Switch";
-import PrivateRoute from "../components/PrivateRoute";
-import Equipements from "../components/inventory/equipement/Equipements";
-import Objets from "../components/inventory/objets/Objets";
+import PrivateRoute from "../../components/PrivateRoute";
+import Equipements from "../../components/inventory/equipement/Equipements";
+import Objets from "../../components/inventory/objets/Objets";
 
 class SocialPage extends React.Component{
     render(){

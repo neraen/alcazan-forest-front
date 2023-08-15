@@ -1,8 +1,8 @@
 import React from 'react'
 import '../../../styles/app.css'
 import actionTypeApi from "../../services/actionTypeApi";
-import Field from "../../../components/forms/Field";
-import Select from "../../../components/forms/Select";
+import Field from "../../../components/forms/field/Field";
+import Select from "../../../components/forms/select/Select";
 import objectApi from "../../../services/objectApi";
 import EquipementApi from "../../../services/EquipementApi";
 import MapApi from "../../../services/MapApi";

@@ -1,5 +1,5 @@
 import React from 'react'
-import Inventory from "../components/inventory/inventory/Inventory";
+import Inventory from "../../components/inventory/inventory/Inventory";
 
 const InventoryPage = (props) => {
 

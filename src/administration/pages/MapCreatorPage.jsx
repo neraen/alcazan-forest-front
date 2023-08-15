@@ -1,6 +1,6 @@
 import React from 'react';
 import EditableMap from "../components/EditableMap";
-import Select from "../../components/forms/Select";
+import Select from "../../components/forms/select/Select";
 import MapApi from "../../services/MapApi";
 import {connect} from "react-redux";
 import {updateModeMapMaker} from "../../store/actions";

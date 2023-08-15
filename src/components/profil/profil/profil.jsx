@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import Field from "../../forms/Field";
+import Field from "../../forms/field/Field";
 import UsersApi from "../../../services/UsersApi";
 import InventaireApi from "../../../services/InventaireApi";
 import carateristiqueService from "../../../services/carateristiqueService";

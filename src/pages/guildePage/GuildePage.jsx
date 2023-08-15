@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from "react-redux";
-import {updateJoueurState} from "../store/actions";
-import Guilde from "../components/social/Guilde";
+import {updateJoueurState} from "../../store/actions";
+import Guilde from "../../components/social/Guilde";
 
 
  class GuildePage extends React.Component{

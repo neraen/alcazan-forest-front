@@ -1,6 +1,6 @@
 import React from "react";
-import Contacts from "../components/social/messagerie/Contacts";
-import Messenger from "../components/social/messagerie/Messenger";
+import Contacts from "../../components/social/messagerie/Contacts";
+import Messenger from "../../components/social/messagerie/Messenger";
 
 class MessageriePage extends React.Component{
     constructor(props) {

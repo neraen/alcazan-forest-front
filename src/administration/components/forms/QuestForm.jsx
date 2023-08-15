@@ -1,9 +1,9 @@
 import React from 'react'
 import '../../../styles/app.css'
-import Select from "../../../components/forms/Select";
+import Select from "../../../components/forms/select/Select";
 import QuestMakerApi from "../../services/QuestMakerApi";
 import SequenceForm from "./SequenceForm";
-import Field from "../../../components/forms/Field";
+import Field from "../../../components/forms/field/Field";
 import {connect} from "react-redux";
 import {
     addQuestMakerSequence,

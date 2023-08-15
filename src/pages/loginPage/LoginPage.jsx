@@ -1,7 +1,7 @@
 import React, {useState, useContext} from "react";
-import authAPI from "../services/authAPI";
-import AuthContext from "../contexts/AuthContext";
-import UsersApi from "../services/UsersApi";
+import authAPI from "../../services/authAPI";
+import AuthContext from "../../contexts/AuthContext";
+import UsersApi from "../../services/UsersApi";
 
 const LoginPage = ({history }) =>{
 

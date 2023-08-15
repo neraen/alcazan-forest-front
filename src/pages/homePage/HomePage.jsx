@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import bird1 from '../img/bird1.png'
+import bird1 from '../../img/bird1.png'
 const HomePage = (props) => {
 
     useEffect(() => {
@@ -39,13 +39,13 @@ const HomePage = (props) => {
                     <span> Alcazan Forest - mmorpg medieval </span>
                 </h2>
 
-                <img src={require('../img/bird1.png').default} alt="" id="bird1" />
-                <img src={require('../img/bird2.png').default} alt="" id="bird2" />
+                <img src={require('../../img/bird1.png').default} alt="" id="bird1" />
+                <img src={require('../../img/bird2.png').default} alt="" id="bird2" />
                 {/*<img src="img/moondetour2.png" alt="" id="moon" />*/}
-                <img src={require('../img/sun.png').default} alt="" id="sun" />
-                <img src={require('../img/waterfall2.png').default} alt="" id="forest" />
+                <img src={require('../../img/sun.png').default} alt="" id="sun" />
+                <img src={require('../../img/waterfall2.png').default} alt="" id="forest" />
                 <a href="/inscription" id="btn"><span>S'inscrire</span></a>
-                <img src={require('../img/rocks1.png').default} alt="" id="rocks" />
+                <img src={require('../../img/rocks1.png').default} alt="" id="rocks" />
                 {/*<img src={require('../img/war.png').default} alt="" id="war" />*/}
 
             </section>

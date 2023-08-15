@@ -1,7 +1,7 @@
 import React from 'react'
 import '../../../styles/app.css'
-import Field from "../../../components/forms/Field";
-import Select from "../../../components/forms/Select";
+import Field from "../../../components/forms/field/Field";
+import Select from "../../../components/forms/select/Select";
 import sequenceApi from "../../../services/sequenceApi";
 import actionTypeApi from "../../services/actionTypeApi";
 import ActionForm from "./ActionForm";

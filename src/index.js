@@ -1,23 +1,23 @@
 import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
 import Navbar from './components/navBar/Navbar'
-import HomePage from "./pages/HomePage";
+import HomePage from "./pages/homePage/HomePage";
 import { HashRouter, Switch, Route, withRouter } from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
+import LoginPage from "./pages/loginPage/LoginPage";
+import RegisterPage from "./pages/registerPage/RegisterPage";
 import authAPI from "./services/authAPI";
-import ProfilPage from "./pages/ProfilPage";
+import ProfilPage from "./pages/profilPage/ProfilPage";
 import AuthContext from "./contexts/AuthContext";
 import PrivateRoute from "./components/PrivateRoute";
-import MapPage from "./pages/MapPage";
-import GuildePage from "./pages/GuildePage";
-import InventoryPage from "./pages/InventoryPage";
+import MapPage from "./pages/mapPage/MapPage";
+import GuildePage from "./pages/guildePage/GuildePage";
+import InventoryPage from "./pages/inventoryPage/InventoryPage";
 import {Provider} from "react-redux";
 // import MercureSubscriber from "@cerati/react-mercure";
 import store from "./store/index"
 import AdministrationPage from "./administration/pages/AdministrationPage";
-import HistoryPage from "./pages/HistoryPage";
-import MessageriePage from "./pages/MessageriePage";
+import HistoryPage from "./pages/historyPage/HistoryPage";
+import MessageriePage from "./pages/messageriePage/MessageriePage";
 import './styles/app.scss'
 import ProfilJoueur from "./components/profilJoueur/ProfilJoueur";
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import EditableMap from "../components/EditableMap";
-import Select from "../../components/forms/Select";
+import Select from "../../components/forms/select/Select";
 import MapApi from "../../services/MapApi";
 import {connect} from "react-redux";
 import {updateModeMapMaker} from "../../store/actions";
@@ -8,7 +8,7 @@ import MapMakerApi from "../services/MapMakerApi";
 import WrapForm from "../components/forms/WrapForm";
 import PnjAddForm from "../components/forms/PnjAddForm";
 import MonsterAddForm from "../components/forms/MonsterAddForm";
-import Field from "../../components/forms/Field";
+import Field from "../../components/forms/field/Field";
 
 class WorldMakerPage extends React.Component{
 
