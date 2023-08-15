@@ -1,7 +1,4 @@
-import React, {useEffect, useState} from 'react'
-import Spell from "../../spells/spell/Spell";
-import UsersApi from "../../../services/UsersApi";
-
+import React from 'react'
 
 const ProfilSpellBar = (props) => {
     return <>
@@ -11,7 +8,7 @@ const ProfilSpellBar = (props) => {
                     {props.spells && props.spells.map(spell => (
                         <div key={spell.id} title={spell.nom} className="spell-container">
                             <div  className="spell">
-                                <img src={"../../../img/spell/" + spell.icone} className="img-spell"/>
+                                <img src={"../../../img/spell/" + spell.icone} alt={spell.nom} className="img-spell"/>
                             </div>
                         </div>
                     ))}

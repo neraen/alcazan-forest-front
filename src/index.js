@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
-import Navbar from './components/navBar/Navbar'
+import Navbar from './components/UserInterface/navBar/Navbar'
 import HomePage from "./pages/homePage/HomePage";
 import { HashRouter, Switch, Route, withRouter } from "react-router-dom";
 import LoginPage from "./pages/loginPage/LoginPage";
@@ -13,7 +13,6 @@ import MapPage from "./pages/mapPage/MapPage";
 import GuildePage from "./pages/guildePage/GuildePage";
 import InventoryPage from "./pages/inventoryPage/InventoryPage";
 import {Provider} from "react-redux";
-// import MercureSubscriber from "@cerati/react-mercure";
 import store from "./store/index"
 import AdministrationPage from "./administration/pages/AdministrationPage";
 import HistoryPage from "./pages/historyPage/HistoryPage";

@@ -1,14 +1,7 @@
 import React from 'react'
 import '../../../styles/app.css'
-import actionTypeApi from "../../services/actionTypeApi";
 import Field from "../../../components/forms/field/Field";
 import Select from "../../../components/forms/select/Select";
-import objectApi from "../../../services/objectApi";
-import EquipementApi from "../../../services/EquipementApi";
-import MapApi from "../../../services/MapApi";
-import consommableApi from "../../../services/consommableApi";
-import bossApi from "../../../services/bossApi";
-import mapMakerApi from "../../services/MapMakerApi";
 import {connect} from "react-redux";
 import {
     updateQuestMakerSequenceRecompense

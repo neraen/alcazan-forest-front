@@ -1,7 +1,7 @@
 import React, {useContext} from "react"
-import authAPI from "../../services/authAPI";
+import authAPI from "../../../services/authAPI";
 import {NavLink} from "react-router-dom";
-import AuthContext from "../../contexts/AuthContext";
+import AuthContext from "../../../contexts/AuthContext";
 
 const Navbar = ({history}) => {
 
@@ -16,7 +16,7 @@ const Navbar = ({history}) => {
 
     return(
         <nav className="navbar navbar-expand-lg navbar-padding title-font" >
-            <NavLink to="/" className="navbar-brand" href="#"><img src="../../img/A.F.png"/>Alcazan Forest</NavLink>
+            <NavLink to="/" className="navbar-brand" href="#"><img src="../../../img/A.F.png"/>Alcazan Forest</NavLink>
             <div className="collapse navbar-collapse" id="navbarColor02">
                 <ul className="navbar-nav mr-auto">
                     {isAuthenticated &&

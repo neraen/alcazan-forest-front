@@ -61,6 +61,8 @@ class ActionForm extends React.Component{
                 const pnjs = await mapMakerApi.getPnjInfoForSelect();
                 this.setState({fieldContent: pnjs})
                 break;
+            default:
+                break;
         }
 
     }

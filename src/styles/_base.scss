@@ -1,0 +1,28 @@
+body{
+  margin: 0;
+  font-family: var(--font-family);
+  color: var(--text-color);
+  background-color: var(--gray-2);
+}
+
+h1, h2, h3, h4{
+  margin: 0
+}
+
+* {
+  box-sizing: border-box;
+}
+
+ul{
+  list-style: none;
+  padding-left: 0px;
+  margin: 0px;
+}
+
+input{
+  font-family: var(--font-family);
+}
+
+::placeholder{
+  font-size: var(--font-family);
+}

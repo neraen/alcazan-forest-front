@@ -6,7 +6,7 @@ import SpellBar from "../../components/UserInterface/spellBar/SpellBar";
 import UserStatsBlock from "../../components/UserInterface/userStatsBlock/UserStatsBlock";
 import UsersApi from "../../services/UsersApi";
 import Loader from "../../components/loader/Loader";
-import Target from "../components/Target";
+import Target from "../../components/target/Target";
 import { connect } from "react-redux";
 import {updateJoueurState} from "../../store/actions";
 

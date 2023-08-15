@@ -1,8 +1,7 @@
-import React, {Component, useEffect, useState} from 'react'
-import {ProgressBar} from "react-bootstrap";
-import StatBar from "./UserInterface/StatBar";
+import React, {Component} from 'react'
+import StatBar from "../UserInterface/statBar/StatBar";
 import {connect} from "react-redux";
-import { fetchTargetInfo, removePlayerTarget } from "../store/actions";
+import { fetchTargetInfo, removePlayerTarget } from "../../store/actions";
 import {Link} from "react-router-dom";
 
 
